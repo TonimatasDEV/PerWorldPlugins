@@ -1,0 +1,7 @@
+updateChecker: true
+disabledCommandMessage: "&4[Server]: &fThis command is disabled for this world."
+
+plugins:
+  Example:
+    - PutWorldInThisListForDisableThisPluginOnWorld
+    - world

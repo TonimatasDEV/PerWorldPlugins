@@ -1,0 +1,21 @@
+main: net.tonimatasmc.perworldplugins.PerWorldPlugins
+name: PerWorldPlugins
+version: 1.0.0.2
+load: STARTUP
+api-version: 1.13
+author: TonimatasMC
+prefix: PerWorldPlugins
+
+commands:
+  perworldplugins:
+    description: Primary command of PerWorldPlugins
+
+permissions:
+  perworldplugins.reload:
+    description: Reload permission for PerWorldPlugins
+    default: false
+
+  perworldplugins.version:
+    description: Version permission for PerWorldPlugins
+    default: true
+

@@ -1,0 +1,43 @@
+package net.tonimatasmc.perworldplugins.util;
+
+import org.bukkit.World;
+import org.bukkit.event.Event;
+import org.bukkit.event.block.BlockEvent;
+import org.bukkit.event.entity.EntityEvent;
+import org.bukkit.event.hanging.HangingEvent;
+import org.bukkit.event.inventory.InventoryEvent;
+import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.vehicle.VehicleEvent;
+import org.bukkit.event.weather.WeatherEvent;
+import org.bukkit.event.world.WorldEvent;
+
+public final class WorldUtil {
+    public static World getWorldFromEvent(Event event) {
+        World world;
+        if (event instanceof BlockEvent blockEvent) {
+            world = blockEvent.getBlock().getWorld();
+        } else if (event instanceof PlayerEvent playerEvent) {
+            world = playerEvent.getPlayer().getWorld();
+        } else if (event instanceof InventoryEvent inventoryEvent) {
+            world = inventoryEvent.getView().getPlayer().getWorld();
+        } else if (event instanceof EntityEvent entityEvent) {
+            world = entityEvent.getEntity().getWorld();
+        } else if (event instanceof HangingEvent hangingEvent) {
+            world = hangingEvent.getEntity().getWorld();
+        } else if (event instanceof VehicleEvent vehicleEvent) {
+            world = vehicleEvent.getVehicle().getWorld();
+        } else if (event instanceof WeatherEvent weatherEvent) {
+            world = weatherEvent.getWorld();
+        } else if (event instanceof WorldEvent worldEvent) {
+            world = worldEvent.getWorld();
+        } else {
+            world = null;
+        }
+
+        return world;
+    }
+
+    private WorldUtil() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
+}
