@@ -2,6 +2,7 @@ package net.tonimatasmc.perworldplugins;
 
 import net.tonimatasmc.perworldplugins.injector.ListenerInjector;
 import net.tonimatasmc.perworldplugins.manager.RegisterManager;
+import net.tonimatasmc.perworldplugins.manager.UnregisterManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PerWorldPlugins extends JavaPlugin {
@@ -15,6 +16,8 @@ public final class PerWorldPlugins extends JavaPlugin {
     }
 
     public void onDisable() {
+        UnregisterManager.unregister();
+
         if (injector != null) {
             injector.unload();
         }

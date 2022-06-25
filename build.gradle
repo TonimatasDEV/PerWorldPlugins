@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'net.tonimatasmc'
-version = '1.0.0.2'
+version = '1.0.0.4'
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 8
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion

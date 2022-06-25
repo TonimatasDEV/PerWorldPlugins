@@ -21,7 +21,7 @@ public final class RegisteredListener extends org.bukkit.plugin.RegisteredListen
 
     }
 
-    public @NotNull org.bukkit.plugin.RegisteredListener getDelegate() {
+    public org.bukkit.plugin.RegisteredListener getDelegate() {
         return this.delegate;
     }
 }

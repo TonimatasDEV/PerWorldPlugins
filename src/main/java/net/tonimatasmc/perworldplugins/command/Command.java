@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 public class Command implements CommandExecutor {
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, org.bukkit.command.Command command, @NotNull String label, String[] args) {
         if (command.getName().equalsIgnoreCase("perworldplugins")) {

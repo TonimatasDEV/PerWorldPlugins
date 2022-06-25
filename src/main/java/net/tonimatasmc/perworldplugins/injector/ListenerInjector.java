@@ -14,7 +14,6 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Map;
@@ -64,7 +63,7 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
     }
 
     @SuppressWarnings("unused")
-    public @NotNull Optional<ImmutableSet<Class<? extends Event>>> getEventsForPlugin(Plugin plugin) {
+    public Optional<ImmutableSet<Class<? extends Event>>> getEventsForPlugin(Plugin plugin) {
         Set<Class<? extends Event>> tmpEvents = this.events.get(plugin);
         return tmpEvents == null ? Optional.empty() : Optional.of(ImmutableSet.copyOf(tmpEvents));
     }

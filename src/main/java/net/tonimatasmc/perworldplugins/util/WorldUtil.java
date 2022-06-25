@@ -14,27 +14,25 @@ import org.bukkit.event.world.WorldEvent;
 public final class WorldUtil {
     public static World getWorldFromEvent(Event event) {
         World world;
-        if (event instanceof BlockEvent blockEvent) {
-            world = blockEvent.getBlock().getWorld();
-        } else if (event instanceof PlayerEvent playerEvent) {
-            world = playerEvent.getPlayer().getWorld();
-        } else if (event instanceof InventoryEvent inventoryEvent) {
-            world = inventoryEvent.getView().getPlayer().getWorld();
-        } else if (event instanceof EntityEvent entityEvent) {
-            world = entityEvent.getEntity().getWorld();
-        } else if (event instanceof HangingEvent hangingEvent) {
-            world = hangingEvent.getEntity().getWorld();
-        } else if (event instanceof VehicleEvent vehicleEvent) {
-            world = vehicleEvent.getVehicle().getWorld();
-        } else if (event instanceof WeatherEvent weatherEvent) {
-            world = weatherEvent.getWorld();
-        } else if (event instanceof WorldEvent worldEvent) {
-            world = worldEvent.getWorld();
+        if (event instanceof BlockEvent) {
+            world = ((BlockEvent) event).getBlock().getWorld();
+        } else if (event instanceof PlayerEvent) {
+            world = ((PlayerEvent) event).getPlayer().getWorld();
+        } else if (event instanceof InventoryEvent) {
+            world = ((InventoryEvent) event).getView().getPlayer().getWorld();
+        } else if (event instanceof EntityEvent) {
+            world = ((EntityEvent) event).getEntity().getWorld();
+        } else if (event instanceof HangingEvent) {
+            world = ((HangingEvent) event).getEntity().getWorld();
+        } else if (event instanceof VehicleEvent) {
+            world = ((VehicleEvent) event).getVehicle().getWorld();
+        } else if (event instanceof WeatherEvent) {
+            world = ((WeatherEvent) event).getWorld();
+        } else if (event instanceof WorldEvent) {
+            world = ((WorldEvent) event).getWorld();
         } else {
             world = null;
-        }
-
-        return world;
+        }return world;
     }
 
     private WorldUtil() {

@@ -27,8 +27,12 @@ public final class RegisteredListenerUtils {
             return true;
         } else {
             if (WorldUtil.getWorldFromEvent(event) != null) {
-                PerWorldPlugins.getInjector().registerEvent(listener.getDelegate().getPlugin(), event.getClass());
-                return !(PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + listener.getDelegate().getPlugin().getName()).contains(WorldUtil.getWorldFromEvent(event).getName()));
+                if (!listener.getDelegate().getPlugin().getName().equalsIgnoreCase("LuckPerms")) {
+                    PerWorldPlugins.getInjector().registerEvent(listener.getDelegate().getPlugin(), event.getClass());
+                    return !(PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + listener.getDelegate().getPlugin().getName()).contains(WorldUtil.getWorldFromEvent(event).getName()));
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
