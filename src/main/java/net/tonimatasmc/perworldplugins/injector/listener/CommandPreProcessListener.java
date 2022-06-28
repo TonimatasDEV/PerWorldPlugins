@@ -3,10 +3,13 @@ package net.tonimatasmc.perworldplugins.injector.listener;
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+import java.util.Objects;
 
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class CommandPreProcessListener implements Listener {
@@ -18,7 +21,7 @@ public class CommandPreProcessListener implements Listener {
        if (pluginCommand != null) {
            if (PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + pluginCommand.getPlugin().getName()).contains(event.getPlayer().getWorld().getName())) {
                event.setCancelled(true);
-               event.getPlayer().sendMessage("This command is disabled for this world.");
+               event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getPlugin().getConfig().getString("disabledCommandMessage"))));
            }
        }
    }
