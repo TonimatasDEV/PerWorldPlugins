@@ -1,21 +1,22 @@
 package net.tonimatasmc.perworldplugins.injector.listener;
 
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
-import net.tonimatasmc.perworldplugins.util.IgnoredPlugins;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginEnableEvent;
 
 import java.util.Collections;
+import java.util.Objects;
 
-public class PluginRegisterConfigListener implements Listener {
+public class EnablePluginConfigCreator implements Listener {
+
     @EventHandler
-    public static void onPluginEnable(PluginEnableEvent event) {
-        if (IgnoredPlugins.useEvent(event)) {
-            if (PerWorldPlugins.getPlugin().getConfig().getConfigurationSection("plugins." + event.getPlugin().getName()) == null) {
+    public void onEnablePlugin(PluginEnableEvent event) {
+        if (!Objects.requireNonNull(PerWorldPlugins.getPlugin().getConfig().getConfigurationSection("plugins")).contains(event.getPlugin().getName())) {
+            if (!event.getPlugin().getName().equalsIgnoreCase(PerWorldPlugins.getPlugin().getName())) {
                 PerWorldPlugins.getPlugin().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList("Example"));
-                PerWorldPlugins.getPlugin().reloadConfig();
                 PerWorldPlugins.getPlugin().saveConfig();
+                PerWorldPlugins.getPlugin().reloadConfig();
             }
         }
     }

@@ -3,12 +3,10 @@ package net.tonimatasmc.perworldplugins.manager;
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import net.tonimatasmc.perworldplugins.command.Command;
 import net.tonimatasmc.perworldplugins.injector.listener.CommandPreProcessListener;
-import net.tonimatasmc.perworldplugins.injector.listener.PluginRegisterConfigListener;
+import net.tonimatasmc.perworldplugins.injector.listener.EnablePluginConfigCreator;
 import net.tonimatasmc.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasmc.perworldplugins.storage.YML.Config;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
 
 import java.util.Objects;
 
@@ -16,7 +14,7 @@ public class RegisterManager {
     public static void register() {
         ymlRegister();
         injector();
-        registerEvents(Bukkit.getServer().getPluginManager(), PerWorldPlugins.getPlugin());
+        registerEvents();
         registerCommands();
         registerTabulatorsCompleter();
     }
@@ -37,8 +35,8 @@ public class RegisterManager {
         Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setTabCompleter(new TabulatorCompleter());
     }
 
-    private static void registerEvents(PluginManager pluginManager, Plugin plugin) {
-        pluginManager.registerEvents(new CommandPreProcessListener(), plugin);
-        pluginManager.registerEvents(new PluginRegisterConfigListener(), plugin);
+    private static void registerEvents() {
+        Bukkit.getServer().getPluginManager().registerEvents(new EnablePluginConfigCreator(), PerWorldPlugins.getPlugin());
+        Bukkit.getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), PerWorldPlugins.getPlugin());
     }
 }

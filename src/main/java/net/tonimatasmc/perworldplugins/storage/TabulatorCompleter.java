@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class TabulatorCompleter implements TabCompleter {
     @Override
-    public List<String> onTabComplete(@Nullable CommandSender sender, @Nullable Command cmd, @Nullable String alias, @Nullable String[] args) {
+    public List<String> onTabComplete(@Nullable CommandSender sender, Command cmd, @Nullable String alias, String[] args) {
         assert cmd != null;
 
         if (cmd.getName().equalsIgnoreCase("perworldplugins")) {

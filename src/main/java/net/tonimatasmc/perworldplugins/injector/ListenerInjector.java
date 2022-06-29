@@ -6,6 +6,7 @@ import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import net.tonimatasmc.perworldplugins.listener.Listener;
 import net.tonimatasmc.perworldplugins.listener.RegisteredListener;
 import net.tonimatasmc.perworldplugins.listener.TimedRegisteredListener;
+import net.tonimatasmc.perworldplugins.util.IgnoredPlugins;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -37,11 +38,13 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
         if (this.loaded) {
             HandlerList.getHandlerLists().forEach((handlerList) -> {
                 org.bukkit.plugin.RegisteredListener[] var2 = handlerList.getRegisteredListeners();
+
                 int var3 = var2.length;
 
                 for(int var4 = 0; var4 < var3; ++var4) {
                     org.bukkit.plugin.RegisteredListener listener = var2[var4];
-                    if (listener.getPlugin() != PerWorldPlugins.getPlugin() && !(listener instanceof Listener)) {
+
+                    if (IgnoredPlugins.useListener(listener) && !(listener instanceof Listener)) {
                         handlerList.unregister(listener);
 
                         try {
@@ -91,16 +94,16 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
     }
 
     @EventHandler
-    public void onEnable(PluginEnableEvent e) {
-        if (e.getPlugin() != PerWorldPlugins.getPlugin()) {
+    public void onEnable(PluginEnableEvent event) {
+        if (IgnoredPlugins.usePluginEvent(event)) {
             this.run();
         }
 
     }
 
     @EventHandler
-    public void onDisable(PluginDisableEvent e) {
-        if (e.getPlugin() != PerWorldPlugins.getPlugin()) {
+    public void onDisable(PluginDisableEvent event) {
+        if (IgnoredPlugins.usePluginEvent(event)) {
             this.run();
         }
 

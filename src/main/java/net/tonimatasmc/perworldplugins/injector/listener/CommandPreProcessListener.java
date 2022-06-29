@@ -11,7 +11,6 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.util.Objects;
 
-@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class CommandPreProcessListener implements Listener {
 
    @EventHandler
