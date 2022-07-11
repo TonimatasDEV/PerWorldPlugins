@@ -2,7 +2,6 @@ package net.tonimatasmc.perworldplugins.util;
 
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import net.tonimatasmc.perworldplugins.listener.Listener;
-import org.apache.commons.lang3.reflect.FieldUtils;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.RegisteredListener;
@@ -11,7 +10,7 @@ import java.lang.reflect.Field;
 import java.util.Optional;
 
 public final class RegisteredListenerUtils {
-    private static final Field EXECUTOR_FIELD = FieldUtils.getField(RegisteredListener.class, "executor", true);
+    private static final Field EXECUTOR_FIELD = FieldUtils.getField(RegisteredListener.class,"executor", true);
 
     public static Optional<EventExecutor> getExecutorFromRegisteredListener(RegisteredListener listener) {
         try {
@@ -34,6 +33,8 @@ public final class RegisteredListenerUtils {
             }
         }
     }
+
+
 
     private RegisteredListenerUtils() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
