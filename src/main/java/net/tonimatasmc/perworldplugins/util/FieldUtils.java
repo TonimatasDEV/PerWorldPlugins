@@ -7,16 +7,13 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class FieldUtils {
-    public static Field getField(Class<?> cls, String fieldName, boolean forceAccess) {
+    public static Field getField(final Class<?> cls, final String fieldName, final boolean forceAccess) {
         Validate.notNull(cls, "cls");
-
-        if (!fieldName.equals("")) {
-            throw new IllegalArgumentException("The field name must not be blank/empty");
-        }
+        Validate.isTrue(StringUtils.isNotBlank(fieldName), "The field name must not be blank/empty");
 
         for (Class<?> acls = cls; acls != null; acls = acls.getSuperclass()) {
             try {
-                Field field = acls.getDeclaredField(fieldName);
+                final Field field = acls.getDeclaredField(fieldName);
 
                 if (!Modifier.isPublic(field.getModifiers())) {
                     if (forceAccess) {
@@ -24,34 +21,38 @@ public class FieldUtils {
                     } else {
                         continue;
                     }
-                }return field;
-            } catch (NoSuchFieldException ex) {
-                Bukkit.getConsoleSender().sendMessage("=========================\nError on get " + fieldName + " field.\n=========================");
+                }
+
+                return field;
+            } catch (final NoSuchFieldException ex) {
+                Bukkit.getConsoleSender().sendMessage("Error on getField: " + fieldName);
             }
         }
 
-        Field field = null;
-
-        for (Class<?> class1 : ClassUtils.getAllInterfaces(cls)) {
+        Field match = null;
+        for (final Class<?> class1 : ClassUtils.getAllInterfaces(cls)) {
             try {
-                Field class1Field = class1.getField(fieldName);
+                final Field test = class1.getField(fieldName);
 
-                if (field != null) {
-                    throw new IllegalArgumentException(String.format("Reference to field %s is ambiguous relative to %s; a matching field exists on two or more implemented interfaces.", fieldName, cls));
-                }
-
-                field = class1Field;
-            } catch (NoSuchFieldException ex) {
-                Bukkit.getConsoleSender().sendMessage("=========================\nError on get " + fieldName + " field.\n=========================");
+                Validate.isTrue(match == null, "Reference to field %s is ambiguous relative to %s; a matching field exists on two or more implemented interfaces.", fieldName, cls);
+                match = test;
+            } catch (final NoSuchFieldException ex) {
+                Bukkit.getConsoleSender().sendMessage("Error on getField: " + fieldName);
             }
-        }return field;
+        }
+        return match;
     }
 
     public static class Validate {
-
         @SuppressWarnings("SameParameterValue")
         private static <T> void notNull(T object, String message, Object... values) {
             Objects.requireNonNull(object, () -> String.format(message, values));
+        }
+
+        public static void isTrue(final boolean expression, final String message, final Object... values) {
+            if (!expression) {
+                throw new IllegalArgumentException(String.format(message, values));
+            }
         }
     }
 
