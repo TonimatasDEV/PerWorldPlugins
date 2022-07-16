@@ -16,7 +16,16 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("floodgate") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("DriveBackupV2") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("FartherViewDistance") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("ProtocolLib"));
+                !listener.getPlugin().getName().equalsIgnoreCase("ProtocolLib") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("Citizens") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("ExcellentCrates"));
+
+
+
+
+
+
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -30,7 +39,10 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("floodgate") &&
                 !event.getPlugin().getName().equalsIgnoreCase("DriveBackupV2") &&
                 !event.getPlugin().getName().equalsIgnoreCase("FartherViewDistance") &&
-                !event.getPlugin().getName().equalsIgnoreCase("ProtocolLib"));
+                !event.getPlugin().getName().equalsIgnoreCase("ProtocolLib") &&
+                !event.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Citizens") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -44,6 +56,9 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("floodgate") &&
                 !event.getPlugin().getName().equalsIgnoreCase("DriveBackupV2") &&
                 !event.getPlugin().getName().equalsIgnoreCase("FartherViewDistance") &&
-                !event.getPlugin().getName().equalsIgnoreCase("ProtocolLib"));
+                !event.getPlugin().getName().equalsIgnoreCase("ProtocolLib") &&
+                !event.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Citizens") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates"));
     }
 }
