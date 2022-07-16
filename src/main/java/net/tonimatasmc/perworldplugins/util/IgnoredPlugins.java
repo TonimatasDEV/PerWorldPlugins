@@ -19,13 +19,8 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("ProtocolLib") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("Citizens") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("ExcellentCrates"));
-
-
-
-
-
-
+                !listener.getPlugin().getName().equalsIgnoreCase("ExcellentCrates") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -42,7 +37,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("ProtocolLib") &&
                 !event.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Citizens") &&
-                !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates"));
+                !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates") &&
+                !event.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -59,6 +55,7 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("ProtocolLib") &&
                 !event.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Citizens") &&
-                !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates"));
+                !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates") &&
+                !event.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord"));
     }
 }
