@@ -13,7 +13,6 @@ public final class RegisteredListener extends org.bukkit.plugin.RegisteredListen
         this.delegate = delegate;
     }
 
-    @SuppressWarnings("NullableProblems")
     public void callEvent(Event event) throws EventException {
         if (RegisteredListenerUtils.checkEnabled(PerWorldPlugins.getPlugin(), this, event)) {
             this.delegate.callEvent(event);

@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class TabulatorCompleter implements TabCompleter {
     @Override
-    public List<String> onTabComplete(@Nullable CommandSender sender, Command cmd, @Nullable String alias, String[] args) {
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         assert cmd != null;
 
         if (cmd.getName().equalsIgnoreCase("perworldplugins")) {

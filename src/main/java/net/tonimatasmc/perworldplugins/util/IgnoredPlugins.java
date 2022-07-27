@@ -20,7 +20,11 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("Citizens") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("ExcellentCrates") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord"));
+                !listener.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("SquidGame") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("VotingPlugin"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -38,7 +42,11 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Citizens") &&
                 !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates") &&
-                !event.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord"));
+                !event.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SquidGame") &&
+                !event.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
+                !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -56,6 +64,10 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("WorldGuard") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Citizens") &&
                 !event.getPlugin().getName().equalsIgnoreCase("ExcellentCrates") &&
-                !event.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord"));
+                !event.getPlugin().getName().equalsIgnoreCase("EssentialsDiscord") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SquidGame") &&
+                !event.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
+                !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin"));
     }
 }
