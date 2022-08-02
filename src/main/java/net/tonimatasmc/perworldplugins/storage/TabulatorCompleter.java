@@ -14,6 +14,7 @@ public class TabulatorCompleter implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         assert cmd != null;
 
+
         if (cmd.getName().equalsIgnoreCase("perworldplugins")) {
             List<String> argList = new ArrayList<>();
 

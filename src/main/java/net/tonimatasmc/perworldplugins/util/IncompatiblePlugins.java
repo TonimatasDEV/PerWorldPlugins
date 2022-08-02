@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +18,24 @@ public class IncompatiblePlugins {
             } else {
                 return null;
             }
+        } else if (Objects.requireNonNull(getList(1)).contains(command)) {
+            if (Bukkit.getPluginManager().getPlugin("ExcellentCrates").isEnabled()) {
+                return Bukkit.getPluginManager().getPlugin("ExcellentCrates");
+            } else {
+                return null;
+            }
+        } else if (Objects.requireNonNull(getList(2)).contains(command)) {
+            if (Bukkit.getPluginManager().getPlugin("NextEngine").isEnabled()) {
+                return Bukkit.getPluginManager().getPlugin("NextEngine");
+            } else {
+                return null;
+            }
+        } else if (Objects.requireNonNull(getList(3)).contains(command)) {
+            if (Bukkit.getPluginManager().getPlugin("MoneyHunters").isEnabled()) {
+                return Bukkit.getPluginManager().getPlugin("MoneyHunters");
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -26,8 +45,12 @@ public class IncompatiblePlugins {
         switch (index) {
             case 0:
                 return Arrays.asList("team", "teama");
-            //case 1:
-            //    return Arrays.asList("tr", "trsetup");
+            case 1:
+                return Arrays.asList("excellentcrates", "ecrates");
+            case 2:
+                return Collections.singletonList("nexengine");
+            case 3:
+                return Arrays.asList("moneyhunters", "mh");
             default:
                 return null;
 
