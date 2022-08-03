@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 public class Command implements CommandExecutor {
 
     @Override
-    @SuppressWarnings("NullableProblems")
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("perworldplugins") && args.length == 1) {
             if (args[0].equalsIgnoreCase("version")) {
@@ -28,6 +27,7 @@ public class Command implements CommandExecutor {
             } else {
                 sender.sendMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "-" + ChatColor.WHITE + "] PerWorldPlugins: " + ChatColor.WHITE + "Please use: /perworldplugins reload | version");
             }
-        }return true;
+        }
+        return true;
     }
 }

@@ -10,7 +10,11 @@ import java.lang.reflect.Field;
 import java.util.Optional;
 
 public final class RegisteredListenerUtils {
-    private static final Field EXECUTOR_FIELD = FieldUtils.getField(RegisteredListener.class,"executor", true);
+    private static final Field EXECUTOR_FIELD = FieldUtils.getField(RegisteredListener.class, "executor", true);
+
+    private RegisteredListenerUtils() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
 
     public static Optional<EventExecutor> getExecutorFromRegisteredListener(RegisteredListener listener) {
         try {
@@ -32,9 +36,5 @@ public final class RegisteredListenerUtils {
                 return false;
             }
         }
-    }
-
-    private RegisteredListenerUtils() {
-        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 }

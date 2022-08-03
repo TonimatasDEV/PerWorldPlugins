@@ -12,6 +12,10 @@ import org.bukkit.event.weather.WeatherEvent;
 import org.bukkit.event.world.WorldEvent;
 
 public final class WorldUtil {
+    private WorldUtil() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
+
     public static World getWorldFromEvent(Event event) {
         World world;
         if (event instanceof BlockEvent) {
@@ -32,10 +36,7 @@ public final class WorldUtil {
             world = ((WorldEvent) event).getWorld();
         } else {
             world = null;
-        }return world;
-    }
-
-    private WorldUtil() {
-        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+        }
+        return world;
     }
 }

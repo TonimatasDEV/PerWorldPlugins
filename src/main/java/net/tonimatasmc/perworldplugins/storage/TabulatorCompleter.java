@@ -23,6 +23,7 @@ public class TabulatorCompleter implements TabCompleter {
                 argList.add("reload");
                 return argList.stream().filter(a -> a.startsWith(args[0])).collect(Collectors.toList());
             }
-        }return null;
+        }
+        return null;
     }
 }

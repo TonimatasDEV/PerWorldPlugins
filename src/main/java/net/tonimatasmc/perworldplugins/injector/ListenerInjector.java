@@ -41,7 +41,7 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
 
                 int var3 = var2.length;
 
-                for(int var4 = 0; var4 < var3; ++var4) {
+                for (int var4 = 0; var4 < var3; ++var4) {
                     org.bukkit.plugin.RegisteredListener listener = var2[var4];
 
                     if (IgnoredPlugins.useListener(listener) && !(listener instanceof Listener)) {
@@ -77,13 +77,13 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
             org.bukkit.plugin.RegisteredListener[] var2 = handlerList.getRegisteredListeners();
             int var3 = var2.length;
 
-            for(int var4 = 0; var4 < var3; ++var4) {
+            for (int var4 = 0; var4 < var3; ++var4) {
                 org.bukkit.plugin.RegisteredListener listener = var2[var4];
                 if (listener instanceof Listener) {
                     handlerList.unregister(listener);
 
                     try {
-                        handlerList.register(((Listener)listener).getDelegate());
+                        handlerList.register(((Listener) listener).getDelegate());
                     } catch (Exception var7) {
                         PerWorldPlugins.getPlugin().getLogger().severe("Failed to detach PerWorldPlugins from listener pipeline.");
                     }

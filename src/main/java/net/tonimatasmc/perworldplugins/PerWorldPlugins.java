@@ -9,6 +9,14 @@ public final class PerWorldPlugins extends JavaPlugin {
     private static PerWorldPlugins plugin;
     private static ListenerInjector injector;
 
+    public static PerWorldPlugins getPlugin() {
+        return plugin;
+    }
+
+    public static ListenerInjector getInjector() {
+        return injector;
+    }
+
     public void onEnable() {
         plugin = this;
         injector = new ListenerInjector();
@@ -21,14 +29,6 @@ public final class PerWorldPlugins extends JavaPlugin {
         if (injector != null) {
             injector.unload();
         }
-    }
-
-    public static PerWorldPlugins getPlugin() {
-        return plugin;
-    }
-
-    public static ListenerInjector getInjector() {
-        return injector;
     }
 }
 
