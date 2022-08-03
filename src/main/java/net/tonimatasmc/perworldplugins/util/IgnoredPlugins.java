@@ -24,7 +24,8 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("SquidGame") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("VotingPlugin"));
+                !listener.getPlugin().getName().equalsIgnoreCase("VotingPlugin") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("CommandPanels"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -46,7 +47,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("SquidGame") &&
                 !event.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
                 !event.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
-                !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin"));
+                !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin") &&
+                !event.getPlugin().getName().equalsIgnoreCase("CommandPanels"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -68,6 +70,7 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("SquidGame") &&
                 !event.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
                 !event.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
-                !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin"));
+                !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin") &&
+                !event.getPlugin().getName().equalsIgnoreCase("CommandPanels"));
     }
 }
