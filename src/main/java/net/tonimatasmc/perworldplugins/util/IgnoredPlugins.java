@@ -25,7 +25,9 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("VotingPlugin") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("CommandPanels"));
+                !listener.getPlugin().getName().equalsIgnoreCase("CommandPanels") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("sleep-most") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("BuycraftX"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -48,7 +50,10 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
                 !event.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
                 !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin") &&
-                !event.getPlugin().getName().equalsIgnoreCase("CommandPanels"));
+                !event.getPlugin().getName().equalsIgnoreCase("CommandPanels") &&
+                !event.getPlugin().getName().equalsIgnoreCase("sleep-most") &&
+                !event.getPlugin().getName().equalsIgnoreCase("BuycraftX"));
+
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -71,6 +76,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("BuildBattle") &&
                 !event.getPlugin().getName().equalsIgnoreCase("SuperbVote") &&
                 !event.getPlugin().getName().equalsIgnoreCase("VotingPlugin") &&
-                !event.getPlugin().getName().equalsIgnoreCase("CommandPanels"));
+                !event.getPlugin().getName().equalsIgnoreCase("CommandPanels") &&
+                !event.getPlugin().getName().equalsIgnoreCase("sleep-most") &&
+                !event.getPlugin().getName().equalsIgnoreCase("BuycraftX"));
     }
 }
