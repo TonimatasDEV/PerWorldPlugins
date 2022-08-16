@@ -28,7 +28,11 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("CommandPanels") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("sleep-most") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("BuycraftX") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("NotQuests"));
+                !listener.getPlugin().getName().equalsIgnoreCase("NotQuests") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("LearMOTD") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("MOTD") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("PlayerParticles"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -54,7 +58,11 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("CommandPanels") &&
                 !event.getPlugin().getName().equalsIgnoreCase("sleep-most") &&
                 !event.getPlugin().getName().equalsIgnoreCase("BuycraftX") &&
-                !event.getPlugin().getName().equalsIgnoreCase("NotQuests"));
+                !event.getPlugin().getName().equalsIgnoreCase("NotQuests") &&
+                !event.getPlugin().getName().equalsIgnoreCase("LearMOTD") &&
+                !event.getPlugin().getName().equalsIgnoreCase("MOTD") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
+                !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -80,6 +88,10 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("CommandPanels") &&
                 !event.getPlugin().getName().equalsIgnoreCase("sleep-most") &&
                 !event.getPlugin().getName().equalsIgnoreCase("BuycraftX") &&
-                !event.getPlugin().getName().equalsIgnoreCase("NotQuests"));
+                !event.getPlugin().getName().equalsIgnoreCase("NotQuests") &&
+                !event.getPlugin().getName().equalsIgnoreCase("LearMOTD") &&
+                !event.getPlugin().getName().equalsIgnoreCase("MOTD") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
+                !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles"));
     }
 }
