@@ -32,7 +32,8 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("LearMOTD") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("MOTD") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("PlayerParticles"));
+                !listener.getPlugin().getName().equalsIgnoreCase("PlayerParticles") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("SpeedBridge"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -62,7 +63,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("LearMOTD") &&
                 !event.getPlugin().getName().equalsIgnoreCase("MOTD") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
-                !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles"));
+                !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SpeedBridge"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -92,6 +94,7 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("LearMOTD") &&
                 !event.getPlugin().getName().equalsIgnoreCase("MOTD") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
-                !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles"));
+                !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SpeedBridge"));
     }
 }
