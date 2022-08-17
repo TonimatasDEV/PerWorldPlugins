@@ -33,7 +33,13 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("MOTD") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("PlayerParticles") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("SpeedBridge"));
+                !listener.getPlugin().getName().equalsIgnoreCase("SpeedBridge") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("AuctionHouse") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("Coins") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("EssentialsGeoIP") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("ExploitFixer") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("HamsterAPI") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("SimpleVoteListener"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -64,7 +70,13 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("MOTD") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
                 !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles") &&
-                !event.getPlugin().getName().equalsIgnoreCase("SpeedBridge"));
+                !event.getPlugin().getName().equalsIgnoreCase("SpeedBridge") &&
+                !event.getPlugin().getName().equalsIgnoreCase("AuctionHouse") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Coins") &&
+                !event.getPlugin().getName().equalsIgnoreCase("EssentialsGeoIP") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ExploitFixer") &&
+                !event.getPlugin().getName().equalsIgnoreCase("HamsterAPI") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SimpleVoteListener"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -95,6 +107,12 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("MOTD") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Maintenance") &&
                 !event.getPlugin().getName().equalsIgnoreCase("PlayerParticles") &&
-                !event.getPlugin().getName().equalsIgnoreCase("SpeedBridge"));
+                !event.getPlugin().getName().equalsIgnoreCase("SpeedBridge") &&
+                !event.getPlugin().getName().equalsIgnoreCase("AuctionHouse") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Coins") &&
+                !event.getPlugin().getName().equalsIgnoreCase("EssentialsGeoIP") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ExploitFixer") &&
+                !event.getPlugin().getName().equalsIgnoreCase("HamsterAPI") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SimpleVoteListener"));
     }
 }
