@@ -39,7 +39,9 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("EssentialsGeoIP") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("ExploitFixer") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("HamsterAPI") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("SimpleVoteListener"));
+                !listener.getPlugin().getName().equalsIgnoreCase("PermissionsEx") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("Jobs") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("ChatManager"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -76,7 +78,9 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("EssentialsGeoIP") &&
                 !event.getPlugin().getName().equalsIgnoreCase("ExploitFixer") &&
                 !event.getPlugin().getName().equalsIgnoreCase("HamsterAPI") &&
-                !event.getPlugin().getName().equalsIgnoreCase("SimpleVoteListener"));
+                !event.getPlugin().getName().equalsIgnoreCase("PermissionsEx") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Jobs") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ChatManager"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -113,6 +117,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("EssentialsGeoIP") &&
                 !event.getPlugin().getName().equalsIgnoreCase("ExploitFixer") &&
                 !event.getPlugin().getName().equalsIgnoreCase("HamsterAPI") &&
-                !event.getPlugin().getName().equalsIgnoreCase("SimpleVoteListener"));
+                !event.getPlugin().getName().equalsIgnoreCase("PermissionsEx") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Jobs") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ChatManager"));
     }
 }
