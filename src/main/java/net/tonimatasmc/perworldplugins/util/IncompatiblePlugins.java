@@ -36,6 +36,12 @@ public class IncompatiblePlugins {
             } else {
                 return null;
             }
+        } else if (Objects.requireNonNull(getList(4)).contains(command)) {
+            if (Bukkit.getPluginManager().getPlugin("Origins-Bukkit").isEnabled()) {
+                return Bukkit.getPluginManager().getPlugin("Origins-Bukkit");
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -51,6 +57,8 @@ public class IncompatiblePlugins {
                 return Collections.singletonList("nexengine");
             case 3:
                 return Arrays.asList("moneyhunters", "mh");
+            case 4:
+                return Arrays.asList("origin", "power");
             default:
                 return null;
 
