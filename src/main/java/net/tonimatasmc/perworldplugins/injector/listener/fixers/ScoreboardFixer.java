@@ -1,4 +1,4 @@
-package net.tonimatasmc.perworldplugins.injector.listener;
+package net.tonimatasmc.perworldplugins.injector.listener.fixers;
 
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import net.tonimatasmc.perworldplugins.util.WorldUtil;
