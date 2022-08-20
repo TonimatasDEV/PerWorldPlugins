@@ -1,0 +1,6 @@
+PLEASE: "Do not touch anything in this file if possible."
+
+OriginsFixer:
+  enabled: true
+  players:
+    example: feline

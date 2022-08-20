@@ -3,20 +3,27 @@ plugins {
 }
 
 group = 'net.tonimatasmc'
-version = '1.0.1.6'
+version = '1.0.1.7.SNAPSHOT'
 
 repositories {
     mavenCentral()
+
     maven {
         name = 'spigotmc-repo'
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
+
     maven {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+
+    flatDir {
+        dirs 'libs'
     }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }

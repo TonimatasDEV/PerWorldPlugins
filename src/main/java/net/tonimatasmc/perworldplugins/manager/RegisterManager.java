@@ -6,6 +6,7 @@ import net.tonimatasmc.perworldplugins.injector.listener.CommandPreProcessListen
 import net.tonimatasmc.perworldplugins.injector.listener.EnablePluginConfigCreator;
 import net.tonimatasmc.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasmc.perworldplugins.storage.YML.Config;
+import net.tonimatasmc.perworldplugins.storage.YML.Fix;
 import net.tonimatasmc.perworldplugins.util.UpdateChecker;
 import net.tonimatasmc.perworldplugins.util.metrics.Metrics;
 import org.bukkit.Bukkit;
@@ -40,6 +41,7 @@ public class RegisterManager {
 
     private static void ymlRegister() {
         Config.registerConfig();
+        Fix.registerFix();
     }
 
     private static void registerCommands() {
