@@ -21,7 +21,6 @@ public class OriginsFixer implements Listener {
                     if (PerWorldPlugins.getPlugin().getConfig().getStringList("plugins.Origins-Bukkit").contains(WorldUtil.getWorldFromEvent(event).getName())) {
                         Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "origin set " + player.getName() + " origins-bukkit:origin origins-bukkit:human");
                     } else {
-
                         Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "origin item give " + player.getName() + " origins-bukkit:orb_of_origin 1");
                     }
                 }
