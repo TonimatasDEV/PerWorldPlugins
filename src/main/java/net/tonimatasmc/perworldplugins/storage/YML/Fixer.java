@@ -11,13 +11,13 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
-public class Fix {
+public class Fixer {
     private static FileConfiguration fix = null;
     private static File fixFile = null;
 
     public static FileConfiguration getFix() {
         if (fix == null) {
-            registerFix();
+            reloadFix();
         }
 
         return fix;
@@ -25,11 +25,11 @@ public class Fix {
 
     public static void reloadFix() {
         if (fix == null) {
-            fixFile = new File(PerWorldPlugins.getPlugin().getDataFolder(), "fix.yml");
+            fixFile = new File(PerWorldPlugins.getPlugin().getDataFolder(), "fixer.yml");
         }
 
         fix = YamlConfiguration.loadConfiguration(fixFile);
-        Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(PerWorldPlugins.getPlugin().getResource("fix.yml")), StandardCharsets.UTF_8);
+        Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(PerWorldPlugins.getPlugin().getResource("fixer.yml")), StandardCharsets.UTF_8);
 
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
         fix.setDefaults(defConfig);
@@ -44,7 +44,7 @@ public class Fix {
     }
 
     public static void registerFix() {
-        fixFile = new File(PerWorldPlugins.getPlugin().getDataFolder(), "fix.yml");
+        fixFile = new File(PerWorldPlugins.getPlugin().getDataFolder(), "fixer.yml");
 
         if (!fixFile.exists()) {
             getFix().options().copyDefaults(true);

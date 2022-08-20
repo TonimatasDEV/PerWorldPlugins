@@ -7,7 +7,7 @@ import net.tonimatasmc.perworldplugins.injector.listener.EnablePluginConfigCreat
 import net.tonimatasmc.perworldplugins.injector.listener.fixers.OriginsFixer;
 import net.tonimatasmc.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasmc.perworldplugins.storage.YML.Config;
-import net.tonimatasmc.perworldplugins.storage.YML.Fix;
+import net.tonimatasmc.perworldplugins.storage.YML.Fixer;
 import net.tonimatasmc.perworldplugins.util.UpdateChecker;
 import net.tonimatasmc.perworldplugins.util.metrics.Metrics;
 import org.bukkit.Bukkit;
@@ -42,7 +42,7 @@ public class RegisterManager {
 
     private static void ymlRegister() {
         Config.registerConfig();
-        Fix.registerFix();
+        Fixer.registerFix();
     }
 
     private static void registerCommands() {

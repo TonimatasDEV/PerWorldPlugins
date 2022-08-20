@@ -1,13 +1,13 @@
 package net.tonimatasmc.perworldplugins.manager;
 
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
-import net.tonimatasmc.perworldplugins.storage.YML.Fix;
+import net.tonimatasmc.perworldplugins.storage.YML.Fixer;
 
 public class UnregisterManager {
     public static void unregister() {
         PerWorldPlugins.getPlugin().reloadConfig();
         PerWorldPlugins.getPlugin().saveConfig();
-        Fix.reloadFix();
-        Fix.saveFix();
+        Fixer.reloadFix();
+        Fixer.saveFix();
     }
 }
