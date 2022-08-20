@@ -1,7 +1,5 @@
 package net.tonimatasmc.perworldplugins.injector.listener.fixers;
 
-import me.lemonypancakes.bukkit.origins.OriginsBukkit;
-import me.lemonypancakes.bukkit.origins.entity.player.OriginPlayer;
 import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import net.tonimatasmc.perworldplugins.storage.YML.Fixer;
 import net.tonimatasmc.perworldplugins.util.WorldUtil;
