@@ -4,6 +4,7 @@ import net.tonimatasmc.perworldplugins.PerWorldPlugins;
 import net.tonimatasmc.perworldplugins.command.Command;
 import net.tonimatasmc.perworldplugins.injector.listener.CommandPreProcessListener;
 import net.tonimatasmc.perworldplugins.injector.listener.EnablePluginConfigCreator;
+import net.tonimatasmc.perworldplugins.injector.listener.fixers.OriginsFixer;
 import net.tonimatasmc.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasmc.perworldplugins.storage.YML.Config;
 import net.tonimatasmc.perworldplugins.storage.YML.Fix;
@@ -55,5 +56,7 @@ public class RegisterManager {
     private static void registerEvents() {
         Bukkit.getServer().getPluginManager().registerEvents(new EnablePluginConfigCreator(), PerWorldPlugins.getPlugin());
         Bukkit.getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), PerWorldPlugins.getPlugin());
+        Bukkit.getServer().getPluginManager().registerEvents(new OriginsFixer(), PerWorldPlugins.getPlugin());
+
     }
 }
