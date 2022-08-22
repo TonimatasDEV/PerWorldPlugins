@@ -43,7 +43,8 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("Jobs") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("ChatManager") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("antiRedstoneClock") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("ProtectionStones"));
+                !listener.getPlugin().getName().equalsIgnoreCase("ProtectionStones")) &&
+                !listener.getPlugin().getName().equalsIgnoreCase("EliteMobs");
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -84,7 +85,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("Jobs") &&
                 !event.getPlugin().getName().equalsIgnoreCase("ChatManager") &&
                 !event.getPlugin().getName().equalsIgnoreCase("antiRedstoneClock") &&
-                !event.getPlugin().getName().equalsIgnoreCase("ProtectionStones"));
+                !event.getPlugin().getName().equalsIgnoreCase("ProtectionStones")) &&
+                !event.getPlugin().getName().equalsIgnoreCase("EliteMobs");
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -125,6 +127,7 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("Jobs") &&
                 !event.getPlugin().getName().equalsIgnoreCase("ChatManager") &&
                 !event.getPlugin().getName().equalsIgnoreCase("antiRedstoneClock") &&
-                !event.getPlugin().getName().equalsIgnoreCase("ProtectionStones"));
+                !event.getPlugin().getName().equalsIgnoreCase("ProtectionStones")) &&
+                !event.getPlugin().getName().equalsIgnoreCase("EliteMobs");
     }
 }
