@@ -44,10 +44,10 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("ChatManager") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("antiRedstoneClock") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("ProtectionStones") &&
-                !event.getPlugin().getName().equalsIgnoreCase("Towny") &&
-                !event.getPlugin().getName().equalsIgnoreCase("EliteMobs") &&
-                !event.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
-                !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests"));
+                !listener.getPlugin().getName().equalsIgnoreCase("Towny") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("EliteMobs") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("BeautyQuests"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
