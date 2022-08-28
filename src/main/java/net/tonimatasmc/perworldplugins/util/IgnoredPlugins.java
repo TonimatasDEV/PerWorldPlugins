@@ -48,7 +48,7 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("EliteMobs") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
-                        !listener.getPlugin().getName().equalsIgnoreCase("NPCAuctions"));
+                !listener.getPlugin().getName().equalsIgnoreCase("NPCAuctions"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
