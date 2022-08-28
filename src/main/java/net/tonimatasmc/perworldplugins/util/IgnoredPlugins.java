@@ -47,7 +47,8 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("Towny") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("EliteMobs") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("BeautyQuests"));
+                !listener.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
+                        !listener.getPlugin().getName().equalsIgnoreCase("NPCAuctions"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -92,7 +93,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("Towny") &&
                 !event.getPlugin().getName().equalsIgnoreCase("EliteMobs") &&
                 !event.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
-                !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests"));
+                !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
+                !event.getPlugin().getName().equalsIgnoreCase("NPCAuctions"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -137,6 +139,7 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("Towny") &&
                 !event.getPlugin().getName().equalsIgnoreCase("EliteMobs") &&
                 !event.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
-                !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests"));
+                !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
+                !event.getPlugin().getName().equalsIgnoreCase("NPCAuctions"));
     }
 }
