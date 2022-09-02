@@ -49,7 +49,8 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("NPCAuctions") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("HungerGames"));
+                !listener.getPlugin().getName().equalsIgnoreCase("HungerGames") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("SurvivalGames"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -96,7 +97,8 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
                 !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
                 !event.getPlugin().getName().equalsIgnoreCase("NPCAuctions") &&
-                !event.getPlugin().getName().equalsIgnoreCase("HungerGames"));
+                !event.getPlugin().getName().equalsIgnoreCase("HungerGames") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SurvivalGames"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -143,6 +145,7 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("UltraHost") &&
                 !event.getPlugin().getName().equalsIgnoreCase("BeautyQuests") &&
                 !event.getPlugin().getName().equalsIgnoreCase("NPCAuctions") &&
-                !event.getPlugin().getName().equalsIgnoreCase("HungerGames"));
+                !event.getPlugin().getName().equalsIgnoreCase("HungerGames") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SurvivalGames"));
     }
 }

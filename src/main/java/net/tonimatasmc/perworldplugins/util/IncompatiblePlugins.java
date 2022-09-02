@@ -42,6 +42,12 @@ public class IncompatiblePlugins {
             } else {
                 return null;
             }
+        } else if (Objects.requireNonNull(getList(5)).contains(command)) {
+            if (Bukkit.getPluginManager().getPlugin("EconomyShopGUI").isEnabled()) {
+                return Bukkit.getPluginManager().getPlugin("EconomyShopGUI");
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -59,6 +65,8 @@ public class IncompatiblePlugins {
                 return Arrays.asList("moneyhunters", "mh");
             case 4:
                 return Arrays.asList("origin", "power");
+            case 5:
+                return Collections.singletonList("shop");
             default:
                 return null;
 
