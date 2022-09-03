@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-@SuppressWarnings("ForLoopReplaceableByForEach")
 public final class ListenerInjector extends BukkitRunnable implements org.bukkit.event.Listener {
     private final Map<Plugin, Set<Class<? extends Event>>> events;
     private boolean loaded = true;
@@ -39,11 +38,7 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
             HandlerList.getHandlerLists().forEach((handlerList) -> {
                 org.bukkit.plugin.RegisteredListener[] var2 = handlerList.getRegisteredListeners();
 
-                int var3 = var2.length;
-
-                for (int var4 = 0; var4 < var3; ++var4) {
-                    org.bukkit.plugin.RegisteredListener listener = var2[var4];
-
+                for (org.bukkit.plugin.RegisteredListener listener : var2) {
                     if (IgnoredPlugins.useListener(listener) && !(listener instanceof Listener)) {
                         handlerList.unregister(listener);
 
@@ -75,10 +70,8 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
         this.loaded = false;
         HandlerList.getHandlerLists().forEach((handlerList) -> {
             org.bukkit.plugin.RegisteredListener[] var2 = handlerList.getRegisteredListeners();
-            int var3 = var2.length;
 
-            for (int var4 = 0; var4 < var3; ++var4) {
-                org.bukkit.plugin.RegisteredListener listener = var2[var4];
+            for (org.bukkit.plugin.RegisteredListener listener : var2) {
                 if (listener instanceof Listener) {
                     handlerList.unregister(listener);
 
