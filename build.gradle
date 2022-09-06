@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'net.tonimatasmc'
+group = 'net.tonimatasdev'
 version = '1.0.1.8'
 
 repositories {
