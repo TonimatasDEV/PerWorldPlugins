@@ -3,9 +3,10 @@ package net.tonimatasdev.perworldplugins.util;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
+import org.bukkit.plugin.RegisteredListener;
 
 public class IgnoredPlugins {
-    public static boolean useListener(org.bukkit.plugin.RegisteredListener listener) {
+    public static boolean useListener(RegisteredListener listener) {
         return (!listener.getPlugin().getName().equalsIgnoreCase(PerWorldPlugins.getPlugin().getName()) &&
                 !listener.getPlugin().getName().equalsIgnoreCase("LuckPerms") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("Geyser-Spigot") &&
@@ -51,7 +52,10 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("NPCAuctions") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("HungerGames") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("SurvivalGames") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("Factions"));
+                !listener.getPlugin().getName().equalsIgnoreCase("Factions") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("LobbySystem2") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("Tradeshop") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("BlockProt"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -100,7 +104,10 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("NPCAuctions") &&
                 !event.getPlugin().getName().equalsIgnoreCase("HungerGames") &&
                 !event.getPlugin().getName().equalsIgnoreCase("SurvivalGames") &&
-                !event.getPlugin().getName().equalsIgnoreCase("Factions"));
+                !event.getPlugin().getName().equalsIgnoreCase("Factions") &&
+                !event.getPlugin().getName().equalsIgnoreCase("LobbySystem2") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Tradeshop") &&
+                !event.getPlugin().getName().equalsIgnoreCase("BlockProt"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -149,6 +156,9 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("NPCAuctions") &&
                 !event.getPlugin().getName().equalsIgnoreCase("HungerGames") &&
                 !event.getPlugin().getName().equalsIgnoreCase("SurvivalGames") &&
-                !event.getPlugin().getName().equalsIgnoreCase("Factions"));
+                !event.getPlugin().getName().equalsIgnoreCase("Factions") &&
+                !event.getPlugin().getName().equalsIgnoreCase("LobbySystem2") &&
+                !event.getPlugin().getName().equalsIgnoreCase("Tradeshop") &&
+                !event.getPlugin().getName().equalsIgnoreCase("BlockProt"));
     }
 }
