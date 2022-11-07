@@ -27,6 +27,7 @@ public class Metrics {
 
     public Metrics(JavaPlugin plugin, int serviceId) {
         this.plugin = plugin;
+
         File bStatsFolder = new File(plugin.getDataFolder().getParentFile(), "bStats");
         File configFile = new File(bStatsFolder, "config.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
@@ -37,7 +38,12 @@ public class Metrics {
             config.addDefault("logFailedRequests", false);
             config.addDefault("logSentData", false);
             config.addDefault("logResponseStatusText", false);
-            config.options().header("bStats (https://bStats.org) collects some basic information for plugin authors, like how\n" + "many people use their plugin and their total player count. It's recommended to keep bStats\n" + "enabled, but if you're not comfortable with this, you can turn this setting off. There is no\n" + "performance penalty associated with having metrics enabled, and data sent to bStats is fully\n" + "anonymous.").copyDefaults(true);
+            config.options().header("""
+                    bStats (https://bStats.org) collects some basic information for plugin authors, like how
+                    many people use their plugin and their total player count. It's recommended to keep bStats
+                    enabled, but if you're not comfortable with this, you can turn this setting off. There is no
+                    performance penalty associated with having metrics enabled, and data sent to bStats is fully
+                    anonymous.""").copyDefaults(true);
 
             try {
                 config.save(configFile);
@@ -75,6 +81,7 @@ public class Metrics {
     private int getPlayerAmount() {
         try {
             Method onlinePlayersMethod = Class.forName("org.bukkit.Server").getMethod("getOnlinePlayers");
+
             return onlinePlayersMethod.getReturnType().equals(Collection.class)
                     ? ((Collection<?>) onlinePlayersMethod.invoke(Bukkit.getServer())).size()
                     : ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
@@ -84,7 +91,7 @@ public class Metrics {
     }
 
     public static class MetricsBase {
-        public static final String METRICS_VERSION = "3.0.0";
+        public static String METRICS_VERSION = "3.0.0";
         private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1, task -> new Thread(task, "bStats-Metrics"));
         private static final String REPORT_URL = "https://bStats.org/api/v2/data/%s";
         private final String platform;
@@ -118,12 +125,10 @@ public class Metrics {
 
             checkRelocation();
 
-            if (enabled) {
-                startSubmitting();
-            }
+            if (enabled) startSubmitting();
         }
 
-        private static byte[] compress(final String str) throws IOException {
+        private static byte[] compress(String str) throws IOException {
             if (str == null) {
                 return null;
             }
@@ -137,7 +142,7 @@ public class Metrics {
         }
 
         private void startSubmitting() {
-            final Runnable submitTask = () -> {
+            Runnable submitTask = () -> {
                 if (!enabled || !checkServiceEnabledSupplier.get()) {
                     scheduler.shutdown();
                     return;
@@ -158,8 +163,8 @@ public class Metrics {
         }
 
         private void submitData() {
-            final JsonObjectBuilder baseJsonBuilder = new JsonObjectBuilder();
-            final JsonObjectBuilder serviceJsonBuilder = new JsonObjectBuilder();
+            JsonObjectBuilder baseJsonBuilder = new JsonObjectBuilder();
+            JsonObjectBuilder serviceJsonBuilder = new JsonObjectBuilder();
 
             appendPlatformDataConsumer.accept(baseJsonBuilder);
             appendServiceDataConsumer.accept(serviceJsonBuilder);
@@ -173,17 +178,13 @@ public class Metrics {
                 try {
                     sendData(data);
                 } catch (Exception e) {
-                    if (logErrors) {
-                        errorLogger.accept("Could not submit bStats metrics data", e);
-                    }
+                    if (logErrors) errorLogger.accept("Could not submit bStats metrics data", e);
                 }
             });
         }
 
         private void sendData(JsonObjectBuilder.JsonObject data) throws Exception {
-            if (logSentData) {
-                infoLogger.accept("Sent bStats metrics data: " + data.toString());
-            }
+            if (logSentData) infoLogger.accept("Sent bStats metrics data: " + data.toString());
 
             byte[] compressedData = compress(data.toString());
 
@@ -212,15 +213,13 @@ public class Metrics {
                 }
             }
 
-            if (logResponseStatusText) {
-                infoLogger.accept("Sent data to bStats and received response: " + builder);
-            }
+            if (logResponseStatusText) infoLogger.accept("Sent data to bStats and received response: " + builder);
         }
 
         private void checkRelocation() {
             if (System.getProperty("bstats.relocatecheck") == null || !System.getProperty("bstats.relocatecheck").equals("false")) {
-                final String defaultPackage = new String(new byte[]{'o', 'r', 'g', '.', 'b', 's', 't', 'a', 't', 's'});
-                final String examplePackage = new String(new byte[]{'y', 'o', 'u', 'r', '.', 'p', 'a', 'c', 'k', 'a', 'g', 'e'});
+                String defaultPackage = new String(new byte[]{'o', 'r', 'g', '.', 'b', 's', 't', 'a', 't', 's'});
+                String examplePackage = new String(new byte[]{'y', 'o', 'u', 'r', '.', 'p', 'a', 'c', 'k', 'a', 'g', 'e'});
 
                 if (MetricsBase.class.getPackage().getName().startsWith(defaultPackage) || MetricsBase.class.getPackage().getName().startsWith(examplePackage)) {
                     throw new IllegalStateException("bStats Metrics class has not been relocated correctly!");
@@ -238,23 +237,20 @@ public class Metrics {
         }
 
         private static String escape(String value) {
-            final StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
 
             for (int i = 0; i < value.length(); i++) {
                 char c = value.charAt(i);
 
-                if (c == '"') {
-                    builder.append("\\\"");
-                } else if (c == '\\') {
-                    builder.append("\\\\");
-                } else if (c <= '\u000F') {
-                    builder.append("\\u000").append(Integer.toHexString(c));
-                } else if (c <= '\u001F') {
-                    builder.append("\\u00").append(Integer.toHexString(c));
-                } else {
-                    builder.append(c);
+                switch (c) {
+                    case '"' -> builder.append("\\\"");
+                    case '\\' -> builder.append("\\\\");
+                    case '\u000F' -> builder.append("\\u000").append(Integer.toHexString(c));
+                    case '\u001F' -> builder.append("\\u00").append(Integer.toHexString(c));
+                    default -> builder.append(c);
                 }
             }
+
             return builder.toString();
         }
 
@@ -271,34 +267,23 @@ public class Metrics {
         }
 
         public void appendField(String key, JsonObject object) {
-            if (object == null) {
-                throw new IllegalArgumentException("JSON object must not be null");
-            }
+            if (object == null) throw new IllegalArgumentException("JSON object must not be null");
+
 
             appendFieldUnescaped(key, object.toString());
         }
 
         private void appendFieldUnescaped(String key, String escapedValue) {
-            if (builder == null) {
-                throw new IllegalStateException("JSON has already been built");
-            }
-
-            if (key == null) {
-                throw new IllegalArgumentException("JSON key must not be null");
-            }
-
-            if (hasAtLeastOneField) {
-                builder.append(",");
-            }
+            if (builder == null) throw new IllegalStateException("JSON has already been built");
+            if (key == null) throw new IllegalArgumentException("JSON key must not be null");
+            if (hasAtLeastOneField) builder.append(",");
 
             builder.append("\"").append(escape(key)).append("\":").append(escapedValue);
             hasAtLeastOneField = true;
         }
 
         public JsonObject build() {
-            if (builder == null) {
-                throw new IllegalStateException("JSON has already been built");
-            }
+            if (builder == null) throw new IllegalStateException("JSON has already been built");
 
             JsonObject object = new JsonObject(builder.append("}").toString());
             builder = null;
