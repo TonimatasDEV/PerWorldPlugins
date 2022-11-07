@@ -54,22 +54,14 @@ public class IncompatiblePlugins {
     }
 
     private static List<String> getList(int index) {
-        switch (index) {
-            case 0:
-                return Arrays.asList("team", "teama");
-            case 1:
-                return Arrays.asList("excellentcrates", "ecrates");
-            case 2:
-                return Collections.singletonList("nexengine");
-            case 3:
-                return Arrays.asList("moneyhunters", "mh");
-            case 4:
-                return Arrays.asList("origin", "power");
-            case 5:
-                return Collections.singletonList("shop");
-            default:
-                return null;
-
-        }
+        return switch (index) {
+            case 0 -> Arrays.asList("team", "teama");
+            case 1 -> Arrays.asList("excellentcrates", "ecrates");
+            case 2 -> Collections.singletonList("nexengine");
+            case 3 -> Arrays.asList("moneyhunters", "mh");
+            case 4 -> Arrays.asList("origin", "power");
+            case 5 -> Collections.singletonList("shop");
+            default -> null;
+        };
     }
 }
