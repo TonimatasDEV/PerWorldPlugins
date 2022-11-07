@@ -4,9 +4,9 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.MapMaker;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.listener.Listener;
+import net.tonimatasdev.perworldplugins.listener.RegisteredListener;
 import net.tonimatasdev.perworldplugins.listener.TimedRegisteredListener;
 import net.tonimatasdev.perworldplugins.util.IgnoredPlugins;
-import net.tonimatasdev.perworldplugins.listener.RegisteredListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -89,17 +89,19 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
     @EventHandler
     public void onEnable(PluginEnableEvent event) {
         if (IgnoredPlugins.usePluginEvent(event)) {
-            this.run();
+            if (PerWorldPlugins.getPlugin().getConfig().getBoolean("blacklist")) {
+                this.run();
+            }
         }
-
     }
 
     @EventHandler
     public void onDisable(PluginDisableEvent event) {
         if (IgnoredPlugins.usePluginEvent(event)) {
-            this.run();
+            if (PerWorldPlugins.getPlugin().getConfig().getBoolean("blacklist")) {
+                this.run();
+            }
         }
-
     }
 }
 
