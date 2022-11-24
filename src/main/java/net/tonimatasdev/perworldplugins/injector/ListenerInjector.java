@@ -1,6 +1,5 @@
 package net.tonimatasdev.perworldplugins.injector;
 
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.MapMaker;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.listener.Listener;
@@ -18,7 +17,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 public final class ListenerInjector extends BukkitRunnable implements org.bukkit.event.Listener {
@@ -58,12 +56,6 @@ public final class ListenerInjector extends BukkitRunnable implements org.bukkit
     public void load() {
         Bukkit.getPluginManager().registerEvents(this, PerWorldPlugins.getPlugin());
         super.runTaskTimer(PerWorldPlugins.getPlugin(), 0L, 6000L);
-    }
-
-    @SuppressWarnings("unused")
-    public Optional<ImmutableSet<Class<? extends Event>>> getEventsForPlugin(Plugin plugin) {
-        Set<Class<? extends Event>> tmpEvents = this.events.get(plugin);
-        return tmpEvents == null ? Optional.empty() : Optional.of(ImmutableSet.copyOf(tmpEvents));
     }
 
     public void unload() {
