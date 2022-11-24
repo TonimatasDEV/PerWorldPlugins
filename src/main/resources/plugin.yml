@@ -1,6 +1,6 @@
 main: net.tonimatasdev.perworldplugins.PerWorldPlugins
 name: PerWorldPlugins
-version: 1.0.1.8
+version: 1.0.1.9
 load: STARTUP
 api-version: 1.13
 author: TonimatasDEV
