@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'net.tonimatasdev'
-version = '1.0.1.9'
+version = '1.0.3'
 
 repositories {
     mavenCentral()
@@ -17,13 +17,8 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
-
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }

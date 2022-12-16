@@ -55,7 +55,10 @@ public class IgnoredPlugins {
                 !listener.getPlugin().getName().equalsIgnoreCase("Factions") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("LobbySystem2") &&
                 !listener.getPlugin().getName().equalsIgnoreCase("Tradeshop") &&
-                !listener.getPlugin().getName().equalsIgnoreCase("BlockProt"));
+                !listener.getPlugin().getName().equalsIgnoreCase("BlockProt") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("OpeNLogin") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("ConditionalEvents") &&
+                !listener.getPlugin().getName().equalsIgnoreCase("SimpleScore"));
     }
 
     public static boolean usePluginEvent(PluginEnableEvent event) {
@@ -107,7 +110,10 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("Factions") &&
                 !event.getPlugin().getName().equalsIgnoreCase("LobbySystem2") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Tradeshop") &&
-                !event.getPlugin().getName().equalsIgnoreCase("BlockProt"));
+                !event.getPlugin().getName().equalsIgnoreCase("BlockProt") &&
+                !event.getPlugin().getName().equalsIgnoreCase("OpeNLogin") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ConditionalEvents") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SimpleScore"));
     }
 
     public static boolean usePluginEvent(PluginDisableEvent event) {
@@ -159,6 +165,9 @@ public class IgnoredPlugins {
                 !event.getPlugin().getName().equalsIgnoreCase("Factions") &&
                 !event.getPlugin().getName().equalsIgnoreCase("LobbySystem2") &&
                 !event.getPlugin().getName().equalsIgnoreCase("Tradeshop") &&
-                !event.getPlugin().getName().equalsIgnoreCase("BlockProt"));
+                !event.getPlugin().getName().equalsIgnoreCase("BlockProt") &&
+                !event.getPlugin().getName().equalsIgnoreCase("OpeNLogin") &&
+                !event.getPlugin().getName().equalsIgnoreCase("ConditionalEvents") &&
+                !event.getPlugin().getName().equalsIgnoreCase("SimpleScore"));
     }
 }
