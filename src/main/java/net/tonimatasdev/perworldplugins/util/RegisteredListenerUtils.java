@@ -1,9 +1,9 @@
 package net.tonimatasdev.perworldplugins.util;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.listener.Listener;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.EventExecutor;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
 import java.lang.reflect.Field;
@@ -25,13 +25,13 @@ public final class RegisteredListenerUtils {
         }
     }
 
-    public static boolean checkEnabled(PerWorldPlugins parent, Listener listener, Event event) {
+    public static boolean checkEnabled(PerWorldPlugins parent, Plugin plugin, Event event) {
         if (!parent.isEnabled()) {
             return true;
         } else {
             if (WorldUtil.getWorldFromEvent(event) != null) {
-                PerWorldPlugins.getInjector().registerEvent(listener.getDelegate().getPlugin(), event.getClass());
-                return !(PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + listener.getDelegate().getPlugin().getName()).contains(WorldUtil.getWorldFromEvent(event).getName()));
+                PerWorldPlugins.getInjector().registerEvent(plugin, event.getClass());
+                return !(PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + plugin.getName()).contains(WorldUtil.getWorldFromEvent(event).getName()));
             } else {
                 return false;
             }

@@ -1,7 +1,6 @@
 package net.tonimatasdev.perworldplugins.command;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.storage.YML.Fixer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,8 +20,6 @@ public class Command implements CommandExecutor {
                 if (sender.hasPermission("perworldplugins.reload")) {
                     PerWorldPlugins.getPlugin().reloadConfig();
                     PerWorldPlugins.getPlugin().saveConfig();
-                    Fixer.reloadFix();
-                    Fixer.saveFix();
                     sender.sendMessage(ChatColor.WHITE + "[" + ChatColor.DARK_GREEN + "+" + ChatColor.WHITE + "] PerWorldPlugins: " + ChatColor.WHITE + "The plugin has been reloaded.");
                 } else {
                     sender.sendMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "-" + ChatColor.WHITE + "] PerWorldPlugins: " + ChatColor.WHITE + "You don't have permissions for execute this command");

@@ -3,6 +3,7 @@ name: PerWorldPlugins
 version: 1.0.3
 load: STARTUP
 api-version: 1.13
+description: Active/Disable plugins in certain worlds
 author: TonimatasDEV
 prefix: PerWorldPlugins
 
@@ -16,4 +17,3 @@ permissions:
 
   perworldplugins.version:
     description: Version permission for PerWorldPlugins
-

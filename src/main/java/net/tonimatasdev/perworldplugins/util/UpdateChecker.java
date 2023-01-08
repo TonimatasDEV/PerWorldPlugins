@@ -13,17 +13,16 @@ public class UpdateChecker {
 
     public static void check() {
         try {
-            HttpURLConnection con = (HttpURLConnection) (new URL("https://api.spigotmc.org/legacy/update.php?resource=96161")).openConnection();
-
+            HttpURLConnection connection = (HttpURLConnection) (new URL("https://api.spigotmc.org/legacy/update.php?resource=96161")).openConnection();
             int timed_out = 1250;
 
-            con.setConnectTimeout(timed_out);
-            con.setReadTimeout(timed_out);
+            connection.setConnectTimeout(timed_out);
+            connection.setReadTimeout(timed_out);
 
-            String latestversion = (new BufferedReader(new InputStreamReader(con.getInputStream()))).readLine();
+            String latestVersion = (new BufferedReader(new InputStreamReader(connection.getInputStream()))).readLine();
 
-            if (latestversion.length() <= 7 && !PerWorldPlugins.getPlugin().getDescription().getVersion().equalsIgnoreCase(latestversion)) {
-                Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getPlugin().getName() + ChatColor.RED + " There is a new version available. " + ChatColor.YELLOW + "(" + ChatColor.GRAY + latestversion + ChatColor.YELLOW + ")");
+            if (latestVersion.length() <= 7 && !PerWorldPlugins.getPlugin().getDescription().getVersion().equalsIgnoreCase(latestVersion)) {
+                Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getPlugin().getName() + ChatColor.RED + " There is a new version available. " + ChatColor.YELLOW + "(" + ChatColor.GRAY + latestVersion + ChatColor.YELLOW + ")");
                 Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getPlugin().getName() + ChatColor.RED + " You can download it at: " + ChatColor.WHITE + "https://www.spigotmc.org/resources/perworldcommands.97003/");
             }
         } catch (Exception var3) {
