@@ -1,10 +1,10 @@
 package net.tonimatasdev.perworldplugins.manager;
 
-import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.injector.listener.CommandPreProcessListener;
 import net.tonimatasdev.perworldplugins.injector.listener.EnablePluginConfigCreator;
+import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.storage.YML.Config;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import net.tonimatasdev.perworldplugins.util.metrics.Metrics;

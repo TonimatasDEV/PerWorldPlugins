@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.injector.listener;
 
-import net.tonimatasdev.perworldplugins.util.IncompatiblePlugins;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
+import net.tonimatasdev.perworldplugins.util.IncompatiblePlugins;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;

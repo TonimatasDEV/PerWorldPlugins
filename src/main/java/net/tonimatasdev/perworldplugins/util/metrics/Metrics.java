@@ -38,7 +38,7 @@ public class Metrics {
             config.addDefault("logFailedRequests", false);
             config.addDefault("logSentData", false);
             config.addDefault("logResponseStatusText", false);
-            config.options().header( "bStats (https://bStats.org) collects some basic information for plugin authors, like how\n"
+            config.options().header("bStats (https://bStats.org) collects some basic information for plugin authors, like how\n"
                     + "many people use their plugin and their total player count. It's recommended to keep bStats\n"
                     + "enabled, but if you're not comfortable with this, you can turn this setting off. There is no\n"
                     + "performance penalty associated with having metrics enabled, and data sent to bStats is fully\n"
@@ -90,9 +90,9 @@ public class Metrics {
     }
 
     public static class MetricsBase {
-        public static String METRICS_VERSION = "3.0.0";
         private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1, task -> new Thread(task, "bStats-Metrics"));
         private static final String REPORT_URL = "https://bStats.org/api/v2/data/%s";
+        public static String METRICS_VERSION = "3.0.0";
         private final String platform;
         private final String serverUuid;
         private final int serviceId;
@@ -242,11 +242,16 @@ public class Metrics {
                 char c = value.charAt(i);
 
                 switch (c) {
-                    case '"': builder.append("\\\"");
-                    case '\\': builder.append("\\\\");
-                    case '\u000F': builder.append("\\u000").append(Integer.toHexString(c));
-                    case '\u001F': builder.append("\\u00").append(Integer.toHexString(c));
-                    default: builder.append(c);
+                    case '"':
+                        builder.append("\\\"");
+                    case '\\':
+                        builder.append("\\\\");
+                    case '\u000F':
+                        builder.append("\\u000").append(Integer.toHexString(c));
+                    case '\u001F':
+                        builder.append("\\u00").append(Integer.toHexString(c));
+                    default:
+                        builder.append(c);
                 }
             }
 

@@ -1,8 +1,8 @@
 package net.tonimatasdev.perworldplugins;
 
+import net.tonimatasdev.perworldplugins.injector.ListenerInjector;
 import net.tonimatasdev.perworldplugins.manager.RegisterManager;
 import net.tonimatasdev.perworldplugins.manager.UnregisterManager;
-import net.tonimatasdev.perworldplugins.injector.ListenerInjector;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PerWorldPlugins extends JavaPlugin {
