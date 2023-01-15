@@ -1,4 +1,4 @@
-package net.tonimatasdev.perworldplugins.util.metrics;
+package net.tonimatasdev.perworldplugins.metrics;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;

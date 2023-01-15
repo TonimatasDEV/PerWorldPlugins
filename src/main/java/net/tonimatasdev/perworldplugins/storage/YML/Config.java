@@ -6,11 +6,11 @@ import java.io.File;
 
 public class Config {
     public static void registerConfig() {
-        File config = new File(PerWorldPlugins.getPlugin().getDataFolder(), "config.yml");
+        File config = new File(PerWorldPlugins.getInstance().getDataFolder(), "config.yml");
 
         if (!config.exists()) {
-            PerWorldPlugins.getPlugin().getConfig().options().copyDefaults(true);
-            PerWorldPlugins.getPlugin().saveConfig();
+            PerWorldPlugins.getInstance().getConfig().options().copyDefaults(true);
+            PerWorldPlugins.getInstance().saveConfig();
         }
     }
 }

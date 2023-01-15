@@ -1,34 +1,44 @@
 package net.tonimatasdev.perworldplugins;
 
-import net.tonimatasdev.perworldplugins.injector.ListenerInjector;
-import net.tonimatasdev.perworldplugins.manager.RegisterManager;
-import net.tonimatasdev.perworldplugins.manager.UnregisterManager;
+import net.tonimatasdev.perworldplugins.command.Command;
+import net.tonimatasdev.perworldplugins.metrics.Metrics;
+import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
+import net.tonimatasdev.perworldplugins.storage.YML.Config;
+import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.listener.BlockEventP;
+import net.tonimatasdev.perworldplugins.util.UpdateChecker;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PerWorldPlugins extends JavaPlugin {
-    private static PerWorldPlugins plugin;
-    private static ListenerInjector injector;
+    private static PerWorldPlugins instance;
 
-    public static PerWorldPlugins getPlugin() {
-        return plugin;
+    public static PerWorldPlugins getInstance() {
+        return instance;
     }
 
-    public static ListenerInjector getInjector() {
-        return injector;
-    }
 
     public void onEnable() {
-        plugin = this;
-        injector = new ListenerInjector();
-        RegisterManager.register();
+        instance = this;
+        Config.registerConfig();
+
+        getServer().getPluginManager().registerEvents(new BlockEventP(), this);
+
+        Bukkit.getPluginCommand("perworldplugins").setExecutor(new Command());
+        Bukkit.getPluginCommand("perworldplugins").setTabCompleter(new TabulatorCompleter());
+
+        getServer().getScheduler().scheduleSyncDelayedTask(this, ListenerUtils::addListeners);
+
+        new Metrics(this, 15794);
+
+        if (this.getConfig().getBoolean("updateChecker")) {
+            UpdateChecker.check();
+        }
     }
 
     public void onDisable() {
-        UnregisterManager.unregister();
-
-        if (injector != null) {
-            injector.unload();
-        }
+        this.reloadConfig();
+        this.saveConfig();
     }
 }
 

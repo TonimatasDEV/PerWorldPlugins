@@ -1,4 +1,4 @@
-package net.tonimatasdev.perworldplugins.injector.listener;
+package net.tonimatasdev.perworldplugins.listener;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.util.IncompatiblePlugins;
@@ -21,17 +21,17 @@ public class CommandPreProcessListener implements Listener {
         PluginCommand pluginCommand = Bukkit.getPluginCommand(command);
 
         if (pluginCommand != null) {
-            if (PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + pluginCommand.getPlugin().getName()).contains(event.getPlayer().getWorld().getName())) {
+            if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + pluginCommand.getPlugin().getName()).contains(event.getPlayer().getWorld().getName())) {
                 event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getPlugin().getConfig().getString("disabledCommandMessage"))));
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             }
         } else {
             Plugin plugin = IncompatiblePlugins.getIncompatiblePluginWithCommand(command);
 
             if (plugin != null) {
-                if (PerWorldPlugins.getPlugin().getConfig().getStringList("plugins." + plugin.getName()).contains(event.getPlayer().getWorld().getName())) {
+                if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(event.getPlayer().getWorld().getName())) {
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getPlugin().getConfig().getString("disabledCommandMessage"))));
+                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
                 }
             }
         }
