@@ -72,10 +72,10 @@ public class BlockEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onPhysicsEvent(BlockPhysicsEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
-    }
+    //@EventHandler(priority = EventPriority.HIGHEST) // TODO: Magma generates many errors.
+    //public static void onPhysicsEvent(BlockPhysicsEvent event) {
+    //    ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    //}
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public static void onPistonExtend(BlockPistonExtendEvent event) {
