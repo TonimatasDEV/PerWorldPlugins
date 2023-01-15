@@ -52,10 +52,10 @@ public class BlockEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onFromTo(BlockFromToEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
-    }
+    //@EventHandler(priority = EventPriority.HIGHEST) // TODO: Magma generates many errors.
+    //public static void onFromTo(BlockFromToEvent event) {
+    //    ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    //}
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public static void onGrow(BlockGrowEvent event) {
