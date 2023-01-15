@@ -13,11 +13,6 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onAchievementAwarded(PlayerAchievementAwardedEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
     public static void onAnimation(PlayerAnimationEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }

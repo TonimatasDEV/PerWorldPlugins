@@ -23,16 +23,6 @@ public class WorldEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onInit(WorldInitEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onLoad(WorldLoadEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
     public static void onSave(WorldSaveEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }

@@ -13,11 +13,6 @@ public class VehicleEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onCollision(VehicleCollisionEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getVehicle().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
     public static void onCreate(VehicleCreateEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getVehicle().getWorld());
     }
@@ -49,11 +44,6 @@ public class VehicleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public static void onMove(VehicleMoveEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getVehicle().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onUpdate(VehicleUpdateEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getVehicle().getWorld());
     }
 }
