@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 
-public class BlockEventP implements Listener {
+public class BlockEvents implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public static void onBreak(BlockBreakEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
