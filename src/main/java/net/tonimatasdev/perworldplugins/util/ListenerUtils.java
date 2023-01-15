@@ -29,15 +29,15 @@ public class ListenerUtils {
             Plugin plugin = registeredListener.getPlugin();
 
             if (!plugin.getName().equals("PerWorldPlugins")) {
-                if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
-                    if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+                if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+                    if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
                         event.getHandlers().unregister(registeredListener);
                     } else {
                         event.getHandlers().unregister(registeredListener);
                         event.getHandlers().register(registeredListener);
                     }
                 } else {
-                    if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+                    if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
                         event.getHandlers().unregister(registeredListener);
                         event.getHandlers().register(registeredListener);
                     } else {
