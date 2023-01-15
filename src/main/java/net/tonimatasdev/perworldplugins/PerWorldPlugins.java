@@ -1,11 +1,13 @@
 package net.tonimatasdev.perworldplugins;
 
 import net.tonimatasdev.perworldplugins.command.Command;
+import net.tonimatasdev.perworldplugins.event.CommandPreProcessListener;
+import net.tonimatasdev.perworldplugins.event.EnablePluginConfigCreator;
+import net.tonimatasdev.perworldplugins.listener.*;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.storage.YML.Config;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
-import net.tonimatasdev.perworldplugins.listener.BlockEventP;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,7 +24,17 @@ public final class PerWorldPlugins extends JavaPlugin {
         instance = this;
         Config.registerConfig();
 
-        getServer().getPluginManager().registerEvents(new BlockEventP(), this);
+        getServer().getPluginManager().registerEvents(new EnablePluginConfigCreator(), this);
+        getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
+
+        getServer().getPluginManager().registerEvents(new BlockEvents(), this);
+        getServer().getPluginManager().registerEvents(new EntityEvents(), this);
+        getServer().getPluginManager().registerEvents(new HangingEvents(), this);
+        getServer().getPluginManager().registerEvents(new InventoryEvents(), this);
+        getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+        getServer().getPluginManager().registerEvents(new VehicleEvents(), this);
+        getServer().getPluginManager().registerEvents(new WeatherEvents(), this);
+        getServer().getPluginManager().registerEvents(new WorldEvents(), this);
 
         Bukkit.getPluginCommand("perworldplugins").setExecutor(new Command());
         Bukkit.getPluginCommand("perworldplugins").setTabCompleter(new TabulatorCompleter());
