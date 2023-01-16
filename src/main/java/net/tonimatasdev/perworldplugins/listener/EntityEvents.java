@@ -37,10 +37,10 @@ public class EntityEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onCreatePortal(EntityCreatePortalEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
-    }
+    //@EventHandler(priority = EventPriority.HIGHEST) // TODO: Paper generates many errors.
+    //public static void onCreatePortal(EntityCreatePortalEvent event) {
+    //    ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    //}
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public static void onDamageByBlock(EntityDamageByBlockEvent event) {
