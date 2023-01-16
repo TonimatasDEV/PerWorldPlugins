@@ -18,7 +18,7 @@ public class ListenerUtils {
         HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
 
         for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-            if (!plugin.getName().equals("PerWorldPlugins")) {
+            if (!plugin.getName().equals("PerWorldPlugins") || !plugin.getName().equals("Geyser-Spigot") || !plugin.getName().equals("floodgate")) {
                 HandlerList.unregisterAll(plugin);
             }
         }
