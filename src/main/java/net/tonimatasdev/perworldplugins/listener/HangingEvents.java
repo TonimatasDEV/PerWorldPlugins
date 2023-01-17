@@ -9,17 +9,17 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 
 public class HangingEvents implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onBreakByEntity(HangingBreakByEntityEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onBreak(HangingBreakEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onPlace(HangingPlaceEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }

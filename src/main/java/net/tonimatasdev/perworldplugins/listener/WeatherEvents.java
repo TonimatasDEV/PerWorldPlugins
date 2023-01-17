@@ -9,17 +9,17 @@ import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class WeatherEvents implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onLightningStrike(LightningStrikeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onThunderChange(ThunderChangeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onWeatherChange(WeatherChangeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }

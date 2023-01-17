@@ -13,7 +13,7 @@ import org.bukkit.plugin.Plugin;
 
 public class CommandPreProcessListener implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
         String command = event.getMessage().split(" ", 2)[0].replace("/", "");
         PluginCommand pluginCommand = Bukkit.getPluginCommand(command);

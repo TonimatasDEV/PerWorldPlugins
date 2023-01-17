@@ -7,27 +7,27 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.*;
 
 public class WorldEvents implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onPortalCreate(PortalCreateEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onSpawnChange(SpawnChangeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onStructureGlow(StructureGrowEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onSave(WorldSaveEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onUnload(WorldUnloadEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
