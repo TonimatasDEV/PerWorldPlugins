@@ -19,7 +19,7 @@ public class ListenerUtils {
         HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
 
         for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-            if (!plugin.getName().equals("PerWorldPlugins") && !plugin.getName().equals("Geyser-Spigot") && !plugin.getName().equals("floodgate")) {
+            if (!plugin.getName().equals("PerWorldPlugins")) {
                 HandlerList.unregisterAll(plugin);
             }
         }
@@ -29,7 +29,7 @@ public class ListenerUtils {
         for (RegisteredListener registeredListener : map.get(event.getHandlers())) {
             Plugin plugin = registeredListener.getPlugin();
 
-            if (!plugin.getName().equals("PerWorldPlugins") && !plugin.getName().equals("Geyser-Spigot") && !plugin.getName().equals("floodgate")) {
+            if (!plugin.getName().equals("PerWorldPlugins")) {
                 if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
                     if (!PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
                         try {
