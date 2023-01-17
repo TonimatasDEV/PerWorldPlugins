@@ -11,8 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Objects;
-
 public class CommandPreProcessListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -22,16 +20,16 @@ public class CommandPreProcessListener implements Listener {
 
         if (pluginCommand != null) {
             if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + pluginCommand.getPlugin().getName()).contains(event.getPlayer().getWorld().getName())) {
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage")));
                 event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             }
         } else {
             Plugin plugin = IncompatiblePlugins.getIncompatiblePluginWithCommand(command);
 
             if (plugin != null) {
                 if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(event.getPlayer().getWorld().getName())) {
+                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage")));
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
                 }
             }
         }
