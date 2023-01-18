@@ -28,10 +28,12 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
 
         getServer().getPluginManager().registerEvents(new BlockEvents(), this);
+        getServer().getPluginManager().registerEvents(new EnchantEvents(), this);
         getServer().getPluginManager().registerEvents(new EntityEvents(), this);
         getServer().getPluginManager().registerEvents(new HangingEvents(), this);
         getServer().getPluginManager().registerEvents(new InventoryEvents(), this);
         getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+        getServer().getPluginManager().registerEvents(new ServerEvents(), this);
         getServer().getPluginManager().registerEvents(new VehicleEvents(), this);
         getServer().getPluginManager().registerEvents(new WeatherEvents(), this);
         getServer().getPluginManager().registerEvents(new WorldEvents(), this);

@@ -8,6 +8,21 @@ import org.bukkit.event.world.*;
 
 public class WorldEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
+    public static void onChunkLoad(ChunkLoadEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onChunkLoad(ChunkPopulateEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onChunkUnload(ChunkUnloadEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onPortalCreate(PortalCreateEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
@@ -19,6 +34,16 @@ public class WorldEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onStructureGlow(StructureGrowEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onInit(WorldInitEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onLoad(WorldLoadEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 

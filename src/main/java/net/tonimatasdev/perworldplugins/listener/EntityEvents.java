@@ -8,6 +8,11 @@ import org.bukkit.event.entity.*;
 
 public class EntityEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
+    public static void onCreatureSpawn(CreatureSpawnEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onCreeperPower(CreeperPowerEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
@@ -37,10 +42,10 @@ public class EntityEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR) // TODO: Paper generates many errors.
-    //public static void onCreatePortal(EntityCreatePortalEvent event) {
-    //    ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
-    //}
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onCreatePortal(EntityCreatePortalEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onDamageByBlock(EntityDamageByBlockEvent event) {
@@ -173,7 +178,7 @@ public class EntityEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onDeath(PlayerDeathEvent event) {
+    public static void onPlayerDeath(PlayerDeathEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 

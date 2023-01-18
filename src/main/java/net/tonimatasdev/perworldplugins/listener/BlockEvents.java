@@ -52,10 +52,10 @@ public class BlockEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR) // TODO: Magma generates many errors.
-    //public static void onFromTo(BlockFromToEvent event) {
-    //    ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
-    //}
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onFromTo(BlockFromToEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onGrow(BlockGrowEvent event) {
@@ -72,10 +72,10 @@ public class BlockEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR) // TODO: Magma generates many errors.
-    //public static void onPhysicsEvent(BlockPhysicsEvent event) {
-    //    ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
-    //}
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onPhysicsEvent(BlockPhysicsEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPistonExtend(BlockPistonExtendEvent event) {
@@ -103,7 +103,7 @@ public class BlockEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onEntityForm(EntityBlockFormEvent event) {
+    public static void onBlockForm(EntityBlockFormEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
 
