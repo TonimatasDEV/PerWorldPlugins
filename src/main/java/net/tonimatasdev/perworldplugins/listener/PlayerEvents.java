@@ -17,10 +17,10 @@ public class PlayerEvents implements Listener {
         ListenerUtils.noWorldEvents(event);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onAchievementAwarded(PlayerAchievementAwardedEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
-    }
+    //@EventHandler(priority = EventPriority.MONITOR) // TODO: No exist in PaperMC
+    //public static void onAchievementAwarded(PlayerAchievementAwardedEvent event) {
+    //    ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAnimation(PlayerAnimationEvent event) {
