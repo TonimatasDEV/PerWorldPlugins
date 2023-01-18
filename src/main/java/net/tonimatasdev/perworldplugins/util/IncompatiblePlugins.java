@@ -10,7 +10,6 @@ import java.util.List;
 
 //Some plugins don't add their commands to plugin.yml and this class detects that the plugin has a command in text.
 public class IncompatiblePlugins {
-    @SuppressWarnings("DataFlowIssue")
     public static Plugin getIncompatiblePluginWithCommand(String command) {
         if (getList(0).contains(command)) {
             if (Bukkit.getPluginManager().getPlugin("BetterTeams").isEnabled()) {
@@ -68,7 +67,7 @@ public class IncompatiblePlugins {
             case 5:
                 return Collections.singletonList("shop");
             default:
-                return null;
+                return Collections.singletonList("");
         }
     }
 }
