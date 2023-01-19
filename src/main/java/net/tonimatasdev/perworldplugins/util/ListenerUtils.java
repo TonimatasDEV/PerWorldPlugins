@@ -10,6 +10,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,10 @@ public class ListenerUtils {
         for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
             if (!plugin.getName().equals("PerWorldPlugins")) {
                 HandlerList.unregisterAll(plugin);
+
+                PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
+                PerWorldPlugins.getInstance().saveConfig();
+                PerWorldPlugins.getInstance().reloadConfig();
             }
         }
 
@@ -63,9 +68,7 @@ public class ListenerUtils {
 
         if (registeredListeners != null) {
             for (RegisteredListener registeredListener : registeredListeners) {
-                Plugin plugin = registeredListener.getPlugin();
-
-                if (!plugin.getName().equals("PerWorldPlugins")) {
+                if (!registeredListener.getPlugin().getName().equals("PerWorldPlugins")) {
                     try {
                         registeredListener.callEvent(event);
                     } catch (EventException e) {
