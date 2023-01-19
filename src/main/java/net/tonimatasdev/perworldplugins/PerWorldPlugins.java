@@ -2,7 +2,6 @@ package net.tonimatasdev.perworldplugins;
 
 import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.event.CommandPreProcessListener;
-import net.tonimatasdev.perworldplugins.event.EnablePluginConfigCreator;
 import net.tonimatasdev.perworldplugins.listener.*;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
@@ -24,7 +23,6 @@ public final class PerWorldPlugins extends JavaPlugin {
         instance = this;
         Config.registerConfig();
 
-        getServer().getPluginManager().registerEvents(new EnablePluginConfigCreator(), this);
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
 
         getServer().getPluginManager().registerEvents(new BlockEvents(), this);
