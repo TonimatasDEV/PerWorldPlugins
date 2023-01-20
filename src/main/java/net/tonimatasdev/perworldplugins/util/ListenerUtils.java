@@ -10,18 +10,17 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
+    private static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA");
 
     public static void addListeners() {
         HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
 
         for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-            if (!plugin.getName().equals("PerWorldPlugins")) {
+            if (!ignored.contains(plugin.getName())) {
                 HandlerList.unregisterAll(plugin);
 
                 PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
@@ -40,7 +39,7 @@ public class ListenerUtils {
             for (RegisteredListener registeredListener : registeredListeners) {
                 Plugin plugin = registeredListener.getPlugin();
 
-                if (!plugin.getName().equals("PerWorldPlugins")) {
+                if (!ignored.contains(plugin.getName())) {
                     if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
                         if (!PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
                             try {
@@ -68,7 +67,7 @@ public class ListenerUtils {
 
         if (registeredListeners != null) {
             for (RegisteredListener registeredListener : registeredListeners) {
-                if (!registeredListener.getPlugin().getName().equals("PerWorldPlugins")) {
+                if (!ignored.contains(registeredListener.getPlugin().getName())) {
                     try {
                         registeredListener.callEvent(event);
                     } catch (EventException e) {
