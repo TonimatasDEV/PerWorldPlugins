@@ -1,6 +1,7 @@
 package net.tonimatasdev.perworldplugins.util;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
+import net.tonimatasdev.perworldplugins.listener.hook.Hooks;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -13,8 +14,8 @@ import org.bukkit.plugin.RegisteredListener;
 import java.util.*;
 
 public class ListenerUtils {
-    private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
-    private static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA");
+    public static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
+    public static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA");
 
     public static void addListeners() {
         HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
@@ -29,7 +30,9 @@ public class ListenerUtils {
             }
         }
 
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "PerWorldPlugins unregistered all Listeners correctly.");
+        Hooks.register();
+
+        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly.");
     }
 
     public static void perWorldPlugins(Event event, World world) {
