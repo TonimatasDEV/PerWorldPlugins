@@ -10,6 +10,7 @@ public class Hooks {
         check("WorldGuard");
         check("nLogin");
         check("Skywars");
+        check("MythicMobs");
         //check("BedWars");
     }
 
@@ -25,6 +26,7 @@ public class Hooks {
             case "WorldGuard": return new WorldGuardHook();
             case "nLogin": return new nLoginHook();
             case "Skywars": return new SkyWarsHook();
+            case "MythicMobs": return new MythicMobsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }

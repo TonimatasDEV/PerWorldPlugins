@@ -33,4 +33,5 @@ dependencies {
     compileOnly 'com.nickuc.login:nlogin-api:10.0' // nLogin
     //compileOnly 'org.screamingsandals.bedwars:BedWars:0.2.26' // BedWars
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9' // SkyWars Reloaded
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }

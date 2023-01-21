@@ -1,12 +1,12 @@
 main: net.tonimatasdev.perworldplugins.PerWorldPlugins
 name: PerWorldPlugins
-version: 1.1.5
+version: 1.1.6
 load: STARTUP
 api-version: 1.13
 description: Active/Disable plugins in certain worlds
 author: TonimatasDEV
 prefix: PerWorldPlugins
-softdepend: [WorldGuard, nLogin, Skywars]
+softdepend: [WorldGuard, nLogin, Skywars, MythicMobs]
 
 commands:
   perworldplugins:
