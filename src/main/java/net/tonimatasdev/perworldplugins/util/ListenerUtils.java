@@ -14,8 +14,8 @@ import org.bukkit.plugin.RegisteredListener;
 import java.util.*;
 
 public class ListenerUtils {
-    public static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
-    public static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA");
+    private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
+    private static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA");
 
     public static void addListeners() {
         HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
