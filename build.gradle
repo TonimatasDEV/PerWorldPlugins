@@ -18,11 +18,19 @@ repositories {
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
 
-    maven { url = "https://maven.enginehub.org/repo/" }
+    // Hooks
+    maven { url = 'https://maven.enginehub.org/repo/' } // WorldGuard
+    maven { url = 'https://repo.nickuc.com/maven-releases/' } // nLogin
+    //maven { url = 'https://repo.screamingsandals.org/public/' } // BedWars
+    maven { url = 'https://nexuslite.gcnt.net/repos/gcnt' } // SkyWars Reloaded
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
-    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT'
+    // Hooks
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT' // WorldGuard
+    compileOnly 'com.nickuc.login:nlogin-api:10.0' // nLogin
+    //compileOnly 'org.screamingsandals.bedwars:BedWars:0.2.26' // BedWars
+    compileOnly 'net.gcnt:skywarsreloaded:5.6.9' // SkyWars Reloaded
 }
