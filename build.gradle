@@ -23,6 +23,7 @@ repositories {
     maven { url = 'https://repo.nickuc.com/maven-releases/' } // nLogin
     //maven { url = 'https://repo.screamingsandals.org/public/' } // BedWars
     maven { url = 'https://nexuslite.gcnt.net/repos/gcnt' } // SkyWars Reloaded
+    maven { url "https://repo.dmulloy2.net/repository/public/" }
 }
 
 dependencies {
@@ -33,5 +34,5 @@ dependencies {
     compileOnly 'com.nickuc.login:nlogin-api:10.0' // nLogin
     //compileOnly 'org.screamingsandals.bedwars:BedWars:0.2.26' // BedWars
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9' // SkyWars Reloaded
-    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
+    //compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }
