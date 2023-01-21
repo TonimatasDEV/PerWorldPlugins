@@ -15,7 +15,7 @@ import java.util.*;
 
 public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
-    private static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA");
+    private static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA", "ModelEngine");
 
     public static void addListeners() {
         HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
