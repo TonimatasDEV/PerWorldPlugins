@@ -41,6 +41,7 @@ public class Hooks {
         check("SkinsRestorer");
         check("Multiverse-Core");
         check("GSit");
+        check("VotingPlugin");
         //check("BedWars");
     }
 
@@ -88,6 +89,7 @@ public class Hooks {
             case "SkinsRestorer": return new SkinsRestorerHook();
             case "Multiverse-Core": return new MultiverseCoreHook();
             case "GSit": return new GSitHook();
+            case "VotingPlugin": return new VotingPluginHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }

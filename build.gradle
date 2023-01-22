@@ -23,6 +23,7 @@ repositories {
     maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
     maven { url = 'https://mvnrepository.com/artifact/org.bstats/bstats-bukkit' }
     maven { url = "https://repo.onarandombox.com/content/groups/public/" }
+    maven { url = 'https://nexus.bencodez.com/repository/maven-public/' }
     maven { url = 'https://repo.codemc.org/repository/maven-releases/' }
     maven { url = 'https://nexus.lichtspiele.org/repository/releases' }
     maven { url = 'https://repo.dmulloy2.net/repository/public/' }
@@ -59,6 +60,7 @@ dependencies {
     compileOnly 'net.essentialsx:EssentialsX:2.19.7'
     compileOnly 'com.nickuc.login:nlogin-api:10.0'
     compileOnly 'net.coreprotect:coreprotect:21.3'
+    compileOnly 'com.bencodez:votingplugin:6.11.1'
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9'
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.Zrips:Jobs:4.17.2'
