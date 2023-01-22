@@ -35,6 +35,10 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
+    // Hook dependencies
+    compileOnly 'org.bstats:bstats-bungeecord:3.0.0'
+    compileOnly 'org.bstats:bstats-bukkit:3.0.0'
+
     // Hooks
     compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT'
     compileOnly 'com.github.decentsoftware-eu:decentholograms:2.7.9'
