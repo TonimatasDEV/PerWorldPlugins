@@ -44,6 +44,7 @@ public class Hooks {
         check("VotingPlugin");
         check("CommandPanels");
         check("MoneyFromMobs");
+        check("AdvancedPortals");
         //check("BedWars");
     }
 
@@ -94,6 +95,7 @@ public class Hooks {
             case "VotingPlugin": return new VotingPluginHook();
             case "CommandPanels": return new CommandPanelsHook();
             case "MoneyFromMobs": return new MoneyFromMobsHook();
+            case "AdvancedPortals": return new AdvancedPortalsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
