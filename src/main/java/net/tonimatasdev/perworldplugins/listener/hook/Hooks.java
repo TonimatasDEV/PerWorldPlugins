@@ -31,6 +31,8 @@ public class Hooks {
         check("AuctionHouse");
         check("ServersNPC");
         check("Shopkeepers");
+        check("LoginSecurity");
+        check("MoneyHunters");
         //check("BedWars");
     }
 
@@ -67,6 +69,8 @@ public class Hooks {
             case "AuctionHouse": return new AuctionHouseHook();
             case "ServersNPC": return new znpcsHook();
             case "Shopkeepers": return new ShopkeepersHook();
+            case "LoginSecurity": return new LoginSecurityHook();
+            case "MoneyHunters": return new MoneyHuntersHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
