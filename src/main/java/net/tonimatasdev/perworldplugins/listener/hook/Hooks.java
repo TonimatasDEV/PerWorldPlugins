@@ -49,6 +49,7 @@ public class Hooks {
         check("ConditionalEvents");
         check("Prison");
         check("InfernalMobs");
+        check("ManhuntPlus");
         //check("BedWars");
     }
 
@@ -104,6 +105,7 @@ public class Hooks {
             case "ConditionalEvents": return new ConditionalEventsHook();
             case "Prison": return new PrisonHook();
             case "InfernalMobs": return new InfernalMobsHook();
+            case "ManhuntPlus": return new ManhuntPlusHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
