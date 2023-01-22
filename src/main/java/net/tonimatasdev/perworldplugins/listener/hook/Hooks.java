@@ -30,6 +30,7 @@ public class Hooks {
         check("DecentHolograms");
         check("AuctionHouse");
         check("ServersNPC");
+        check("Shopkeepers");
         //check("BedWars");
     }
 
@@ -65,6 +66,7 @@ public class Hooks {
             case "DecentHolograms": return new DecentHologramsHook();
             case "AuctionHouse": return new AuctionHouseHook();
             case "ServersNPC": return new znpcsHook();
+            case "Shopkeepers": return new ShopkeepersHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
