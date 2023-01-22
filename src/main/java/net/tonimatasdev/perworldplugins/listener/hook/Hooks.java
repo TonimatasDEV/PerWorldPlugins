@@ -29,6 +29,7 @@ public class Hooks {
         check("CoreProtect");
         check("DecentHolograms");
         check("AuctionHouse");
+        check("ServersNPC");
         //check("BedWars");
     }
 
@@ -62,7 +63,8 @@ public class Hooks {
             case "AdvancedBan": return new AdvancedBanHook();
             case "CoreProtect": return new CoreProtectHook();
             case "DecentHolograms": return new DecentHologramsHook();
-            case "AuctionHouse": return new ActionHealthHook();
+            case "AuctionHouse": return new AuctionHouseHook();
+            case "ServersNPC": return new znpcsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
