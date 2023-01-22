@@ -14,6 +14,7 @@ public class Hooks {
         check("ItemJoin");
         check("ActionHealth");
         check("SuperVanish");
+        check("EconomyShopGUI");
         //check("BedWars");
     }
 
@@ -33,6 +34,7 @@ public class Hooks {
             case "ItemJoin": return new ItemJoinHook();
             case "ActionHealth": return new ActionHealthHook();
             case "SuperVanish": return new SuperVanishHook();
+            case "EconomyShopGUI": return new EconomyShopGUIHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
