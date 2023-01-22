@@ -39,6 +39,7 @@ public class Hooks {
         check("AureliumSkills");
         check("IridiumSkyblock");
         check("SkinsRestorer");
+        check("Multiverse-Core");
         //check("BedWars");
     }
 
@@ -84,6 +85,7 @@ public class Hooks {
             case "AureliumSkills": return new AureliumSkillsHook();
             case "IridiumSkyblock": return new IridiumSkyblockHook();
             case "SkinsRestorer": return new SkinsRestorerHook();
+            case "Multiverse-Core": return new MultiverseCoreHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
