@@ -26,6 +26,9 @@ public class Hooks {
         check("ExcellentCrates");
         check("RedProtect");
         check("AdvancedBan");
+        check("CoreProtect");
+        check("DecentHolograms");
+        check("AuctionHouse");
         //check("BedWars");
     }
 
@@ -57,6 +60,9 @@ public class Hooks {
             case "ExcellentCrates": return new ExcellentCratesHook();
             case "RedProtect": return new RedProtectHook();
             case "AdvancedBan": return new AdvancedBanHook();
+            case "CoreProtect": return new CoreProtectHook();
+            case "DecentHolograms": return new DecentHologramsHook();
+            case "AuctionHouse": return new ActionHealthHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
