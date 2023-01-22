@@ -50,6 +50,7 @@ public class Hooks {
         check("Prison");
         check("InfernalMobs");
         check("ManhuntPlus");
+        check("Minepacks");
         //check("BedWars");
     }
 
@@ -106,6 +107,7 @@ public class Hooks {
             case "Prison": return new PrisonHook();
             case "InfernalMobs": return new InfernalMobsHook();
             case "ManhuntPlus": return new ManhuntPlusHook();
+            case "Minepacks": return new MinepacksHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
