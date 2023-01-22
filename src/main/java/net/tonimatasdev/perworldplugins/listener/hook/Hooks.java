@@ -48,6 +48,7 @@ public class Hooks {
         check("ArvinLib");
         check("ConditionalEvents");
         check("Prison");
+        check("InfernalMobs");
         //check("BedWars");
     }
 
@@ -102,6 +103,7 @@ public class Hooks {
             case "ArvinLib": return new ArvinLibHook();
             case "ConditionalEvents": return new ConditionalEventsHook();
             case "Prison": return new PrisonHook();
+            case "InfernalMobs": return new InfernalMobsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
