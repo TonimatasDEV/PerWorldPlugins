@@ -22,6 +22,7 @@ public class Hooks {
         check("CratesPlus");
         check("VeinMiner");
         check("PlaceholderAPI");
+        check("LibsDisguises");
         //check("BedWars");
     }
 
@@ -49,6 +50,7 @@ public class Hooks {
             case "CratesPlus": return new CratesPlusHook();
             case "VeinMiner": return new VeinMinerHook();
             case "PlaceholderAPI": return new PlaceholdersAPIHook();
+            case "LibsDisguises": return new LibsDisguisesHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
