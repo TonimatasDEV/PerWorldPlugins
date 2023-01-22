@@ -18,6 +18,7 @@ public class Hooks {
         check("OpeNLogin");
         check("TreeAssist");
         check("GroupManager");
+        check("Jobs");
         //check("BedWars");
     }
 
@@ -41,6 +42,7 @@ public class Hooks {
             case "OpeNLogin": return new OpeNLoginHook();
             case "TreeAssist": return new TreeAssistHook();
             case "GroupManager": return new GroupManagerHook();
+            case "Jobs": return new JobsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
