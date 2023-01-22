@@ -13,6 +13,7 @@ public class Hooks {
         check("MythicMobs");
         check("ItemJoin");
         check("ActionHealth");
+        check("SuperVanish");
         //check("BedWars");
     }
 
@@ -31,6 +32,7 @@ public class Hooks {
             case "MythicMobs": return new MythicMobsHook();
             case "ItemJoin": return new ItemJoinHook();
             case "ActionHealth": return new ActionHealthHook();
+            case "SuperVanish": return new SuperVanishHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }

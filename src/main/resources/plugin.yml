@@ -6,7 +6,7 @@ api-version: 1.13
 description: Active/Disable plugins in certain worlds
 author: TonimatasDEV
 prefix: PerWorldPlugins
-softdepend: [WorldGuard, nLogin, Skywars, MythicMobs]
+softdepend: [WorldGuard, nLogin, Skywars, MythicMobs, ItemJoin, ActionHealth, SuperVanish]
 
 commands:
   perworldplugins:
