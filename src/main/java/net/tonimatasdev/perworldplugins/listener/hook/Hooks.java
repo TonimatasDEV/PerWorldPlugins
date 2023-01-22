@@ -24,6 +24,7 @@ public class Hooks {
         check("PlaceholderAPI");
         check("LibsDisguises");
         check("ExcellentCrates");
+        check("RedProtect");
         //check("BedWars");
     }
 
@@ -53,6 +54,7 @@ public class Hooks {
             case "PlaceholderAPI": return new PlaceholdersAPIHook();
             case "LibsDisguises": return new LibsDisguisesHook();
             case "ExcellentCrates": return new ExcellentCratesHook();
+            case "RedProtect": return new RedProtectHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
