@@ -45,6 +45,7 @@ public class Hooks {
         check("CommandPanels");
         check("MoneyFromMobs");
         check("AdvancedPortals");
+        check("ArvinLib");
         //check("BedWars");
     }
 
@@ -96,6 +97,7 @@ public class Hooks {
             case "CommandPanels": return new CommandPanelsHook();
             case "MoneyFromMobs": return new MoneyFromMobsHook();
             case "AdvancedPortals": return new AdvancedPortalsHook();
+            case "ArvinLib": return new ArvinLibHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
