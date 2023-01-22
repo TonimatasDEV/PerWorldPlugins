@@ -43,6 +43,7 @@ public class Hooks {
         check("GSit");
         check("VotingPlugin");
         check("CommandPanels");
+        check("MoneyFromMobs");
         //check("BedWars");
     }
 
@@ -92,6 +93,7 @@ public class Hooks {
             case "GSit": return new GSitHook();
             case "VotingPlugin": return new VotingPluginHook();
             case "CommandPanels": return new CommandPanelsHook();
+            case "MoneyFromMobs": return new MoneyFromMobsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
