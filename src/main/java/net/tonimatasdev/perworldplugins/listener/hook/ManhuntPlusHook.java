@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.hook;
 
+
 import me.phoenix.manhuntplus.api.HuntEndEvent;
 import me.phoenix.manhuntplus.api.HuntStartEvent;
 import me.phoenix.manhuntplus.api.TeamRandomizeEvent;
