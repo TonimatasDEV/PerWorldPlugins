@@ -42,6 +42,7 @@ public class Hooks {
         check("Multiverse-Core");
         check("GSit");
         check("VotingPlugin");
+        check("CommandPanels");
         //check("BedWars");
     }
 
@@ -90,6 +91,7 @@ public class Hooks {
             case "Multiverse-Core": return new MultiverseCoreHook();
             case "GSit": return new GSitHook();
             case "VotingPlugin": return new VotingPluginHook();
+            case "CommandPanels": return new CommandPanelsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
