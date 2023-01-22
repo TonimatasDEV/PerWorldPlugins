@@ -11,6 +11,7 @@ public class Hooks {
         check("nLogin");
         check("Skywars");
         check("MythicMobs");
+        check("ItemJoin");
         //check("BedWars");
     }
 
@@ -27,6 +28,7 @@ public class Hooks {
             case "nLogin": return new nLoginHook();
             case "Skywars": return new SkyWarsHook();
             case "MythicMobs": return new MythicMobsHook();
+            case "ItemJoin": return new ItemJoinHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
