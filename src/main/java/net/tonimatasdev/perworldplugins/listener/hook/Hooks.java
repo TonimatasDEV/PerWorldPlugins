@@ -37,6 +37,7 @@ public class Hooks {
         check("WorldEditSelectionVisualizer");
         check("Essentials");
         check("AureliumSkills");
+        check("IridiumSkyblock");
         //check("BedWars");
     }
 
@@ -80,6 +81,7 @@ public class Hooks {
             case "WorldEditSelectionVisualizer": return new WorldEditSelectionVisualizerHook();
             case "Essentials": return new EssentialsHook();
             case "AureliumSkills": return new AureliumSkillsHook();
+            case "IridiumSkyblock": return new IridiumSkyblockHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
