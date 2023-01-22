@@ -34,9 +34,12 @@ public class Hooks {
         check("LoginSecurity");
         check("MoneyHunters");
         check("GadgetsMenu");
+        check("WorldEditSelectionVisualizer");
+        check("Essentials");
         //check("BedWars");
     }
 
+    @SuppressWarnings("DataFlowIssue")
     private static void check(String pluginName) {
         if (Bukkit.getPluginManager().isPluginEnabled(pluginName)) {
             Bukkit.getPluginManager().registerEvents(getHook(pluginName), PerWorldPlugins.getInstance());
@@ -73,6 +76,8 @@ public class Hooks {
             case "LoginSecurity": return new LoginSecurityHook();
             case "MoneyHunters": return new MoneyHuntersHook();
             case "GadgetsMenu": return new GadgetsMenuHook();
+            case "WorldEditSelectionVisualizer": return new WorldEditSelectionVisualizerHook();
+            case "Essentials": return new EssentialsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }

@@ -26,6 +26,7 @@ repositories {
     maven { url = 'https://repo.dmulloy2.net/repository/public/' }
     maven { url = 'https://repo.screamingsandals.org/public/' }
     maven { url = 'https://repo.nickuc.com/maven-releases/' }
+    maven { url = 'https://repo.essentialsx.net/releases/' }
     maven { url = 'https://nexuslite.gcnt.net/repos/gcnt' }
     maven { url = 'https://maven.enginehub.org/repo/' }
     maven { url = 'https://maven.playpro.com' }
@@ -50,6 +51,7 @@ dependencies {
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.12'
     compileOnly 'com.github.DevLeoko:AdvancedBan:v2.3.0'
     compileOnly 'com.github.ElgarL:groupmanager:2.9'
+    compileOnly 'net.essentialsx:EssentialsX:2.19.7'
     compileOnly 'com.nickuc.login:nlogin-api:10.0'
     compileOnly 'net.coreprotect:coreprotect:21.3'
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9'
