@@ -15,6 +15,8 @@ public class Hooks {
         check("ActionHealth");
         check("SuperVanish");
         check("EconomyShopGUI");
+        check("OpeNLogin");
+        check("TreeAssist");
         //check("BedWars");
     }
 
@@ -35,6 +37,8 @@ public class Hooks {
             case "ActionHealth": return new ActionHealthHook();
             case "SuperVanish": return new SuperVanishHook();
             case "EconomyShopGUI": return new EconomyShopGUIHook();
+            case "OpeNLogin": return new OpeNLoginHook();
+            case "TreeAssist": return new TreeAssistHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
