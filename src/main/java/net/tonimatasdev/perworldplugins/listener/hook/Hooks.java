@@ -19,6 +19,9 @@ public class Hooks {
         check("TreeAssist");
         check("GroupManager");
         check("Jobs");
+        check("CratesPlus");
+        check("VeinMiner");
+        check("PlaceholderAPI");
         //check("BedWars");
     }
 
@@ -43,6 +46,9 @@ public class Hooks {
             case "TreeAssist": return new TreeAssistHook();
             case "GroupManager": return new GroupManagerHook();
             case "Jobs": return new JobsHook();
+            case "CratesPlus": return new CratesPlusHook();
+            case "VeinMiner": return new VeinMinerHook();
+            case "PlaceholderAPI": return new PlaceholdersAPIHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }

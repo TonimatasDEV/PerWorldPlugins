@@ -20,6 +20,7 @@ repositories {
 
     // Hooks
     maven { url = "https://raw.githubusercontent.com/RockinChaos/repository/maven-public" }
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
     maven { url = "https://mvnrepository.com/artifact/org.bstats/bstats-bukkit" }
     maven { url "https://repo.dmulloy2.net/repository/public/" }
     maven { url = 'https://repo.screamingsandals.org/public/' }
@@ -41,6 +42,7 @@ dependencies {
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.12'
     compileOnly 'com.nickuc.login:nlogin-api:10.0'
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9'
+    compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.Zrips:Jobs:4.17.2'
 
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
