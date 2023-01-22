@@ -38,6 +38,7 @@ public class Hooks {
         check("Essentials");
         check("AureliumSkills");
         check("IridiumSkyblock");
+        check("SkinsRestorer");
         //check("BedWars");
     }
 
@@ -82,6 +83,7 @@ public class Hooks {
             case "Essentials": return new EssentialsHook();
             case "AureliumSkills": return new AureliumSkillsHook();
             case "IridiumSkyblock": return new IridiumSkyblockHook();
+            case "SkinsRestorer": return new SkinsRestorerHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
