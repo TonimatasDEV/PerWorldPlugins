@@ -17,6 +17,7 @@ public class Hooks {
         check("EconomyShopGUI");
         check("OpeNLogin");
         check("TreeAssist");
+        check("GroupManager");
         //check("BedWars");
     }
 
@@ -39,6 +40,7 @@ public class Hooks {
             case "EconomyShopGUI": return new EconomyShopGUIHook();
             case "OpeNLogin": return new OpeNLoginHook();
             case "TreeAssist": return new TreeAssistHook();
+            case "GroupManager": return new GroupManagerHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
