@@ -33,6 +33,7 @@ public class Hooks {
         check("Shopkeepers");
         check("LoginSecurity");
         check("MoneyHunters");
+        check("GadgetsMenu");
         //check("BedWars");
     }
 
@@ -71,6 +72,7 @@ public class Hooks {
             case "Shopkeepers": return new ShopkeepersHook();
             case "LoginSecurity": return new LoginSecurityHook();
             case "MoneyHunters": return new MoneyHuntersHook();
+            case "GadgetsMenu": return new GadgetsMenuHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
