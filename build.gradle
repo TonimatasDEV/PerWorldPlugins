@@ -41,6 +41,7 @@ dependencies {
     compileOnly 'com.github.Gypopo:EconomyShopGUI-API:1.4.5'
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.12'
     compileOnly 'com.github.DevLeoko:AdvancedBan:v2.3.0'
+    compileOnly 'com.github.ElgarL:groupmanager:2.9'
     compileOnly 'com.nickuc.login:nlogin-api:10.0'
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9'
     compileOnly 'me.clip:placeholderapi:2.11.2'
