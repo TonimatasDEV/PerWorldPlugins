@@ -46,6 +46,7 @@ public class Hooks {
         check("MoneyFromMobs");
         check("AdvancedPortals");
         check("ArvinLib");
+        check("ConditionalEvents");
         //check("BedWars");
     }
 
@@ -98,6 +99,7 @@ public class Hooks {
             case "MoneyFromMobs": return new MoneyFromMobsHook();
             case "AdvancedPortals": return new AdvancedPortalsHook();
             case "ArvinLib": return new ArvinLibHook();
+            case "ConditionalEvents": return new ConditionalEventsHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
