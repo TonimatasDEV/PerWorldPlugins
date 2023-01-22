@@ -40,6 +40,7 @@ public class Hooks {
         check("IridiumSkyblock");
         check("SkinsRestorer");
         check("Multiverse-Core");
+        check("GSit");
         //check("BedWars");
     }
 
@@ -86,6 +87,7 @@ public class Hooks {
             case "IridiumSkyblock": return new IridiumSkyblockHook();
             case "SkinsRestorer": return new SkinsRestorerHook();
             case "Multiverse-Core": return new MultiverseCoreHook();
+            case "GSit": return new GSitHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
