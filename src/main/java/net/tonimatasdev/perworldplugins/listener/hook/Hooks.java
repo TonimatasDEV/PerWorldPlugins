@@ -25,6 +25,7 @@ public class Hooks {
         check("LibsDisguises");
         check("ExcellentCrates");
         check("RedProtect");
+        check("AdvancedBan");
         //check("BedWars");
     }
 
@@ -55,6 +56,7 @@ public class Hooks {
             case "LibsDisguises": return new LibsDisguisesHook();
             case "ExcellentCrates": return new ExcellentCratesHook();
             case "RedProtect": return new RedProtectHook();
+            case "AdvancedBan": return new AdvancedBanHook();
             //case "BedWars": return new BedWarsHook();
             default: return null;
         }
