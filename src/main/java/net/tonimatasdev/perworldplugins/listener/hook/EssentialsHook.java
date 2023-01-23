@@ -84,16 +84,6 @@ public class EssentialsHook implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onStateChange(StateChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getAffected().getBase().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onStatusChange(StatusChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getAffected().getBase().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
     public static void onTPARequest(TPARequestEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getTarget().getBase().getWorld());
     }
