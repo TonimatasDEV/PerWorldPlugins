@@ -3,6 +3,10 @@ package net.tonimatasdev.perworldplugins.listener.hook;
 import com.sk89q.worldguard.bukkit.event.block.BreakBlockEvent;
 import com.sk89q.worldguard.bukkit.event.block.PlaceBlockEvent;
 import com.sk89q.worldguard.bukkit.event.block.UseBlockEvent;
+import com.sk89q.worldguard.bukkit.event.debug.LoggingBlockBreakEvent;
+import com.sk89q.worldguard.bukkit.event.debug.LoggingBlockPlaceEvent;
+import com.sk89q.worldguard.bukkit.event.debug.LoggingEntityDamageByEntityEvent;
+import com.sk89q.worldguard.bukkit.event.debug.LoggingPlayerInteractEvent;
 import com.sk89q.worldguard.bukkit.event.entity.DamageEntityEvent;
 import com.sk89q.worldguard.bukkit.event.entity.DestroyEntityEvent;
 import com.sk89q.worldguard.bukkit.event.entity.SpawnEntityEvent;
@@ -40,6 +44,26 @@ public class WorldGuardHook implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onUseBlock(UseBlockEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onUseBlock(LoggingBlockBreakEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onUseBlock(LoggingBlockPlaceEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onUseBlock(LoggingEntityDamageByEntityEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onUseBlock(LoggingPlayerInteractEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
