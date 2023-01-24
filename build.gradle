@@ -37,7 +37,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
+
 
     // Hook dependencies
     compileOnly 'org.bstats:bstats-bungeecord:3.0.0'
@@ -62,7 +63,6 @@ dependencies {
     compileOnly 'com.nickuc.login:nlogin-api:10.0'
     compileOnly 'net.coreprotect:coreprotect:21.3'
     compileOnly 'com.bencodez:votingplugin:6.11.1'
-
     compileOnly 'net.gcnt:skywarsreloaded:5.6.9'
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.Zrips:Jobs:4.17.2'
