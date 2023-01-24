@@ -42,10 +42,10 @@ public class EntityEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR) // TODO: Disabled for better server performance.
-    //public static void onCreatePortal(EntityCreatePortalEvent event) {
-    //    ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
-    //}
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onCreatePortal(EntityCreatePortalEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onDamageByBlock(EntityDamageByBlockEvent event) {

@@ -103,7 +103,7 @@ public class BlockEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onBlockForm(EntityBlockFormEvent event) {
+    public static void onEntityBlockForm(EntityBlockFormEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
 

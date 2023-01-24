@@ -13,14 +13,9 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onAsyncChat(AsyncPlayerPreLoginEvent event) {
+    public static void onAsyncChatPreLogin(AsyncPlayerPreLoginEvent event) {
         ListenerUtils.noWorldEvents(event);
     }
-
-    //@EventHandler(priority = EventPriority.MONITOR) // TODO: No exist in PaperMC
-    //public static void onAchievementAwarded(PlayerAchievementAwardedEvent event) {
-    //    ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
-    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAnimation(PlayerAnimationEvent event) {
@@ -64,7 +59,7 @@ public class PlayerEvents implements Listener {
 
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onChannel(PlayerChatEvent event) {
+    public static void onChat(PlayerChatEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
@@ -178,7 +173,6 @@ public class PlayerEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPortal(PlayerPreLoginEvent event) {
         ListenerUtils.noWorldEvents(event);

@@ -53,7 +53,7 @@ public class InventoryEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onDrag(InventoryEvent event) {
+    public static void onEvent(InventoryEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getView().getPlayer().getWorld());
     }
 

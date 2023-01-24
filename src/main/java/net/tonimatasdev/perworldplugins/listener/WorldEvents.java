@@ -13,7 +13,7 @@ public class WorldEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onChunkLoad(ChunkPopulateEvent event) {
+    public static void onChunkPopulate(ChunkPopulateEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 
