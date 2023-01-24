@@ -1,0 +1,20 @@
+package net.tonimatasdev.perworldplugins.listener.multiversion;
+
+import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityResurrectEvent;
+import org.bukkit.event.inventory.BrewingStandFuelEvent;
+
+public class v111 implements Listener {
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onResurrect(EntityResurrectEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onBrew(BrewingStandFuelEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+    }
+}

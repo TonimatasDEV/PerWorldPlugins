@@ -3,13 +3,17 @@ package net.tonimatasdev.perworldplugins;
 import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.event.CommandPreProcessListener;
 import net.tonimatasdev.perworldplugins.listener.*;
+import net.tonimatasdev.perworldplugins.listener.multiversion.MultiVersion;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.storage.YML.Config;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Arrays;
 
 public final class PerWorldPlugins extends JavaPlugin {
     private static PerWorldPlugins instance;
@@ -36,6 +40,8 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WeatherEvents(), this);
         getServer().getPluginManager().registerEvents(new WorldEvents(), this);
 
+        MultiVersion.register();
+
         Bukkit.getPluginCommand("perworldplugins").setExecutor(new Command());
         Bukkit.getPluginCommand("perworldplugins").setTabCompleter(new TabulatorCompleter());
 
@@ -43,7 +49,7 @@ public final class PerWorldPlugins extends JavaPlugin {
 
         new Metrics(this, 15794);
 
-        if (this.getConfig().getBoolean("updateChecker")) {
+        if (getConfig().getBoolean("updateChecker")) {
             UpdateChecker.check();
         }
     }
