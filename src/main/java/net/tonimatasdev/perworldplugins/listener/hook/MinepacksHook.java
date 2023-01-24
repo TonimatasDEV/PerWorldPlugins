@@ -3,7 +3,6 @@ package net.tonimatasdev.perworldplugins.listener.hook;
 import at.pcgamingfreaks.Minepacks.Bukkit.API.Events.BackpackDropOnDeathEvent;
 import at.pcgamingfreaks.Minepacks.Bukkit.API.Events.InventoryClearEvent;
 import at.pcgamingfreaks.Minepacks.Bukkit.API.Events.InventoryClearedEvent;
-import io.hotmail.com.jacob_vejvoda.infernal_mobs.InfernalSpawnEvent;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

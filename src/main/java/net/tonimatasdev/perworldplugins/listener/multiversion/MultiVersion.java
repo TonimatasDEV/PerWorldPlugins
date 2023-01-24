@@ -1,7 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.listener.HangingEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 

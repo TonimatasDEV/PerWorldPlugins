@@ -10,10 +10,7 @@ import net.tonimatasdev.perworldplugins.storage.YML.Config;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
 
 public final class PerWorldPlugins extends JavaPlugin {
     private static PerWorldPlugins instance;
