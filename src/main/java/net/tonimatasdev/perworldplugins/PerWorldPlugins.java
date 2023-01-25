@@ -2,6 +2,7 @@ package net.tonimatasdev.perworldplugins;
 
 import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.event.CommandPreProcessListener;
+import net.tonimatasdev.perworldplugins.event.PluginEnableListener;
 import net.tonimatasdev.perworldplugins.listener.*;
 import net.tonimatasdev.perworldplugins.listener.multiversion.MultiVersion;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
@@ -27,6 +28,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         Config.registerConfig();
 
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
+        getServer().getPluginManager().registerEvents(new PluginEnableListener(), this);
 
         getServer().getPluginManager().registerEvents(new BlockEvents(), this);
         getServer().getPluginManager().registerEvents(new EnchantEvents(), this);

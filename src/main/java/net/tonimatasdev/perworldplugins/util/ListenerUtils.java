@@ -10,7 +10,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,21 +17,15 @@ public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
 
     public static void addListeners() {
-        for (HandlerList handlerList : HandlerListUtil.minecraftHandlerLists) {
+        HandlerListUtil.minecraftHandlerLists.forEach((handlerList -> {
             map.put(handlerList, handlerList.getRegisteredListeners());
 
-            for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-                if (!plugin.getName().equals("PerWorldPlugins")) {
-                    handlerList.unregister(plugin);
-
-                    if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) {
-                        PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
-                        PerWorldPlugins.getInstance().saveConfig();
-                        PerWorldPlugins.getInstance().reloadConfig();
-                    }
+            for (RegisteredListener registeredListener : handlerList.getRegisteredListeners()) {
+                if (!registeredListener.getPlugin().getName().equals("PerWorldPlugins")) {
+                    handlerList.unregister(registeredListener);
                 }
             }
-        }
+        }));
 
         Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly.");
     }
@@ -62,6 +55,7 @@ public class ListenerUtils {
                             }
                         }
                     }
+
                 }
             }
         }

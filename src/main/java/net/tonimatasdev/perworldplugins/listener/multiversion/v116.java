@@ -22,9 +22,9 @@ public class v116 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(EntitySpellCastEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PiglinBarterEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PrepareSmithingEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(SmithItemEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(SmithItemEvent.getHandlerList()); Not have HandlerList
         HandlerListUtil.minecraftHandlerLists.add(PlayerBucketEntityEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(PlayerBucketFishEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(PlayerBucketFishEvent.getHandlerList()); Not have HandlerList
         HandlerListUtil.minecraftHandlerLists.add(PlayerHarvestBlockEvent.getHandlerList());
     }
 

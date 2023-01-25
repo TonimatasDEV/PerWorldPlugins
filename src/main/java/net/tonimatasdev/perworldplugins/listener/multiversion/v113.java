@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerRiptideEvent;
 public class v113 implements Listener {
     public static void addHandlerList() {
         HandlerListUtil.minecraftHandlerLists.add(BlockCookEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(BlockDispenseArmorEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(BlockDispenseArmorEvent.getHandlerList()); Not have HandlerList
         HandlerListUtil.minecraftHandlerLists.add(BlockDropItemEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(BlockFertilizeEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(BlockShearEntityEvent.getHandlerList());
@@ -32,7 +32,7 @@ public class v113 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(PlayerCommandSendEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerRecipeDiscoverEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerRiptideEvent.getHandlerList());
-        //HandlerListUtil.minecraftHandlerLists.add(ServerLoadEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(ServerLoadEvent.getHandlerList()); Impossible to get World
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

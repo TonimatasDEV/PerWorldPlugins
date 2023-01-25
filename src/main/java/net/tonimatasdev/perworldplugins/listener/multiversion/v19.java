@@ -23,9 +23,9 @@ public class v19 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(VillagerReplenishTradeEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PrepareAnvilEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerChangedMainHandEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(PlayerPickupArrowEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(PlayerPickupArrowEvent.getHandlerList()); Not have HandlerList
         HandlerListUtil.minecraftHandlerLists.add(PlayerSwapHandItemsEvent.getHandlerList());
-        //HandlerListUtil.minecraftHandlerLists.add(TabCompleteEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(TabCompleteEvent.getHandlerList()); Impossible to get World
 
     }
 

@@ -6,7 +6,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 
-@SuppressWarnings("deprecation")
 public class EntityEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCreatureSpawn(CreatureSpawnEvent event) {
@@ -43,10 +42,10 @@ public class EntityEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onCreatePortal(EntityCreatePortalEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
-    }
+    //@EventHandler(priority = EventPriority.MONITOR)
+    //public static void onCreatePortal(EntityCreatePortalEvent event) {
+    //    ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onDamageByBlock(EntityDamageByBlockEvent event) {
