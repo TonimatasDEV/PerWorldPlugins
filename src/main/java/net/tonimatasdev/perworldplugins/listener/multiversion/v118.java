@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
+import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -8,7 +9,18 @@ import org.bukkit.event.block.BlockDamageAbortEvent;
 import org.bukkit.event.player.PlayerHideEntityEvent;
 import org.bukkit.event.player.PlayerShowEntityEvent;
 
+import java.util.Arrays;
+
+@SuppressWarnings("deprecation")
 public class v118 implements Listener {
+    public static void addHandlerList() {
+        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
+                PlayerHideEntityEvent.getHandlerList(),
+                BlockDamageAbortEvent.getHandlerList(),
+                PlayerShowEntityEvent.getHandlerList()
+        ));
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onHideEntity(PlayerHideEntityEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());

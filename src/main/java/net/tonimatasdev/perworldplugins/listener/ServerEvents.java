@@ -1,12 +1,8 @@
 package net.tonimatasdev.perworldplugins.listener;
 
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.server.*;
 
-public class ServerEvents implements Listener {
+public class ServerEvents implements Listener { /*
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onMapInitialize(MapInitializeEvent event) {
         ListenerUtils.noWorldEvents(event);
@@ -45,5 +41,5 @@ public class ServerEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onServiceUnregister(ServiceUnregisterEvent event) {
         ListenerUtils.noWorldEvents(event);
-    }
+    }*/
 }

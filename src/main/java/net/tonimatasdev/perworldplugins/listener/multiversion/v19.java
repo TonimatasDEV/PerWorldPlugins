@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
+import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -10,9 +11,27 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerChangedMainHandEvent;
 import org.bukkit.event.player.PlayerPickupArrowEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.event.server.TabCompleteEvent;
+
+import java.util.Arrays;
 
 public class v19 implements Listener {
+    public static void addHandlerList() {
+        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
+                CauldronLevelChangeEvent.getHandlerList(),
+                AreaEffectCloudApplyEvent.getHandlerList(),
+                EnderDragonChangePhaseEvent.getHandlerList(),
+                EntityToggleGlideEvent.getHandlerList(),
+                LingeringPotionSplashEvent.getHandlerList(),
+                VillagerAcquireTradeEvent.getHandlerList(),
+                VillagerReplenishTradeEvent.getHandlerList(),
+                PrepareAnvilEvent.getHandlerList(),
+                PlayerChangedMainHandEvent.getHandlerList(),
+                PlayerPickupArrowEvent.getHandlerList(),
+                PlayerSwapHandItemsEvent.getHandlerList()
+                //TabCompleteEvent.getHandlerList()
+        ));
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCauldronLevelChange(CauldronLevelChangeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
@@ -68,8 +87,8 @@ public class v19 implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onTabComplete(TabCompleteEvent event) {
-        ListenerUtils.noWorldEvents(event);
-    }
+    //@EventHandler(priority = EventPriority.MONITOR)
+    //public static void onTabComplete(TabCompleteEvent event) {
+    //    ListenerUtils.noWorldEvents(event);
+    //}
 }

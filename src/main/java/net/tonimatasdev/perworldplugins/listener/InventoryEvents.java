@@ -62,10 +62,10 @@ public class InventoryEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getWhoClicked().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onMoveItem(InventoryMoveItemEvent event) {
-        ListenerUtils.noWorldEvents(event);
-    }
+    //@EventHandler(priority = EventPriority.MONITOR)
+    //public static void onMoveItem(InventoryMoveItemEvent event) {
+    //    ListenerUtils.noWorldEvents(event);
+    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onOpen(InventoryOpenEvent event) {

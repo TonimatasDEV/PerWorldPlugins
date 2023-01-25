@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
+import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -9,9 +10,35 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerRecipeDiscoverEvent;
 import org.bukkit.event.player.PlayerRiptideEvent;
-import org.bukkit.event.server.ServerLoadEvent;
+
+import java.util.Arrays;
 
 public class v113 implements Listener {
+    public static void addHandlerList() {
+        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
+                BlockCookEvent.getHandlerList(),
+                BlockDispenseArmorEvent.getHandlerList(),
+                BlockDropItemEvent.getHandlerList(),
+                BlockFertilizeEvent.getHandlerList(),
+                BlockShearEntityEvent.getHandlerList(),
+                FluidLevelChangeEvent.getHandlerList(),
+                MoistureChangeEvent.getHandlerList(),
+                SpongeAbsorbEvent.getHandlerList(),
+                BatToggleSleepEvent.getHandlerList(),
+                EntityDropItemEvent.getHandlerList(),
+                EntityPlaceEvent.getHandlerList(),
+                EntityPoseChangeEvent.getHandlerList(),
+                EntityToggleSwimEvent.getHandlerList(),
+                EntityTransformEvent.getHandlerList(),
+                PigZombieAngerEvent.getHandlerList(),
+                VillagerCareerChangeEvent.getHandlerList(),
+                PlayerCommandSendEvent.getHandlerList(),
+                PlayerRecipeDiscoverEvent.getHandlerList(),
+                PlayerRiptideEvent.getHandlerList()
+                //ServerLoadEvent.getHandlerList()
+        ));
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCook(BlockCookEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
@@ -107,8 +134,8 @@ public class v113 implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onLoad(ServerLoadEvent event) {
-        ListenerUtils.noWorldEvents(event);
-    }
+    //@EventHandler(priority = EventPriority.MONITOR)
+    //public static void onLoad(ServerLoadEvent event) {
+    //    ListenerUtils.noWorldEvents(event);
+    //}
 }

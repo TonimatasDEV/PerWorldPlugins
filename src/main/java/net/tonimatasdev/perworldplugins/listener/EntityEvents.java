@@ -6,6 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 
+@SuppressWarnings("deprecation")
 public class EntityEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCreatureSpawn(CreatureSpawnEvent event) {

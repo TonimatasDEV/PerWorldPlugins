@@ -6,16 +6,17 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
+@SuppressWarnings("deprecation")
 public class PlayerEvents implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAsyncChat(AsyncPlayerChatEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onAsyncChatPreLogin(AsyncPlayerPreLoginEvent event) {
-        ListenerUtils.noWorldEvents(event);
-    }
+    //@EventHandler(priority = EventPriority.MONITOR)
+    //public static void onAsyncChatPreLogin(AsyncPlayerPreLoginEvent event) {
+    //    ListenerUtils.noWorldEvents(event);
+    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAnimation(PlayerAnimationEvent event) {
@@ -57,7 +58,6 @@ public class PlayerEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onChat(PlayerChatEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
@@ -173,10 +173,10 @@ public class PlayerEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onPortal(PlayerPreLoginEvent event) {
-        ListenerUtils.noWorldEvents(event);
-    }
+    //@EventHandler(priority = EventPriority.MONITOR)
+    //public static void onPortal(PlayerPreLoginEvent event) {
+    //    ListenerUtils.noWorldEvents(event);
+    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onQuit(PlayerQuitEvent event) {

@@ -7,6 +7,7 @@ import net.tonimatasdev.perworldplugins.listener.multiversion.MultiVersion;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.storage.YML.Config;
+import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
@@ -20,6 +21,7 @@ public final class PerWorldPlugins extends JavaPlugin {
     }
 
 
+    @SuppressWarnings("DataFlowIssue")
     public void onEnable() {
         instance = this;
         Config.registerConfig();
@@ -37,6 +39,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WeatherEvents(), this);
         getServer().getPluginManager().registerEvents(new WorldEvents(), this);
 
+        HandlerListUtil.register();
         MultiVersion.register();
 
         Bukkit.getPluginCommand("perworldplugins").setExecutor(new Command());

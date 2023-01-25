@@ -1,7 +1,6 @@
 package net.tonimatasdev.perworldplugins.util;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.listener.hook.Hooks;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -11,26 +10,29 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
-    private static final List<String> ignored = Arrays.asList("PerWorldPlugins", "BedWars", "SBA", "ModelEngine");
 
     public static void addListeners() {
-        HandlerList.getHandlerLists().forEach((handlerList -> map.put(handlerList, handlerList.getRegisteredListeners())));
+        for (HandlerList handlerList : HandlerListUtil.minecraftHandlerLists) {
+            map.put(handlerList, handlerList.getRegisteredListeners());
 
-        for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-            if (!ignored.contains(plugin.getName())) {
-                HandlerList.unregisterAll(plugin);
+            for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
+                if (!plugin.getName().equals("PerWorldPlugins")) {
+                    handlerList.unregister(plugin);
 
-                PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
-                PerWorldPlugins.getInstance().saveConfig();
-                PerWorldPlugins.getInstance().reloadConfig();
+                    if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) {
+                        PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
+                        PerWorldPlugins.getInstance().saveConfig();
+                        PerWorldPlugins.getInstance().reloadConfig();
+                    }
+                }
             }
         }
-
-        Hooks.register();
 
         Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly.");
     }
@@ -42,7 +44,7 @@ public class ListenerUtils {
             for (RegisteredListener registeredListener : registeredListeners) {
                 Plugin plugin = registeredListener.getPlugin();
 
-                if (!ignored.contains(plugin.getName())) {
+                if (!plugin.getName().equals("PerWorldPlugins")) {
                     if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
                         if (!PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
                             try {
@@ -59,22 +61,6 @@ public class ListenerUtils {
                                 throw new RuntimeException(e);
                             }
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    public static void noWorldEvents(Event event) {
-        RegisteredListener[] registeredListeners = map.get(event.getHandlers());
-
-        if (registeredListeners != null) {
-            for (RegisteredListener registeredListener : registeredListeners) {
-                if (!ignored.contains(registeredListener.getPlugin().getName())) {
-                    try {
-                        registeredListener.callEvent(event);
-                    } catch (EventException e) {
-                        throw new RuntimeException(e);
                     }
                 }
             }

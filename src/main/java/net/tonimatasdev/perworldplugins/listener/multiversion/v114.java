@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
+import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,7 +12,20 @@ import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.event.raid.RaidStopEvent;
 import org.bukkit.event.raid.RaidTriggerEvent;
 
+import java.util.Arrays;
+
 public class v114 implements Listener {
+    public static void addHandlerList() {
+        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
+                RaidFinishEvent.getHandlerList(),
+                RaidSpawnWaveEvent.getHandlerList(),
+                RaidStopEvent.getHandlerList(),
+                RaidTriggerEvent.getHandlerList(),
+                TradeSelectEvent.getHandlerList(),
+                PlayerTakeLecternBookEvent.getHandlerList()
+        ));
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onFinish(RaidFinishEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getWorld());

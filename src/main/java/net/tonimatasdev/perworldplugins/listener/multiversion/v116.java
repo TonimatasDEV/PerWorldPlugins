@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
+import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,7 +12,26 @@ import org.bukkit.event.player.PlayerBucketEntityEvent;
 import org.bukkit.event.player.PlayerBucketFishEvent;
 import org.bukkit.event.player.PlayerHarvestBlockEvent;
 
+import java.util.Arrays;
+
+@SuppressWarnings("deprecation")
 public class v116 implements Listener {
+    public static void addHandlerList() {
+        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
+                ArrowBodyCountChangeEvent.getHandlerList(),
+                StriderTemperatureChangeEvent.getHandlerList(),
+                EntityEnterLoveModeEvent.getHandlerList(),
+                EntityExhaustionEvent.getHandlerList(),
+                EntitySpellCastEvent.getHandlerList(),
+                PiglinBarterEvent.getHandlerList(),
+                PrepareSmithingEvent.getHandlerList(),
+                SmithItemEvent.getHandlerList(),
+                PlayerBucketEntityEvent.getHandlerList(),
+                PlayerBucketFishEvent.getHandlerList(),
+                PlayerHarvestBlockEvent.getHandlerList()
+        ));
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onArrowBodyCountChange(ArrowBodyCountChangeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
