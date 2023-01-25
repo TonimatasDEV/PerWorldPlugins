@@ -17,55 +17,8 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
-
-    // Hooks
-    maven { url = 'https://raw.githubusercontent.com/RockinChaos/repository/maven-public' }
-    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
-    maven { url = 'https://mvnrepository.com/artifact/org.bstats/bstats-bukkit' }
-    maven { url = "https://repo.onarandombox.com/content/groups/public/" }
-    maven { url = 'https://nexus.bencodez.com/repository/maven-public/' }
-    maven { url = 'https://repo.codemc.org/repository/maven-releases/' }
-    maven { url = 'https://nexus.lichtspiele.org/repository/releases' }
-    maven { url = 'https://repo.dmulloy2.net/repository/public/' }
-    maven { url = 'https://repo.screamingsandals.org/public/' }
-    maven { url = 'https://repo.nickuc.com/maven-releases/' }
-    maven { url = 'https://repo.essentialsx.net/releases/' }
-    maven { url = 'https://nexuslite.gcnt.net/repos/gcnt' }
-    maven { url = 'https://maven.enginehub.org/repo/' }
-    maven { url = 'https://maven.playpro.com' }
-    maven { url = "https://jitpack.io"}
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
-
-
-    // Hook dependencies
-    compileOnly 'org.bstats:bstats-bungeecord:3.0.0'
-    compileOnly 'org.bstats:bstats-bukkit:3.0.0'
-
-    // Hooks
-    compileOnly 'com.onarandombox.multiversecore:Multiverse-Core:4.3.1'
-    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT'
-    compileOnly 'com.github.decentsoftware-eu:decentholograms:2.7.9'
-    compileOnly 'me.RockinChaos.itemjoin:ItemJoin:5.2.5-RELEASE'
-    compileOnly 'com.nisovin.shopkeepers:ShopkeepersAPI:2.16.4'
-    compileOnly 'com.nickuc.openlogin:openlogin-universal:1.3'
-    compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
-    compileOnly 'com.github.PrisonTeam:Prison:v3.3.0-alpha.13'
-    compileOnly 'org.screamingsandals.bedwars:BedWars:0.2.26'
-    compileOnly 'net.skinsrestorer:skinsrestorer-api:14.2.8'
-    compileOnly 'com.github.Gypopo:EconomyShopGUI-API:1.4.5'
-    compileOnly 'com.github.LeonMangler:SuperVanish:6.2.12'
-    compileOnly 'com.github.DevLeoko:AdvancedBan:v2.3.0'
-    compileOnly 'com.github.ElgarL:groupmanager:2.9'
-    compileOnly 'net.essentialsx:EssentialsX:2.19.7'
-    compileOnly 'com.nickuc.login:nlogin-api:10.0'
-    compileOnly 'net.coreprotect:coreprotect:21.3'
-    compileOnly 'com.bencodez:votingplugin:6.11.1'
-    compileOnly 'net.gcnt:skywarsreloaded:5.6.9'
-    compileOnly 'me.clip:placeholderapi:2.11.2'
-    compileOnly 'com.github.Zrips:Jobs:4.17.2'
-
-    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }
