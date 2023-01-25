@@ -49,6 +49,6 @@ public class VehicleEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onVehicleUpdate(VehicleUpdateEvent event) {
-        ListenerUtils.noWorldEvents(event);
+        ListenerUtils.perWorldPlugins(event, event.getVehicle().getWorld());
     }
 }
