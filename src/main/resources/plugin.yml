@@ -1,12 +1,11 @@
 main: net.tonimatasdev.perworldplugins.PerWorldPlugins
 name: PerWorldPlugins
-version: 1.1.9
+version: 1.2.1
 load: STARTUP
 api-version: 1.13
 description: Active/Disable plugins in certain worlds
 author: TonimatasDEV
 prefix: PerWorldPlugins
-softdepend: [WorldGuard, nLogin, Skywars, MythicMobs, ItemJoin, ActionHealth, SuperVanish, EconomyShopGUI, OpeNLogin, TreeAssist, GroupManager, Jobs, CratesPlus, VeinMiner, PlaceholderAPI, LibsDisguises, ExcellentCrates, RedProtect, AdvancedBan, CoreProtect, DecentHolograms, AuctionHouse, ServersNPC, Shopkeepers, LoginSecurity, MoneyHunters, GadgetsMenu, WorldEditSelectionVisualizer, Essentials, AureliumSkills, IridiumSkyblock, SkinsRestorer, Multiverse-Core, GSit, VotingPlugin, CommandPanels, MoneyFromMobs, AdvancedPortals, ArvinLib, ConditionalEvents, Prison, InfernalMobs, ManhuntPlus, Minepacks, SCore]
 
 commands:
   perworldplugins:
