@@ -21,7 +21,10 @@ public class UpdateChecker {
 
             String latestVersion = (new BufferedReader(new InputStreamReader(connection.getInputStream()))).readLine();
 
-            if (latestVersion.length() <= 7 && !PerWorldPlugins.getInstance().getDescription().getVersion().equalsIgnoreCase(latestVersion)) {
+            int latestVersionNumbers = Integer.parseInt(latestVersion.replaceAll("\\.", ""));
+            int pluginVersion = Integer.parseInt(PerWorldPlugins.getInstance().getDescription().getVersion().replaceAll("\\.", ""));
+
+            if (latestVersionNumbers > pluginVersion) {
                 Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getInstance().getName() + ChatColor.RED + " There is a new version available. " + ChatColor.YELLOW + "(" + ChatColor.GRAY + latestVersion + ChatColor.YELLOW + ")");
                 Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getInstance().getName() + ChatColor.RED + " You can download it at: " + ChatColor.WHITE + "https://www.spigotmc.org/resources/perworldcommands.97003/");
             }
