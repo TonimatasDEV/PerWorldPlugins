@@ -11,32 +11,28 @@ import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerRecipeDiscoverEvent;
 import org.bukkit.event.player.PlayerRiptideEvent;
 
-import java.util.Arrays;
-
 public class v113 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                BlockCookEvent.getHandlerList(),
-                BlockDispenseArmorEvent.getHandlerList(),
-                BlockDropItemEvent.getHandlerList(),
-                BlockFertilizeEvent.getHandlerList(),
-                BlockShearEntityEvent.getHandlerList(),
-                FluidLevelChangeEvent.getHandlerList(),
-                MoistureChangeEvent.getHandlerList(),
-                SpongeAbsorbEvent.getHandlerList(),
-                BatToggleSleepEvent.getHandlerList(),
-                EntityDropItemEvent.getHandlerList(),
-                EntityPlaceEvent.getHandlerList(),
-                EntityPoseChangeEvent.getHandlerList(),
-                EntityToggleSwimEvent.getHandlerList(),
-                EntityTransformEvent.getHandlerList(),
-                PigZombieAngerEvent.getHandlerList(),
-                VillagerCareerChangeEvent.getHandlerList(),
-                PlayerCommandSendEvent.getHandlerList(),
-                PlayerRecipeDiscoverEvent.getHandlerList(),
-                PlayerRiptideEvent.getHandlerList()
-                //ServerLoadEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(BlockCookEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BlockDispenseArmorEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BlockDropItemEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BlockFertilizeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BlockShearEntityEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(FluidLevelChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(MoistureChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(SpongeAbsorbEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BatToggleSleepEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityDropItemEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityPlaceEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityPoseChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityToggleSwimEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityTransformEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PigZombieAngerEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(VillagerCareerChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerCommandSendEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerRecipeDiscoverEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerRiptideEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(ServerLoadEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

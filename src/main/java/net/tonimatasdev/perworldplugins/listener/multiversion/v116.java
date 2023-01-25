@@ -12,24 +12,20 @@ import org.bukkit.event.player.PlayerBucketEntityEvent;
 import org.bukkit.event.player.PlayerBucketFishEvent;
 import org.bukkit.event.player.PlayerHarvestBlockEvent;
 
-import java.util.Arrays;
-
 @SuppressWarnings("deprecation")
 public class v116 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                ArrowBodyCountChangeEvent.getHandlerList(),
-                StriderTemperatureChangeEvent.getHandlerList(),
-                EntityEnterLoveModeEvent.getHandlerList(),
-                EntityExhaustionEvent.getHandlerList(),
-                EntitySpellCastEvent.getHandlerList(),
-                PiglinBarterEvent.getHandlerList(),
-                PrepareSmithingEvent.getHandlerList(),
-                SmithItemEvent.getHandlerList(),
-                PlayerBucketEntityEvent.getHandlerList(),
-                PlayerBucketFishEvent.getHandlerList(),
-                PlayerHarvestBlockEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(ArrowBodyCountChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(StriderTemperatureChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityEnterLoveModeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityExhaustionEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntitySpellCastEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PiglinBarterEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PrepareSmithingEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(SmithItemEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerBucketEntityEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerBucketFishEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerHarvestBlockEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

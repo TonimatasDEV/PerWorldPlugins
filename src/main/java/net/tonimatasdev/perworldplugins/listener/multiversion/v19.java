@@ -12,24 +12,21 @@ import org.bukkit.event.player.PlayerChangedMainHandEvent;
 import org.bukkit.event.player.PlayerPickupArrowEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 
-import java.util.Arrays;
-
 public class v19 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                CauldronLevelChangeEvent.getHandlerList(),
-                AreaEffectCloudApplyEvent.getHandlerList(),
-                EnderDragonChangePhaseEvent.getHandlerList(),
-                EntityToggleGlideEvent.getHandlerList(),
-                LingeringPotionSplashEvent.getHandlerList(),
-                VillagerAcquireTradeEvent.getHandlerList(),
-                VillagerReplenishTradeEvent.getHandlerList(),
-                PrepareAnvilEvent.getHandlerList(),
-                PlayerChangedMainHandEvent.getHandlerList(),
-                PlayerPickupArrowEvent.getHandlerList(),
-                PlayerSwapHandItemsEvent.getHandlerList()
-                //TabCompleteEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(CauldronLevelChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(AreaEffectCloudApplyEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EnderDragonChangePhaseEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityToggleGlideEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(LingeringPotionSplashEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(VillagerAcquireTradeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(VillagerReplenishTradeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PrepareAnvilEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerChangedMainHandEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerPickupArrowEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerSwapHandItemsEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(TabCompleteEvent.getHandlerList());
+
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

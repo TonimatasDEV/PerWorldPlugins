@@ -9,16 +9,12 @@ import org.bukkit.event.block.BlockDamageAbortEvent;
 import org.bukkit.event.player.PlayerHideEntityEvent;
 import org.bukkit.event.player.PlayerShowEntityEvent;
 
-import java.util.Arrays;
-
 @SuppressWarnings("deprecation")
 public class v118 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                PlayerHideEntityEvent.getHandlerList(),
-                BlockDamageAbortEvent.getHandlerList(),
-                PlayerShowEntityEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(PlayerHideEntityEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BlockDamageAbortEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerShowEntityEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

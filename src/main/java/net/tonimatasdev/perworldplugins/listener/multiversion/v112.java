@@ -10,17 +10,13 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.event.player.PlayerLocaleChangeEvent;
 
-import java.util.Arrays;
-
 public class v112 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                EntityPickupItemEvent.getHandlerList(),
-                PlayerAdvancementDoneEvent.getHandlerList(),
-                PlayerItemMendEvent.getHandlerList(),
-                PlayerLocaleChangeEvent.getHandlerList()
-                //BroadcastMessageEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(EntityPickupItemEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerAdvancementDoneEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerItemMendEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerLocaleChangeEvent.getHandlerList());
+        //HandlerListUtil.minecraftHandlerLists.add(BroadcastMessageEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

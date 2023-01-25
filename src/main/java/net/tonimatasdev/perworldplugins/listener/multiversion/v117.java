@@ -11,17 +11,13 @@ import org.bukkit.event.world.EntitiesLoadEvent;
 import org.bukkit.event.world.EntitiesUnloadEvent;
 import org.bukkit.event.world.GenericGameEvent;
 
-import java.util.Arrays;
-
 public class v117 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                BlockReceiveGameEvent.getHandlerList(),
-                FurnaceStartSmeltEvent.getHandlerList(),
-                EntitiesLoadEvent.getHandlerList(),
-                EntitiesUnloadEvent.getHandlerList(),
-                GenericGameEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(BlockReceiveGameEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(FurnaceStartSmeltEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntitiesLoadEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntitiesUnloadEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(GenericGameEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

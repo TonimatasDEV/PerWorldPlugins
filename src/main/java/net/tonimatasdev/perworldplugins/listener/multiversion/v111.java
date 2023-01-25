@@ -8,14 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.inventory.BrewingStandFuelEvent;
 
-import java.util.Arrays;
-
 public class v111 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                EntityResurrectEvent.getHandlerList(),
-                BrewingStandFuelEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(EntityResurrectEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(BrewingStandFuelEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

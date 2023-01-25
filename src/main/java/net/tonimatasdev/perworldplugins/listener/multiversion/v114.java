@@ -12,18 +12,14 @@ import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.event.raid.RaidStopEvent;
 import org.bukkit.event.raid.RaidTriggerEvent;
 
-import java.util.Arrays;
-
 public class v114 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                RaidFinishEvent.getHandlerList(),
-                RaidSpawnWaveEvent.getHandlerList(),
-                RaidStopEvent.getHandlerList(),
-                RaidTriggerEvent.getHandlerList(),
-                TradeSelectEvent.getHandlerList(),
-                PlayerTakeLecternBookEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(RaidFinishEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(RaidSpawnWaveEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(RaidStopEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(RaidTriggerEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(TradeSelectEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(PlayerTakeLecternBookEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

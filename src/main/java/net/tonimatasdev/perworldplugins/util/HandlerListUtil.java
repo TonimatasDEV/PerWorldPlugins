@@ -17,187 +17,184 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class HandlerListUtil {
-    public static List<HandlerList> minecraftHandlerLists = new ArrayList<>();
+    public static ArrayList<HandlerList> minecraftHandlerLists = new ArrayList<>();
 
     public static void register() {
-        minecraftHandlerLists.addAll(Arrays.asList(
-                // Block HandlerLists
-                BlockBreakEvent.getHandlerList(),
-                BlockBurnEvent.getHandlerList(),
-                BlockCanBuildEvent.getHandlerList(),
-                BlockDamageEvent.getHandlerList(),
-                BlockDispenseEvent.getHandlerList(),
-                BlockExpEvent.getHandlerList(),
-                BlockExplodeEvent.getHandlerList(),
-                BlockFadeEvent.getHandlerList(),
-                BlockFormEvent.getHandlerList(),
-                BlockFromToEvent.getHandlerList(),
-                BlockGrowEvent.getHandlerList(),
-                BlockIgniteEvent.getHandlerList(),
-                BlockMultiPlaceEvent.getHandlerList(),
-                BlockPhysicsEvent.getHandlerList(),
-                BlockPistonExtendEvent.getHandlerList(),
-                BlockPistonRetractEvent.getHandlerList(),
-                BlockPlaceEvent.getHandlerList(),
-                BlockRedstoneEvent.getHandlerList(),
-                BlockSpreadEvent.getHandlerList(),
-                EntityBlockFormEvent.getHandlerList(),
-                LeavesDecayEvent.getHandlerList(),
-                NotePlayEvent.getHandlerList(),
-                SignChangeEvent.getHandlerList(),
 
-                // Enchants HandlerLists
-                EnchantItemEvent.getHandlerList(),
-                PrepareItemEnchantEvent.getHandlerList(),
+        // Block HandlerLists
+        minecraftHandlerLists.add(BlockBreakEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockBurnEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockCanBuildEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockDamageEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockDispenseEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockExpEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockExplodeEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockFadeEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockFormEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockFromToEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockGrowEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockIgniteEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockMultiPlaceEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockPhysicsEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockPistonExtendEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockPistonRetractEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockPlaceEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockRedstoneEvent.getHandlerList());
+        minecraftHandlerLists.add(BlockSpreadEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityBlockFormEvent.getHandlerList());
+        minecraftHandlerLists.add(LeavesDecayEvent.getHandlerList());
+        minecraftHandlerLists.add(NotePlayEvent.getHandlerList());
+        minecraftHandlerLists.add(SignChangeEvent.getHandlerList());
 
-                // Entity HandlerLists
-                CreatureSpawnEvent.getHandlerList(),
-                CreeperPowerEvent.getHandlerList(),
-                EntityBreakDoorEvent.getHandlerList(),
-                EntityChangeBlockEvent.getHandlerList(),
-                EntityCombustByBlockEvent.getHandlerList(),
-                EntityCombustByEntityEvent.getHandlerList(),
-                EntityCombustEvent.getHandlerList(),
-                EntityCreatePortalEvent.getHandlerList(),
-                EntityDamageByBlockEvent.getHandlerList(),
-                EntityDamageByEntityEvent.getHandlerList(),
-                EntityDamageEvent.getHandlerList(),
-                EntityDeathEvent.getHandlerList(),
-                EntityExplodeEvent.getHandlerList(),
-                EntityInteractEvent.getHandlerList(),
-                EntityPortalEnterEvent.getHandlerList(),
-                EntityPortalEvent.getHandlerList(),
-                EntityPortalExitEvent.getHandlerList(),
-                EntityRegainHealthEvent.getHandlerList(),
-                EntityShootBowEvent.getHandlerList(),
-                EntitySpawnEvent.getHandlerList(),
-                EntityTameEvent.getHandlerList(),
-                EntityTargetEvent.getHandlerList(),
-                EntityTargetLivingEntityEvent.getHandlerList(),
-                EntityTeleportEvent.getHandlerList(),
-                EntityUnleashEvent.getHandlerList(),
-                ExpBottleEvent.getHandlerList(),
-                ExplosionPrimeEvent.getHandlerList(),
-                FireworkExplodeEvent.getHandlerList(),
-                FoodLevelChangeEvent.getHandlerList(),
-                HorseJumpEvent.getHandlerList(),
-                ItemDespawnEvent.getHandlerList(),
-                ItemMergeEvent.getHandlerList(),
-                ItemSpawnEvent.getHandlerList(),
-                PigZapEvent.getHandlerList(),
-                PlayerDeathEvent.getHandlerList(),
-                PlayerLeashEntityEvent.getHandlerList(),
-                PotionSplashEvent.getHandlerList(),
-                ProjectileHitEvent.getHandlerList(),
-                ProjectileLaunchEvent.getHandlerList(),
-                SheepDyeWoolEvent.getHandlerList(),
-                SheepRegrowWoolEvent.getHandlerList(),
-                SlimeSplitEvent.getHandlerList(),
-                SpawnerSpawnEvent.getHandlerList(),
+        // Enchants HandlerLists
+        minecraftHandlerLists.add(EnchantItemEvent.getHandlerList());
+        minecraftHandlerLists.add(PrepareItemEnchantEvent.getHandlerList());
 
-                // Hanging HandlerLists
-                HangingBreakByEntityEvent.getHandlerList(),
-                HangingBreakEvent.getHandlerList(),
-                HangingPlaceEvent.getHandlerList(),
+        // Entity HandlerLists
+        minecraftHandlerLists.add(CreatureSpawnEvent.getHandlerList());
+        minecraftHandlerLists.add(CreeperPowerEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityBreakDoorEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityChangeBlockEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityCombustByBlockEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityCombustByEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityCombustEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityCreatePortalEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityDamageByBlockEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityDamageByEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityDamageEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityDeathEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityExplodeEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityInteractEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityPortalEnterEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityPortalEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityPortalExitEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityRegainHealthEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityShootBowEvent.getHandlerList());
+        minecraftHandlerLists.add(EntitySpawnEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityTameEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityTargetEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityTargetLivingEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityTeleportEvent.getHandlerList());
+        minecraftHandlerLists.add(EntityUnleashEvent.getHandlerList());
+        minecraftHandlerLists.add(ExpBottleEvent.getHandlerList());
+        minecraftHandlerLists.add(ExplosionPrimeEvent.getHandlerList());
+        minecraftHandlerLists.add(FireworkExplodeEvent.getHandlerList());
+        minecraftHandlerLists.add(FoodLevelChangeEvent.getHandlerList());
+        minecraftHandlerLists.add(HorseJumpEvent.getHandlerList());
+        minecraftHandlerLists.add(ItemDespawnEvent.getHandlerList());
+        minecraftHandlerLists.add(ItemMergeEvent.getHandlerList());
+        minecraftHandlerLists.add(ItemSpawnEvent.getHandlerList());
+        minecraftHandlerLists.add(PigZapEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerDeathEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerLeashEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(PotionSplashEvent.getHandlerList());
+        minecraftHandlerLists.add(ProjectileHitEvent.getHandlerList());
+        minecraftHandlerLists.add(ProjectileLaunchEvent.getHandlerList());
+        minecraftHandlerLists.add(SheepDyeWoolEvent.getHandlerList());
+        minecraftHandlerLists.add(SheepRegrowWoolEvent.getHandlerList());
+        minecraftHandlerLists.add(SlimeSplitEvent.getHandlerList());
+        minecraftHandlerLists.add(SpawnerSpawnEvent.getHandlerList());
 
-                // Inventory HandlerLists
-                BrewEvent.getHandlerList(),
-                CraftItemEvent.getHandlerList(),
-                FurnaceBurnEvent.getHandlerList(),
-                FurnaceExtractEvent.getHandlerList(),
-                FurnaceSmeltEvent.getHandlerList(),
-                InventoryClickEvent.getHandlerList(),
-                InventoryCloseEvent.getHandlerList(),
-                InventoryCreativeEvent.getHandlerList(),
-                InventoryDragEvent.getHandlerList(),
-                InventoryEvent.getHandlerList(),
-                InventoryInteractEvent.getHandlerList(),
-                //InventoryMoveItemEvent.getHandlerList(),
-                InventoryOpenEvent.getHandlerList(),
-                InventoryPickupItemEvent.getHandlerList(),
-                PrepareItemCraftEvent.getHandlerList(),
+        // Hanging HandlerLists
+        minecraftHandlerLists.add(HangingBreakByEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(HangingBreakEvent.getHandlerList());
+        minecraftHandlerLists.add(HangingPlaceEvent.getHandlerList());
 
-                // Player HandlerLists
-                AsyncPlayerChatEvent.getHandlerList(),
-                //AsyncPlayerPreLoginEvent.getHandlerList(),
-                PlayerAnimationEvent.getHandlerList(),
-                PlayerArmorStandManipulateEvent.getHandlerList(),
-                PlayerBedEnterEvent.getHandlerList(),
-                PlayerBedLeaveEvent.getHandlerList(),
-                PlayerBucketEmptyEvent.getHandlerList(),
-                PlayerBucketFillEvent.getHandlerList(),
-                PlayerChangedWorldEvent.getHandlerList(),
-                PlayerChannelEvent.getHandlerList(),
-                PlayerChatEvent.getHandlerList(),
-                PlayerChatTabCompleteEvent.getHandlerList(),
-                PlayerCommandPreprocessEvent.getHandlerList(),
-                PlayerDropItemEvent.getHandlerList(),
-                PlayerEditBookEvent.getHandlerList(),
-                PlayerEggThrowEvent.getHandlerList(),
-                PlayerExpChangeEvent.getHandlerList(),
-                PlayerFishEvent.getHandlerList(),
-                PlayerGameModeChangeEvent.getHandlerList(),
-                PlayerInteractAtEntityEvent.getHandlerList(),
-                PlayerInteractEntityEvent.getHandlerList(),
-                PlayerInteractEvent.getHandlerList(),
-                PlayerItemBreakEvent.getHandlerList(),
-                PlayerItemConsumeEvent.getHandlerList(),
-                PlayerItemDamageEvent.getHandlerList(),
-                PlayerItemHeldEvent.getHandlerList(),
-                PlayerJoinEvent.getHandlerList(),
-                PlayerKickEvent.getHandlerList(),
-                PlayerLevelChangeEvent.getHandlerList(),
-                PlayerLoginEvent.getHandlerList(),
-                PlayerMoveEvent.getHandlerList(),
-                PlayerPickupItemEvent.getHandlerList(),
-                PlayerPortalEvent.getHandlerList(),
-                //PlayerPreLoginEvent.getHandlerList(),
-                PlayerQuitEvent.getHandlerList(),
-                PlayerRegisterChannelEvent.getHandlerList(),
-                PlayerResourcePackStatusEvent.getHandlerList(),
-                PlayerRespawnEvent.getHandlerList(),
-                PlayerShearEntityEvent.getHandlerList(),
-                PlayerStatisticIncrementEvent.getHandlerList(),
-                PlayerTeleportEvent.getHandlerList(),
-                PlayerToggleFlightEvent.getHandlerList(),
-                PlayerToggleSneakEvent.getHandlerList(),
-                PlayerToggleSprintEvent.getHandlerList(),
-                PlayerUnleashEntityEvent.getHandlerList(),
-                PlayerUnregisterChannelEvent.getHandlerList(),
-                PlayerVelocityEvent.getHandlerList(),
+        // Inventory HandlerLists
+        minecraftHandlerLists.add(BrewEvent.getHandlerList());
+        minecraftHandlerLists.add(CraftItemEvent.getHandlerList());
+        minecraftHandlerLists.add(FurnaceBurnEvent.getHandlerList());
+        minecraftHandlerLists.add(FurnaceExtractEvent.getHandlerList());
+        minecraftHandlerLists.add(FurnaceSmeltEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryClickEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryCloseEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryCreativeEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryDragEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryInteractEvent.getHandlerList());
+        //minecraftHandlerLists.add(InventoryMoveItemEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryOpenEvent.getHandlerList());
+        minecraftHandlerLists.add(InventoryPickupItemEvent.getHandlerList());
+        minecraftHandlerLists.add(PrepareItemCraftEvent.getHandlerList());
 
-                // Vehicle HandlerLists
-                VehicleBlockCollisionEvent.getHandlerList(),
-                VehicleCreateEvent.getHandlerList(),
-                VehicleDamageEvent.getHandlerList(),
-                VehicleDestroyEvent.getHandlerList(),
-                VehicleEnterEvent.getHandlerList(),
-                VehicleEntityCollisionEvent.getHandlerList(),
-                VehicleExitEvent.getHandlerList(),
-                VehicleMoveEvent.getHandlerList(),
-                VehicleUpdateEvent.getHandlerList(),
+        // Player HandlerLists
+        minecraftHandlerLists.add(AsyncPlayerChatEvent.getHandlerList());
+        //minecraftHandlerLists.add(AsyncPlayerPreLoginEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerAnimationEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerArmorStandManipulateEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerBedEnterEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerBedLeaveEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerBucketEmptyEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerBucketFillEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerChangedWorldEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerChannelEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerChatEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerChatTabCompleteEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerCommandPreprocessEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerDropItemEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerEditBookEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerEggThrowEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerExpChangeEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerFishEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerGameModeChangeEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerInteractAtEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerInteractEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerInteractEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerItemBreakEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerItemConsumeEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerItemDamageEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerItemHeldEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerJoinEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerKickEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerLevelChangeEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerLoginEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerMoveEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerPickupItemEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerPortalEvent.getHandlerList());
+        //minecraftHandlerLists.add(PlayerPreLoginEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerQuitEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerRegisterChannelEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerResourcePackStatusEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerRespawnEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerShearEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerStatisticIncrementEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerTeleportEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerToggleFlightEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerToggleSneakEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerToggleSprintEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerUnleashEntityEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerUnregisterChannelEvent.getHandlerList());
+        minecraftHandlerLists.add(PlayerVelocityEvent.getHandlerList());
 
-                // Weather HandlerLists
-                LightningStrikeEvent.getHandlerList(),
-                ThunderChangeEvent.getHandlerList(),
-                WeatherChangeEvent.getHandlerList(),
+        // Vehicle HandlerLists
+        minecraftHandlerLists.add(VehicleBlockCollisionEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleCreateEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleDamageEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleDestroyEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleEnterEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleEntityCollisionEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleExitEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleMoveEvent.getHandlerList());
+        minecraftHandlerLists.add(VehicleUpdateEvent.getHandlerList());
 
-                // World HandlerLists
-                ChunkLoadEvent.getHandlerList(),
-                ChunkPopulateEvent.getHandlerList(),
-                ChunkUnloadEvent.getHandlerList(),
-                PortalCreateEvent.getHandlerList(),
-                SpawnChangeEvent.getHandlerList(),
-                StructureGrowEvent.getHandlerList(),
-                WorldInitEvent.getHandlerList(),
-                WorldLoadEvent.getHandlerList(),
-                WorldSaveEvent.getHandlerList(),
-                WorldUnloadEvent.getHandlerList()
-        ));
+        // Weather HandlerLists
+        minecraftHandlerLists.add(LightningStrikeEvent.getHandlerList());
+        minecraftHandlerLists.add(ThunderChangeEvent.getHandlerList());
+        minecraftHandlerLists.add(WeatherChangeEvent.getHandlerList());
+
+        // World HandlerLists
+        minecraftHandlerLists.add(ChunkLoadEvent.getHandlerList());
+        minecraftHandlerLists.add(ChunkPopulateEvent.getHandlerList());
+        minecraftHandlerLists.add(ChunkUnloadEvent.getHandlerList());
+        minecraftHandlerLists.add(PortalCreateEvent.getHandlerList());
+        minecraftHandlerLists.add(SpawnChangeEvent.getHandlerList());
+        minecraftHandlerLists.add(StructureGrowEvent.getHandlerList());
+        minecraftHandlerLists.add(WorldInitEvent.getHandlerList());
+        minecraftHandlerLists.add(WorldLoadEvent.getHandlerList());
+        minecraftHandlerLists.add(WorldSaveEvent.getHandlerList());
+        minecraftHandlerLists.add(WorldUnloadEvent.getHandlerList());
     }
 }

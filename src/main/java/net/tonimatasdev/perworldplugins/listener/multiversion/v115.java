@@ -9,15 +9,11 @@ import org.bukkit.event.entity.EntityEnterBlockEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.event.world.TimeSkipEvent;
 
-import java.util.Arrays;
-
 public class v115 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                EntityEnterBlockEvent.getHandlerList(),
-                LootGenerateEvent.getHandlerList(),
-                TimeSkipEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(EntityEnterBlockEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(LootGenerateEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(TimeSkipEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

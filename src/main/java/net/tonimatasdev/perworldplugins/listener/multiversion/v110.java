@@ -8,14 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityAirChangeEvent;
 import org.bukkit.event.entity.EntityBreedEvent;
 
-import java.util.Arrays;
-
 public class v110 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.addAll(Arrays.asList(
-                EntityAirChangeEvent.getHandlerList(),
-                EntityBreedEvent.getHandlerList()
-        ));
+        HandlerListUtil.minecraftHandlerLists.add(EntityAirChangeEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityBreedEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
