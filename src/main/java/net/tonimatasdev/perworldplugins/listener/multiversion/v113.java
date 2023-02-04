@@ -129,9 +129,4 @@ public class v113 implements Listener {
     public static void onRiptide(PlayerRiptideEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
-
-    //@EventHandler(priority = EventPriority.MONITOR)
-    //public static void onLoad(ServerLoadEvent event) {
-    //    ListenerUtils.noWorldEvents(event);
-    //}
 }

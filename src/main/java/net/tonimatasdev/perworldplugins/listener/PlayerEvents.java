@@ -13,11 +13,6 @@ public class PlayerEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR)
-    //public static void onAsyncChatPreLogin(AsyncPlayerPreLoginEvent event) {
-    //    ListenerUtils.noWorldEvents(event);
-    //}
-
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAnimation(PlayerAnimationEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
@@ -172,11 +167,6 @@ public class PlayerEvents implements Listener {
     public static void onPortal(PlayerPortalEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
-
-    //@EventHandler(priority = EventPriority.MONITOR)
-    //public static void onPortal(PlayerPreLoginEvent event) {
-    //    ListenerUtils.noWorldEvents(event);
-    //}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onQuit(PlayerQuitEvent event) {

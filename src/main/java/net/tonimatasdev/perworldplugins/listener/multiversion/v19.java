@@ -2,6 +2,7 @@ package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -11,6 +12,7 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerChangedMainHandEvent;
 import org.bukkit.event.player.PlayerPickupArrowEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.server.TabCompleteEvent;
 
 public class v19 implements Listener {
     public static void addHandlerList() {
@@ -25,7 +27,7 @@ public class v19 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(PlayerChangedMainHandEvent.getHandlerList());
         //HandlerListUtil.minecraftHandlerLists.add(PlayerPickupArrowEvent.getHandlerList()); Not have HandlerList
         HandlerListUtil.minecraftHandlerLists.add(PlayerSwapHandItemsEvent.getHandlerList());
-        //HandlerListUtil.minecraftHandlerLists.add(TabCompleteEvent.getHandlerList()); Impossible to get World
+        HandlerListUtil.minecraftHandlerLists.add(TabCompleteEvent.getHandlerList());
 
     }
 
@@ -84,8 +86,9 @@ public class v19 implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR)
-    //public static void onTabComplete(TabCompleteEvent event) {
-    //    ListenerUtils.noWorldEvents(event);
-    //}
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onTabComplete(TabCompleteEvent event) {
+        Player player = (Player) event.getSender();
+        ListenerUtils.perWorldPlugins(event, player.getWorld());
+    }
 }

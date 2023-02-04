@@ -16,7 +16,6 @@ public class v112 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(PlayerAdvancementDoneEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerItemMendEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerLocaleChangeEvent.getHandlerList());
-        //HandlerListUtil.minecraftHandlerLists.add(BroadcastMessageEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -38,9 +37,4 @@ public class v112 implements Listener {
     public static void onLocaleChange(PlayerLocaleChangeEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
-
-    //@EventHandler(priority = EventPriority.MONITOR)
-    //public static void onBroadcastMessage(BroadcastMessageEvent event) {
-    //    ListenerUtils.noWorldEvents(event);
-    //}
 }

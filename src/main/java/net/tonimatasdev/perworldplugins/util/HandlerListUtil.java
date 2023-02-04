@@ -58,7 +58,7 @@ public class HandlerListUtil {
         //minecraftHandlerLists.add(EntityBreakDoorEvent.getHandlerList()); Not have HandlerList
         minecraftHandlerLists.add(EntityChangeBlockEvent.getHandlerList());
         minecraftHandlerLists.add(EntityCombustEvent.getHandlerList());
-        //minecraftHandlerLists.add(EntityCreatePortalEvent.getHandlerList()); Deprecated
+        //minecraftHandlerLists.add(EntityCreatePortalEvent.getHandlerList());
         minecraftHandlerLists.add(EntityDamageEvent.getHandlerList());
         //minecraftHandlerLists.add(EntityDamageByBlockEvent.getHandlerList()); Not have HandlerList
         //minecraftHandlerLists.add(EntityDamageByEntityEvent.getHandlerList()); Not have HandlerList
@@ -100,6 +100,7 @@ public class HandlerListUtil {
         minecraftHandlerLists.add(HangingBreakEvent.getHandlerList());
         minecraftHandlerLists.add(HangingPlaceEvent.getHandlerList());
 
+
         // Inventory HandlerLists
         minecraftHandlerLists.add(BrewEvent.getHandlerList());
         //minecraftHandlerLists.add(CraftItemEvent.getHandlerList()); Not have HandlerList
@@ -112,14 +113,14 @@ public class HandlerListUtil {
         minecraftHandlerLists.add(InventoryDragEvent.getHandlerList());
         minecraftHandlerLists.add(InventoryEvent.getHandlerList());
         //minecraftHandlerLists.add(InventoryInteractEvent.getHandlerList()); Not have HandlerList
-        //minecraftHandlerLists.add(InventoryMoveItemEvent.getHandlerList());
+        //minecraftHandlerLists.add(InventoryMoveItemEvent.getHandlerList()); Not have HandlerList
         minecraftHandlerLists.add(InventoryOpenEvent.getHandlerList());
         minecraftHandlerLists.add(InventoryPickupItemEvent.getHandlerList());
         minecraftHandlerLists.add(PrepareItemCraftEvent.getHandlerList());
 
         // Player HandlerLists
         minecraftHandlerLists.add(AsyncPlayerChatEvent.getHandlerList());
-        //minecraftHandlerLists.add(AsyncPlayerPreLoginEvent.getHandlerList());
+        //minecraftHandlerLists.add(AsyncPlayerPreLoginEvent.getHandlerList()); Not have HandlerList
         minecraftHandlerLists.add(PlayerAnimationEvent.getHandlerList());
         minecraftHandlerLists.add(PlayerArmorStandManipulateEvent.getHandlerList());
         minecraftHandlerLists.add(PlayerBedEnterEvent.getHandlerList());
@@ -151,7 +152,6 @@ public class HandlerListUtil {
         minecraftHandlerLists.add(PlayerMoveEvent.getHandlerList());
         minecraftHandlerLists.add(PlayerPickupItemEvent.getHandlerList());
         minecraftHandlerLists.add(PlayerPortalEvent.getHandlerList());
-        //minecraftHandlerLists.add(PlayerPreLoginEvent.getHandlerList());
         minecraftHandlerLists.add(PlayerQuitEvent.getHandlerList());
         //minecraftHandlerLists.add(PlayerRegisterChannelEvent.getHandlerList()); Not have HandlerList
         minecraftHandlerLists.add(PlayerResourcePackStatusEvent.getHandlerList());
