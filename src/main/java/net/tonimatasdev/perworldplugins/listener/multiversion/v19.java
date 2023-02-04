@@ -2,6 +2,7 @@ package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -88,7 +89,10 @@ public class v19 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onTabComplete(TabCompleteEvent event) {
-        Player player = (Player) event.getSender();
-        ListenerUtils.perWorldPlugins(event, player.getWorld());
+        CommandSender sender = event.getSender();
+
+        if (sender instanceof Player) {
+            ListenerUtils.perWorldPlugins(event, ((Player) sender).getWorld());
+        }
     }
 }
