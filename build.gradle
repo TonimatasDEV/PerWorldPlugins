@@ -4,6 +4,7 @@ plugins {
 
 group = 'net.tonimatasdev'
 version = "${plugin_version}"
+archivesBaseName = "PerWorldPlugins"
 
 repositories {
     mavenCentral()
