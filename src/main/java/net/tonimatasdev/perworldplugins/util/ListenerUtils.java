@@ -10,18 +10,18 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
+    private static final List<String> plugins = Arrays.asList("PerWorldPlugins", "BedWars1058");
 
     public static void addListeners() {
         HandlerListUtil.minecraftHandlerLists.forEach((handlerList -> {
             map.put(handlerList, handlerList.getRegisteredListeners());
 
             for (RegisteredListener registeredListener : handlerList.getRegisteredListeners()) {
-                if (!registeredListener.getPlugin().getName().equals("PerWorldPlugins")) {
+                if (!plugins.contains(registeredListener.getPlugin().getName())) {
                     handlerList.unregister(registeredListener);
                 }
             }
@@ -37,7 +37,7 @@ public class ListenerUtils {
             for (RegisteredListener registeredListener : registeredListeners) {
                 Plugin plugin = registeredListener.getPlugin();
 
-                if (!plugin.getName().equals("PerWorldPlugins")) {
+                if (!plugins.contains(plugin.getName())) {
                     if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
                         if (!PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).contains(world.getName())) {
                             try {
