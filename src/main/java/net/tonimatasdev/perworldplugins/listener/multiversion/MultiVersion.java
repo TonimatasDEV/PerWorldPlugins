@@ -69,7 +69,7 @@ public class MultiVersion {
             loadedMessage("1.18");
         }
 
-        if (version >= 119) {
+        if (version >= 119 && versionString.length == 3) {
             Bukkit.getServer().getPluginManager().registerEvents(new v119(), PerWorldPlugins.getInstance());
             v119.addHandlerList();
             loadedMessage("1.19");
