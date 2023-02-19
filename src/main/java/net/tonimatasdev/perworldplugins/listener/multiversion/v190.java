@@ -2,20 +2,16 @@ package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
-import org.bukkit.event.player.PlayerChangedMainHandEvent;
 import org.bukkit.event.player.PlayerPickupArrowEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.event.server.TabCompleteEvent;
 
-public class v19 implements Listener {
+public class v190 implements Listener {
     public static void addHandlerList() {
         HandlerListUtil.minecraftHandlerLists.add(CauldronLevelChangeEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(AreaEffectCloudApplyEvent.getHandlerList());
@@ -25,11 +21,7 @@ public class v19 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(VillagerAcquireTradeEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(VillagerReplenishTradeEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PrepareAnvilEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(PlayerChangedMainHandEvent.getHandlerList());
-        //HandlerListUtil.minecraftHandlerLists.add(PlayerPickupArrowEvent.getHandlerList()); Not have HandlerList
         HandlerListUtil.minecraftHandlerLists.add(PlayerSwapHandItemsEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(TabCompleteEvent.getHandlerList());
-
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -73,11 +65,6 @@ public class v19 implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onChangedMainHand(PlayerChangedMainHandEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
     public static void onPickupItem(PlayerPickupArrowEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
@@ -85,14 +72,5 @@ public class v19 implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onSwapHandItems(PlayerSwapHandItemsEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public static void onTabComplete(TabCompleteEvent event) {
-        CommandSender sender = event.getSender();
-
-        if (sender instanceof Player) {
-            ListenerUtils.perWorldPlugins(event, ((Player) sender).getWorld());
-        }
     }
 }

@@ -5,22 +5,22 @@ import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityAirChangeEvent;
-import org.bukkit.event.entity.EntityBreedEvent;
+import org.bukkit.event.entity.EntityEnterBlockEvent;
+import org.bukkit.event.world.LootGenerateEvent;
 
-public class v110 implements Listener {
+public class v1152 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.add(EntityAirChangeEvent.getHandlerList());
-        HandlerListUtil.minecraftHandlerLists.add(EntityBreedEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityEnterBlockEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(LootGenerateEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onAirChange(EntityAirChangeEvent event) {
+    public static void onEnterBlock(EntityEnterBlockEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onBreed(EntityBreedEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+    public static void onLootGenerate(LootGenerateEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 }

@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.inventory.BrewingStandFuelEvent;
 
-public class v111 implements Listener {
+public class v1110 implements Listener {
     public static void addHandlerList() {
         HandlerListUtil.minecraftHandlerLists.add(EntityResurrectEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(BrewingStandFuelEvent.getHandlerList());

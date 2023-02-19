@@ -5,16 +5,15 @@ import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatPreviewEvent;
+import org.bukkit.event.world.TimeSkipEvent;
 
-@SuppressWarnings("deprecation")
-public class v119 implements Listener {
+public class v1151 implements Listener {
     public static void addHandlerList() {
-        HandlerListUtil.minecraftHandlerLists.add(AsyncPlayerChatPreviewEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(TimeSkipEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onAsyncPlayerChatPreview(AsyncPlayerChatPreviewEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+    public static void onTimeSkip(TimeSkipEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getWorld());
     }
 }

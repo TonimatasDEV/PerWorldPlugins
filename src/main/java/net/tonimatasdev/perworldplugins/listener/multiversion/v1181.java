@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerHideEntityEvent;
 import org.bukkit.event.player.PlayerShowEntityEvent;
 
 @SuppressWarnings("deprecation")
-public class v118 implements Listener {
+public class v1181 implements Listener {
     public static void addHandlerList() {
         HandlerListUtil.minecraftHandlerLists.add(PlayerHideEntityEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(BlockDamageAbortEvent.getHandlerList());
