@@ -18,5 +18,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
-        path: build/libs/*.jar
+        name: PerWorldPlugins
+        path: target/**
