@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
-@SuppressWarnings({"deprecation", "TextBlockMigration"})
+@SuppressWarnings({"deprecation"})
 public class Metrics {
     private final Plugin plugin;
 

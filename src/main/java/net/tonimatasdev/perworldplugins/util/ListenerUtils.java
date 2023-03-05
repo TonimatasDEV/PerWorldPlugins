@@ -10,7 +10,10 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
