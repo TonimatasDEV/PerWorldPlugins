@@ -7,7 +7,6 @@ import net.tonimatasdev.perworldplugins.listener.*;
 import net.tonimatasdev.perworldplugins.listener.multiversion.MultiVersion;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
-import net.tonimatasdev.perworldplugins.storage.YML.Config;
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
@@ -25,7 +24,7 @@ public final class PerWorldPlugins extends JavaPlugin {
     @SuppressWarnings("DataFlowIssue")
     public void onEnable() {
         instance = this;
-        Config.registerConfig();
+        saveDefaultConfig();
 
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
         getServer().getPluginManager().registerEvents(new PluginEnableListener(), this);

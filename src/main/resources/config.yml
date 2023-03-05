@@ -1,6 +1,13 @@
+# PerWorldPlugins Configuration
+
+# Disable or Enable the message of new updates.
 updateChecker: true
+# Message send when execute blocked plugin command.
 disabledCommandMessage: "&4[Server]: &fThis command is disabled for this world."
 
+# If false
+# The plugins/groups added in the world will work.
+# If true, it will be reversed.
 blacklist: true
 
 plugins:
