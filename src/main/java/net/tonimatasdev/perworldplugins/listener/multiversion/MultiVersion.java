@@ -146,7 +146,7 @@ public class MultiVersion {
     }
 
     private static int getVersion() {
-        if (versionString[2] != null) {
+        if (versionString.length != 3) {
             return Integer.parseInt(versionString[0] + versionString[1] + versionString[2]);
         } else {
             return Integer.parseInt(versionString[0] + versionString[1] + 0);
