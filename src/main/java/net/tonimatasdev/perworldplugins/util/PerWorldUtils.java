@@ -24,7 +24,7 @@ public class PerWorldUtils {
                 continue;
             }
 
-            if (isInBlackList(world, plugin)) {
+            if (isInBlackList(world, plugin.getName())) {
                 executeListener(event, registeredListener);
             }
         }
@@ -33,27 +33,20 @@ public class PerWorldUtils {
     public static boolean isInGroup(World world, String group) {
         List<String> worldList = GroupsYML.get().getStringList(group);
 
-        if (worldList.isEmpty()) {
-            return false;
-        }
-
         return worldList.contains(world.getName());
     }
 
     public static void executeListener(Event event, RegisteredListener registeredListener) {
-
-
-            try {
-                registeredListener.callEvent(event);
-            } catch (EventException e) {
-                throw new RuntimeException(e);
-            }
-
+        try {
+            registeredListener.callEvent(event);
+        } catch (EventException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public static boolean isInBlackList(World world, Plugin plugin) {
-        List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList(plugin.getName());
-        boolean isInPlugin = false;
+    private static boolean isInPlugin;
+    public static boolean isInBlackList(World world, String plugin) {
+        List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin);
 
         for (String var : worldList) {
             if (var.contains(":")) {
@@ -67,6 +60,10 @@ public class PerWorldUtils {
 
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
             isInPlugin = !isInPlugin;
+        }
+
+        if (ListenerUtils.plugins.contains(plugin)) {
+            isInPlugin = true;
         }
 
         return isInPlugin;

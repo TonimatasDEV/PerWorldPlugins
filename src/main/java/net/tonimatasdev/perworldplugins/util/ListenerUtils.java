@@ -11,7 +11,7 @@ import java.util.*;
 
 public class ListenerUtils {
     private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
-    public static final List<String> plugins = Arrays.asList("PerWorldPlugins", "BedWars1058");
+    public static final List<String> plugins = Arrays.asList("PerWorldPlugins", "BedWars1058", "Factions");
 
     public static void addListeners() {
         HandlerListUtil.minecraftHandlerLists.forEach((handlerList -> {
