@@ -1,6 +1,7 @@
 package net.tonimatasdev.perworldplugins;
 
 import net.tonimatasdev.perworldplugins.command.Command;
+import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import net.tonimatasdev.perworldplugins.event.CommandPreProcessListener;
 import net.tonimatasdev.perworldplugins.event.PluginEnableListener;
 import net.tonimatasdev.perworldplugins.listener.*;
@@ -25,6 +26,7 @@ public final class PerWorldPlugins extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+        GroupsYML.register();
 
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
         getServer().getPluginManager().registerEvents(new PluginEnableListener(), this);

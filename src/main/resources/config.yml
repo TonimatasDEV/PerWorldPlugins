@@ -11,6 +11,8 @@ disabledCommandMessage: "&4[Server]: &fThis command is disabled for this world."
 blacklist: true
 
 plugins:
+  # For set group set - g:example (example is the name of group)
+  # Add and edit groups in the groups.yml
   Example:
     - PutWorldInThisListForDisableThisPluginOnWorld
     - world
