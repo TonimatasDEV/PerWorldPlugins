@@ -21,11 +21,10 @@ public class CommandPreProcessListener implements Listener {
 
         PluginCommand pluginCommand = Bukkit.getPluginCommand(commandName);
 
-        if (pluginCommand == null) {
-            return;
-        }
+        if (pluginCommand == null) return;
+        if (pluginCommand.getPlugin().getName().equalsIgnoreCase("PerWorldPlugins")) return;
 
-        if (!PerWorldUtils.isInBlackList(player.getWorld(), pluginCommand.getPlugin().getName())) {
+        if (!PerWorldUtils.isInBlackList(player.getWorld(), pluginCommand.getPlugin())) {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             event.setCancelled(true);
         }
