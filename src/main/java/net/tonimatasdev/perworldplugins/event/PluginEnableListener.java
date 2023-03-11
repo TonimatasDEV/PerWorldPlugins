@@ -1,7 +1,6 @@
 package net.tonimatasdev.perworldplugins.event;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -18,8 +17,6 @@ public class PluginEnableListener implements Listener {
                 PerWorldPlugins.getInstance().saveConfig();
                 PerWorldPlugins.getInstance().reloadConfig();
             }
-
-            ListenerUtils.addListeners(event.getPlugin());
         }
     }
 }

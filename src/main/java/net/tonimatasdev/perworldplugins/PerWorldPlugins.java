@@ -9,6 +9,7 @@ import net.tonimatasdev.perworldplugins.listener.multiversion.MultiVersion;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
+import net.tonimatasdev.perworldplugins.util.ListenerUtils;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -59,6 +60,8 @@ public final class PerWorldPlugins extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
         Bukkit.getConsoleSender().sendMessage(getDescription().getName() + getDescription().getVersion() + " has been enabled. (" + currentTime  + "ms)");
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
+
+        getServer().getScheduler().scheduleSyncDelayedTask(PerWorldPlugins.getInstance(), ListenerUtils::addListeners);
     }
 
     public void onDisable() {

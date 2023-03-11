@@ -1,51 +1,54 @@
 package net.tonimatasdev.perworldplugins.util;
 
-import net.tonimatasdev.perworldplugins.object.PWPRegisteredListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.event.Event;
+import org.bukkit.event.EventException;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ListenerUtils {
-    private static final Map<HandlerList, PWPRegisteredListener[]> map = new HashMap<>();
+    private static final Map<HandlerList, RegisteredListener[]> map = new HashMap<>();
 
-    public static void addListeners(Plugin plugin) {
+    public static void addListeners() {
         long time = System.currentTimeMillis();
 
-        if (plugin.getName().equalsIgnoreCase("PerWorldPLugins")) return;
-
         HandlerListUtil.minecraftHandlerLists.forEach((handlerList -> {
-            ArrayList<PWPRegisteredListener> arrayList = new ArrayList<>();
+            ArrayList<RegisteredListener> arrayList = new ArrayList<>();
 
             for (RegisteredListener registeredListener : handlerList.getRegisteredListeners()) {
-                if (registeredListener.getPlugin() != plugin) {
-                    continue;
-                }
-
-                arrayList.add(new PWPRegisteredListener(registeredListener.getPlugin(), handlerList, registeredListener, registeredListener.getPriority()));
+                if (registeredListener.getPlugin().getName().equalsIgnoreCase("PerWorldPlugins")) continue;
+                arrayList.add(registeredListener);
+                handlerList.unregister(registeredListener);
             }
 
-            map.put(handlerList, arrayList.toArray(new PWPRegisteredListener[0]));
+            map.put(handlerList, arrayList.toArray(new RegisteredListener[0]));
         }));
 
         long currentTime = System.currentTimeMillis() - time;
-        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners of " + plugin.getName() + " correctly. (" + currentTime  + "ms)");
+        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly. (" + currentTime + ")");
     }
 
     public static void perWorldPlugins(Event event, World world) {
-        PWPRegisteredListener[] pwpRegisteredListeners = map.get(event.getHandlers());
+        RegisteredListener[] registeredListeners = map.get(event.getHandlers());
 
-        if (pwpRegisteredListeners == null) {
+        if (registeredListeners == null) {
             return;
         }
 
-        for (PWPRegisteredListener pwpRegisteredListener : pwpRegisteredListeners) {
-            pwpRegisteredListener.execute(event, world);
+        for (RegisteredListener registeredListener : registeredListeners) {
+            if (PerWorldUtils.isInBlackList(world, registeredListener.getPlugin())) {
+                try {
+                    registeredListener.callEvent(event);
+                } catch (EventException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

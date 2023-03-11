@@ -42,7 +42,7 @@ public class EntityEvents implements Listener {
         ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 
-    //@EventHandler(priority = EventPriority.MONITOR)
+    //@EventHandler(priority = EventPriority.MONITOR) Deprecated
     //public static void onCreatePortal(EntityCreatePortalEvent event) {
     //    ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     //}
