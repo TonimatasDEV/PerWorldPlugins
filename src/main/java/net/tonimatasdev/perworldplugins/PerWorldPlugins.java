@@ -11,6 +11,7 @@ import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PerWorldPlugins extends JavaPlugin {
@@ -24,6 +25,8 @@ public final class PerWorldPlugins extends JavaPlugin {
     @SuppressWarnings("DataFlowIssue")
     public void onEnable() {
         instance = this;
+        long time = System.currentTimeMillis();
+
         saveDefaultConfig();
         GroupsYML.register();
 
@@ -51,6 +54,11 @@ public final class PerWorldPlugins extends JavaPlugin {
         if (getConfig().getBoolean("updateChecker")) {
             UpdateChecker.check();
         }
+
+        long currentTime = System.currentTimeMillis() - time;
+        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
+        Bukkit.getConsoleSender().sendMessage(getDescription().getName() + getDescription().getVersion() + " has been enabled. (" + currentTime  + "ms)");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
     }
 
     public void onDisable() {

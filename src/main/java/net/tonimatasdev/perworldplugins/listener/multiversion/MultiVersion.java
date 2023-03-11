@@ -9,6 +9,8 @@ public class MultiVersion {
     private static final int version = getVersion();
 
     public static void register() {
+        long time = System.currentTimeMillis();
+
         if (version >= 190) {
             Bukkit.getServer().getPluginManager().registerEvents(new v190(), PerWorldPlugins.getInstance());
             v190.addHandlerList();
@@ -139,6 +141,9 @@ public class MultiVersion {
             v1191.addHandlerList();
             loadedMessage("1.19.1");
         }
+
+        long currentTime = System.currentTimeMillis() - time;
+        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "MultiVersion loaded. (" + currentTime + "ms)");
     }
 
     private static void loadedMessage(String version) {

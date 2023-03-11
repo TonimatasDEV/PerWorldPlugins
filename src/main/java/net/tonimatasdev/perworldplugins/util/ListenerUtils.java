@@ -33,8 +33,8 @@ public class ListenerUtils {
             map.put(handlerList, arrayList.toArray(new PWPRegisteredListener[0]));
         }));
 
-        long ms = System.currentTimeMillis() - time;
-        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners of " + plugin.getName() + " correctly. (" + ms  + "ms)");
+        long currentTime = System.currentTimeMillis() - time;
+        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners of " + plugin.getName() + " correctly. (" + currentTime  + "ms)");
     }
 
     public static void perWorldPlugins(Event event, World world) {
