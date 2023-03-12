@@ -31,7 +31,7 @@ public class ListenerUtils {
         }));
 
         long currentTime = System.currentTimeMillis() - time;
-        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly. (" + currentTime + ")");
+        Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly. (" + currentTime + "ms)");
     }
 
     public static void perWorldPlugins(Event event, World world) {
