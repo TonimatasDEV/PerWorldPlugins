@@ -142,6 +142,12 @@ public class MultiVersion {
             loadedMessage("1.19.1");
         }
 
+        if (version >= 1193) {
+            Bukkit.getServer().getPluginManager().registerEvents(new v1191(), PerWorldPlugins.getInstance());
+            v1191.addHandlerList();
+            loadedMessage("1.19.3");
+        }
+
         long currentTime = System.currentTimeMillis() - time;
         Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "MultiVersion loaded. (" + currentTime + "ms)");
     }

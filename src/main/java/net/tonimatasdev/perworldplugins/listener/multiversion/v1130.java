@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFertilizeEvent;
 import org.bukkit.event.block.SpongeAbsorbEvent;
 import org.bukkit.event.entity.EntityDropItemEvent;
+import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.entity.EntityToggleSwimEvent;
 import org.bukkit.event.entity.PigZombieAngerEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
@@ -22,6 +23,7 @@ public class v1130 implements Listener {
         HandlerListUtil.minecraftHandlerLists.add(PigZombieAngerEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerCommandSendEvent.getHandlerList());
         HandlerListUtil.minecraftHandlerLists.add(PlayerRiptideEvent.getHandlerList());
+        HandlerListUtil.minecraftHandlerLists.add(EntityPotionEffectEvent.getHandlerList());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -57,5 +59,10 @@ public class v1130 implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onRiptide(PlayerRiptideEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public static void onRiptide(EntityPotionEffectEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
     }
 }

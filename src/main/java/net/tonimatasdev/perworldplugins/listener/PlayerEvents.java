@@ -34,6 +34,11 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
+    public static void onAsyncPlayerChatPreview(PlayerBucketEvent event) {
+        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void onBucketEmpty(PlayerBucketEmptyEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
     }
