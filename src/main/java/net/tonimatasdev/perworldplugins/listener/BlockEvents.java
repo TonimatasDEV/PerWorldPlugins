@@ -78,11 +78,6 @@ public class BlockEvents implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onPistonEvent(BlockPistonEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
     public static void onPistonExtend(BlockPistonExtendEvent event) {
         ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
     }
