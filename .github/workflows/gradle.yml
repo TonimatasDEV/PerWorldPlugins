@@ -9,14 +9,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Set up JDK
-      uses: actions/setup-java@v1
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3.10.0
       with:
         java-version: 8
     - name: Build with Gradle
       run: chmod +x ./gradlew
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: PerWorldPlugins
-        path: target/**
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+
