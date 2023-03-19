@@ -13,6 +13,7 @@ jobs:
       uses: actions/setup-java@v3.10.0
       with:
         java-version: 8
+        distribution: 'temurin'
     - name: Build with Gradle
       run: chmod +x ./gradlew
     - name: Upload a Build Artifact
