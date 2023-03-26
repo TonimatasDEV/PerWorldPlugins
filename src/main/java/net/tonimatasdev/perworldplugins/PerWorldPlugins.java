@@ -11,17 +11,20 @@ import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandMap;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class PerWorldPlugins extends JavaPlugin {
     private static final Map<HandlerList, List<RegisteredListener>> map = new HashMap<>();
     private static PerWorldPlugins instance;
+    private static CommandMap commandMap;
 
     public static PerWorldPlugins getInstance() {
         return instance;
@@ -29,6 +32,10 @@ public final class PerWorldPlugins extends JavaPlugin {
 
     public static Map<HandlerList, List<RegisteredListener>> getMap() {
         return map;
+    }
+
+    public static CommandMap getCommandMap() {
+        return commandMap;
     }
 
     @Override
@@ -83,13 +90,21 @@ public final class PerWorldPlugins extends JavaPlugin {
                 map.put(handlerList, listeners);
             }));
 
-            for (Plugin plugin : getServer().getPluginManager().getPlugins()) {
-                if (plugin.getName().equals("PerWorldPlugins")) continue;
-                if (getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) continue;
+            for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+                if (plugin.equals(this)) continue;
+                if (!getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) continue;
 
                 getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
                 saveConfig();
                 reloadConfig();
+            }
+
+            try {
+                Field commandMapField = Bukkit.getPluginManager().getClass().getDeclaredField("commandMap");
+                commandMapField.setAccessible(true);
+                commandMap = (CommandMap) commandMapField.get(Bukkit.getPluginManager());
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
 
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly. (" + (System.currentTimeMillis() - time.get()) + "ms)");
