@@ -23,6 +23,14 @@ public final class PerWorldPlugins extends JavaPlugin {
     private static final Map<HandlerList, List<RegisteredListener>> map = new HashMap<>();
     private static PerWorldPlugins instance;
 
+    public static PerWorldPlugins getInstance() {
+        return instance;
+    }
+
+    public static Map<HandlerList, List<RegisteredListener>> getMap() {
+        return map;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -57,7 +65,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         }
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
-        Bukkit.getConsoleSender().sendMessage(getDescription().getName() + getDescription().getVersion() + " has been enabled. (" + (System.currentTimeMillis() - time.get())  + "ms)");
+        Bukkit.getConsoleSender().sendMessage(getDescription().getName() + getDescription().getVersion() + " has been enabled. (" + (System.currentTimeMillis() - time.get()) + "ms)");
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
 
         getServer().getScheduler().scheduleSyncDelayedTask(PerWorldPlugins.getInstance(), () -> {
@@ -92,14 +100,6 @@ public final class PerWorldPlugins extends JavaPlugin {
     public void onDisable() {
         this.reloadConfig();
         this.saveConfig();
-    }
-
-    public static PerWorldPlugins getInstance() {
-        return instance;
-    }
-
-    public static Map<HandlerList, List<RegisteredListener>> getMap() {
-        return map;
     }
 }
 

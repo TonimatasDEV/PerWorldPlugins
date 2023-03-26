@@ -19,7 +19,7 @@ public class v1171 implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onFurnaceStartSmelt(FurnaceStartSmeltEvent event) {
         PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
-}
+    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onEntitiesLoad(EntitiesLoadEvent event) {
