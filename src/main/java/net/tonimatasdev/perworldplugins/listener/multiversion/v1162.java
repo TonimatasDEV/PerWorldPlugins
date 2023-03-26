@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -15,11 +15,11 @@ public class v1162 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onArrowBodyCountChange(ArrowBodyCountChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onSpellCast(EntitySpellCastEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 }

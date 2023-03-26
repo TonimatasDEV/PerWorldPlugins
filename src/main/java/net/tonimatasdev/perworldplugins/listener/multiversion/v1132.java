@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,21 +20,21 @@ public class v1132 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onDropItem(BlockDropItemEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onFluidLevelChange(FluidLevelChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPlace(EntityPlaceEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onTransform(EntityTransformEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 }

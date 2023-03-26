@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +18,7 @@ public class v194 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onChangedMainHand(PlayerChangedMainHandEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -26,7 +26,7 @@ public class v194 implements Listener {
         CommandSender sender = event.getSender();
 
         if (sender instanceof Player) {
-            ListenerUtils.perWorldPlugins(event, ((Player) sender).getWorld());
+            PerWorldUtils.fireEvent(event, ((Player) sender).getWorld());
         }
     }
 }

@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -27,36 +27,36 @@ public class v1193 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPrepareInventoryResultEvent(PrepareInventoryResultEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getView().getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getView().getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onBrewingStartEvent(BrewingStartEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCampfireStartEvent(CampfireStartEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onInventoryBlockStartEvent(InventoryBlockStartEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAsyncStructureSpawnEvent(AsyncStructureSpawnEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPrepareGrindstoneEvent(PrepareGrindstoneEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getView().getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getView().getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onHopperInventorySearchEvent(HopperInventorySearchEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 }

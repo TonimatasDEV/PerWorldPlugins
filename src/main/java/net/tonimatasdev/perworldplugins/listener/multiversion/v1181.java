@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -19,16 +19,16 @@ public class v1181 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onHideEntity(PlayerHideEntityEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onDamageAbort(BlockDamageAbortEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onShowEntity(PlayerShowEntityEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 }

@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -24,32 +24,32 @@ public class v1140 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCook(BlockCookEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onTradeSelect(TradeSelectEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getView().getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getView().getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onTakeLecternBook(PlayerTakeLecternBookEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onVillagerCareerChange(VillagerCareerChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onShearEntity(BlockShearEntityEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPoseChange(EntityPoseChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 }

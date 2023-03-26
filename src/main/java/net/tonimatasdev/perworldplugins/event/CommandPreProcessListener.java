@@ -24,7 +24,7 @@ public class CommandPreProcessListener implements Listener {
         if (pluginCommand == null) return;
         if (pluginCommand.getPlugin().getName().equalsIgnoreCase("PerWorldPlugins")) return;
 
-        if (!PerWorldUtils.isInBlackList(player.getWorld(), pluginCommand.getPlugin())) {
+        if (!PerWorldUtils.check(player.getWorld(), pluginCommand.getPlugin())) {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             event.setCancelled(true);
         }

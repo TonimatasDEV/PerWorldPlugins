@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,21 +20,21 @@ public class v1144 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onFinish(RaidFinishEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onSpawnWave(RaidSpawnWaveEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onStop(RaidStopEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onTrigger(RaidTriggerEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 }

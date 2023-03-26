@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -28,41 +28,41 @@ public class v1130 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onFertilize(BlockFertilizeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onSpongeAbsorb(SpongeAbsorbEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onDropItem(EntityDropItemEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onToggleSwim(EntityToggleSwimEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPigZombieAnger(PigZombieAngerEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCommandSend(PlayerCommandSendEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onRiptide(PlayerRiptideEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onRiptide(EntityPotionEffectEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 }

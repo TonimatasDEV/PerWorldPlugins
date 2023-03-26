@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -18,16 +18,16 @@ public class v1171 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onFurnaceStartSmelt(FurnaceStartSmeltEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
-    }
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
+}
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onEntitiesLoad(EntitiesLoadEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onEntitiesUnload(EntitiesUnloadEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getWorld());
+        PerWorldUtils.fireEvent(event, event.getWorld());
     }
 }

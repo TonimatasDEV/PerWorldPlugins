@@ -1,7 +1,7 @@
 package net.tonimatasdev.perworldplugins.listener.multiversion;
 
 import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
-import net.tonimatasdev.perworldplugins.util.ListenerUtils;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -26,51 +26,51 @@ public class v190 implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onCauldronLevelChange(CauldronLevelChangeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getBlock().getWorld());
+        PerWorldUtils.fireEvent(event, event.getBlock().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onAreaEffectCloudApply(AreaEffectCloudApplyEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onEnderDragonChangePhase(EnderDragonChangePhaseEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onToggleGlide(EntityToggleGlideEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onLingeringPotionSplash(LingeringPotionSplashEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onVillagerAcquireTrade(VillagerAcquireTradeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onVillagerReplenishTrade(VillagerReplenishTradeEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getEntity().getWorld());
+        PerWorldUtils.fireEvent(event, event.getEntity().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPrepareAnvil(PrepareAnvilEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getView().getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getView().getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPickupItem(PlayerPickupArrowEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onSwapHandItems(PlayerSwapHandItemsEvent event) {
-        ListenerUtils.perWorldPlugins(event, event.getPlayer().getWorld());
+        PerWorldUtils.fireEvent(event, event.getPlayer().getWorld());
     }
 }

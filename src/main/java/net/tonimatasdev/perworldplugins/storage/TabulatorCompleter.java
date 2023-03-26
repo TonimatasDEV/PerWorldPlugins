@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class TabulatorCompleter implements TabCompleter {
     @Override
+    @SuppressWarnings("NullableProblems")
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         assert cmd != null;
-
 
         if (cmd.getName().equalsIgnoreCase("perworldplugins")) {
             List<String> argList = new ArrayList<>();
@@ -24,6 +24,7 @@ public class TabulatorCompleter implements TabCompleter {
                 return argList.stream().filter(a -> a.startsWith(args[0])).collect(Collectors.toList());
             }
         }
+
         return null;
     }
 }
