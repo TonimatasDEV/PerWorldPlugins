@@ -24,6 +24,7 @@ public class PerWorldRegisteredListener extends RegisteredListener {
         super(listener, executor, priority, plugin, ignoreCancelled);
     }
 
+    @SuppressWarnings("NullableProblems")
     public void callEvent(Event event) {
         if (event instanceof BlockEvent) {
             if (PerWorldUtils.check(((BlockEvent) event).getBlock().getWorld(), getPlugin())) return;
