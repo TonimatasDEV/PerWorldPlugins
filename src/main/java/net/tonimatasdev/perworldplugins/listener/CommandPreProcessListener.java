@@ -1,4 +1,4 @@
-package net.tonimatasdev.perworldplugins.event;
+package net.tonimatasdev.perworldplugins.listener;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.util.PerWorldUtils;

@@ -2,19 +2,15 @@ package net.tonimatasdev.perworldplugins;
 
 import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
-import net.tonimatasdev.perworldplugins.event.CommandPreProcessListener;
-import net.tonimatasdev.perworldplugins.listener.*;
-import net.tonimatasdev.perworldplugins.listener.multiversion.MultiVersion;
+import net.tonimatasdev.perworldplugins.listener.CommandPreProcessListener;
+import net.tonimatasdev.perworldplugins.util.listener.ListenerConvert;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
-import net.tonimatasdev.perworldplugins.util.HandlerListUtil;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandMap;
-import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
@@ -22,21 +18,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class PerWorldPlugins extends JavaPlugin {
-    private static final Map<HandlerList, List<RegisteredListener>> map = new HashMap<>();
     private static PerWorldPlugins instance;
     private static CommandMap commandMap;
-
-    public static PerWorldPlugins getInstance() {
-        return instance;
-    }
-
-    public static Map<HandlerList, List<RegisteredListener>> getMap() {
-        return map;
-    }
-
-    public static CommandMap getCommandMap() {
-        return commandMap;
-    }
 
     @Override
     public void onEnable() {
@@ -48,19 +31,6 @@ public final class PerWorldPlugins extends JavaPlugin {
         GroupsYML.register();
 
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
-
-        getServer().getPluginManager().registerEvents(new BlockEvents(), this);
-        getServer().getPluginManager().registerEvents(new EnchantEvents(), this);
-        getServer().getPluginManager().registerEvents(new EntityEvents(), this);
-        getServer().getPluginManager().registerEvents(new HangingEvents(), this);
-        getServer().getPluginManager().registerEvents(new InventoryEvents(), this);
-        getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
-        getServer().getPluginManager().registerEvents(new VehicleEvents(), this);
-        getServer().getPluginManager().registerEvents(new WeatherEvents(), this);
-        getServer().getPluginManager().registerEvents(new WorldEvents(), this);
-
-        HandlerListUtil.register();
-        MultiVersion.register();
 
         Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setExecutor(new Command());
         Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setTabCompleter(new TabulatorCompleter());
@@ -78,25 +48,16 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getScheduler().scheduleSyncDelayedTask(PerWorldPlugins.getInstance(), () -> {
             time.set(System.currentTimeMillis());
 
-            HandlerListUtil.minecraftHandlerLists.forEach((handlerList -> {
-                List<RegisteredListener> listeners = new ArrayList<>();
-
-                for (RegisteredListener registeredListener : handlerList.getRegisteredListeners()) {
-                    if (registeredListener.getPlugin().getName().equalsIgnoreCase("PerWorldPlugins")) continue;
-                    listeners.add(registeredListener);
-                    handlerList.unregister(registeredListener);
-                }
-
-                map.put(handlerList, listeners);
-            }));
-
             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
                 if (plugin.equals(this)) continue;
-                if (!getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) continue;
 
-                getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
-                saveConfig();
-                reloadConfig();
+                ListenerConvert.convert(plugin);
+
+                if (getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) {
+                    getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
+                    saveConfig();
+                    reloadConfig();
+                }
             }
 
             try {
@@ -115,6 +76,14 @@ public final class PerWorldPlugins extends JavaPlugin {
     public void onDisable() {
         this.reloadConfig();
         this.saveConfig();
+    }
+
+    public static PerWorldPlugins getInstance() {
+        return instance;
+    }
+
+    public static CommandMap getCommandMap() {
+        return commandMap;
     }
 }
 
