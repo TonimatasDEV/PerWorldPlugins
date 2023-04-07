@@ -24,12 +24,12 @@ public class CommandPreProcessListener implements Listener {
         PluginCommand pluginCommand = Bukkit.getPluginCommand(commandString);
         Command command = PerWorldPlugins.getCommandMap().getCommand(commandString);
 
-        PluginCommand minecraft = Bukkit.getPluginCommand("minecraft:" + commandString);
-        System.out.println(minecraft);
+        //PluginCommand minecraft = Bukkit.getPluginCommand("minecraft:" + commandString);
+        //System.out.println(minecraft);
         if (pluginCommand != null) {
             if (pluginCommand.getPlugin().equals(PerWorldPlugins.getInstance())) return;
 
-            if (!PerWorldUtils.check(player.getWorld(), pluginCommand.getPlugin())) {
+            if (PerWorldUtils.check(player.getWorld(), pluginCommand.getPlugin())) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
                 event.setCancelled(true);
             }

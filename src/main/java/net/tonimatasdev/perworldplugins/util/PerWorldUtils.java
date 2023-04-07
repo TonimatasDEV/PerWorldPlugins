@@ -30,6 +30,6 @@ public class PerWorldUtils {
             isInPlugin = true;
         }
 
-        return isInPlugin;
+        return !isInPlugin;
     }
 }

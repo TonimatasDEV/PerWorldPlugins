@@ -16,24 +16,20 @@ import java.util.logging.Level;
 
 public class ListenerConvert {
     public static void convert(Plugin plugin) {
-        List<Listener> listeners = new ArrayList<>();
-
         for (RegisteredListener registeredListener : HandlerList.getRegisteredListeners(plugin)) {
-            if (listeners.contains(registeredListener.getListener())) continue;
+            for (HandlerList handlerList : HandlerList.getHandlerLists()) {
+                if (!Arrays.asList(handlerList.getRegisteredListeners()).contains(registeredListener)) continue;
 
-            listeners.add(registeredListener.getListener());
-            HandlerList.unregisterAll(registeredListener.getListener());
-        }
+                handlerList.unregister(registeredListener.getListener());
 
-        for (Listener listener : listeners) {
-            Listener listener1 = createRegisteredListeners(listener, plugin);
-
-            if (listener1 == null) continue;
-            Bukkit.getPluginManager().registerEvents(listener1, plugin);
+                for (RegisteredListener registeredListener1 : createRegisteredListeners(registeredListener.getListener(), registeredListener.getPlugin())) {
+                    handlerList.register(registeredListener1);
+                }
+            }
         }
     }
 
-    private static Listener createRegisteredListeners(Listener listener, Plugin plugin) {
+    private static List<RegisteredListener> createRegisteredListeners(Listener listener, Plugin plugin) {
         List<RegisteredListener> registeredListeners = new ArrayList<>();
         Set<Method> methods = new HashSet<>(Arrays.asList(listener.getClass().getDeclaredMethods()));
 
@@ -81,10 +77,6 @@ public class ListenerConvert {
             registeredListeners.add(new PerWorldRegisteredListener(listener, executor, eventHandler.priority(), plugin, eventHandler.ignoreCancelled()));
         }
 
-        if (registeredListeners.isEmpty()) {
-            return null;
-        } else {
-            return registeredListeners.get(0).getListener();
-        }
+        return registeredListeners;
     }
 }
