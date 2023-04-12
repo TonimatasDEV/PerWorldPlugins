@@ -74,6 +74,7 @@ public class ListenerConvert {
                     throw new EventException(t);
                 }
             };
+
             registeredListeners.add(new PerWorldRegisteredListener(listener, executor, eventHandler.priority(), plugin, eventHandler.ignoreCancelled()));
         }
 

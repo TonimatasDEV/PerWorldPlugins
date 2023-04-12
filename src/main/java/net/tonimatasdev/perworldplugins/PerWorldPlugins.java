@@ -3,10 +3,10 @@ package net.tonimatasdev.perworldplugins;
 import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import net.tonimatasdev.perworldplugins.listener.CommandPreProcessListener;
-import net.tonimatasdev.perworldplugins.util.listener.ListenerConvert;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
+import net.tonimatasdev.perworldplugins.util.listener.ListenerConvert;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandMap;
@@ -14,12 +14,21 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Collections;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class PerWorldPlugins extends JavaPlugin {
     private static PerWorldPlugins instance;
     private static CommandMap commandMap;
+
+    public static PerWorldPlugins getInstance() {
+        return instance;
+    }
+
+    public static CommandMap getCommandMap() {
+        return commandMap;
+    }
 
     @Override
     public void onEnable() {
@@ -76,14 +85,6 @@ public final class PerWorldPlugins extends JavaPlugin {
     public void onDisable() {
         this.reloadConfig();
         this.saveConfig();
-    }
-
-    public static PerWorldPlugins getInstance() {
-        return instance;
-    }
-
-    public static CommandMap getCommandMap() {
-        return commandMap;
     }
 }
 
