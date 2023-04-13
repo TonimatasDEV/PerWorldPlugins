@@ -5,8 +5,14 @@ import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
-public class Command implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+public class Command implements CommandExecutor, TabCompleter {
 
     @Override
     @SuppressWarnings("NullableProblems")
@@ -44,5 +50,23 @@ public class Command implements CommandExecutor {
 
     private String getPrefix(ChatColor chatColor) {
         return ChatColor.WHITE + "[" + chatColor + "+" + ChatColor.WHITE + "] PerWorldPlugins: " + ChatColor.WHITE;
+    }
+
+    @Override
+    @SuppressWarnings("NullableProblems")
+    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command cmd, String alias, String[] args) {
+        assert cmd != null;
+
+        if (cmd.getName().equalsIgnoreCase("perworldplugins")) {
+            List<String> argList = new ArrayList<>();
+
+            if (Objects.requireNonNull(args).length == 1) {
+                argList.add("version");
+                argList.add("reload");
+                return argList.stream().filter(a -> a.startsWith(args[0])).collect(Collectors.toList());
+            }
+        }
+
+        return null;
     }
 }

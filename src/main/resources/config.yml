@@ -2,6 +2,8 @@
 
 # Disable or Enable the message of new updates.
 updateChecker: true
+# Disable or Enable the bStats metrics.
+metrics: true
 # Message send when execute blocked plugin command.
 disabledCommandMessage: "&4[Server]: &fThis command is disabled for this world."
 

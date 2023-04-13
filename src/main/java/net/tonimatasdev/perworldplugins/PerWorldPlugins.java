@@ -4,7 +4,6 @@ import net.tonimatasdev.perworldplugins.command.Command;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import net.tonimatasdev.perworldplugins.listener.CommandPreProcessListener;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
-import net.tonimatasdev.perworldplugins.storage.TabulatorCompleter;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import net.tonimatasdev.perworldplugins.util.listener.ListenerConvert;
 import org.bukkit.Bukkit;
@@ -42,9 +41,11 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
 
         Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setExecutor(new Command());
-        Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setTabCompleter(new TabulatorCompleter());
+        Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setTabCompleter(new Command());
 
-        new Metrics(this, 15794);
+        if (getConfig().getBoolean("metrics")) {
+            new Metrics(this, 15794);
+        }
 
         if (getConfig().getBoolean("updateChecker")) {
             UpdateChecker.check();
