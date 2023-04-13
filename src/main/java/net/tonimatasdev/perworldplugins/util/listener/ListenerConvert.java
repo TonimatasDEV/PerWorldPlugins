@@ -35,9 +35,7 @@ public class ListenerConvert {
 
         for (Method method : methods) {
             EventHandler eventHandler = method.getAnnotation(EventHandler.class);
-            if (eventHandler == null) {
-                continue;
-            }
+            if (eventHandler == null) continue;
 
             Class<?> checkClass = method.getParameterTypes()[0];
             if (!Event.class.isAssignableFrom(checkClass)) {
@@ -53,9 +51,8 @@ public class ListenerConvert {
                     Warning warning = clazz.getAnnotation(Warning.class);
                     WarningState warningState = Bukkit.getServer().getWarningState();
 
-                    if (!warningState.printFor(warning)) {
-                        break;
-                    }
+                    if (!warningState.printFor(warning)) break;
+
 
                     plugin.getLogger().log(Level.WARNING, String.format("\"%s\" has registered a listener for %s on method \"%s\", but the event is Deprecated." + " \"%s\"; please notify the authors %s.", plugin.getDescription().getFullName(), clazz.getName(), method.toGenericString(), (warning != null && warning.reason().length() != 0) ? warning.reason() : "Server performance will be affected", Arrays.toString(plugin.getDescription().getAuthors().toArray())), warningState == WarningState.ON ? new AuthorNagException(null) : null);
                     break;
@@ -64,9 +61,8 @@ public class ListenerConvert {
 
             EventExecutor executor = (listener1, event) -> {
                 try {
-                    if (!eventClass.isAssignableFrom(event.getClass())) {
-                        return;
-                    }
+                    if (!eventClass.isAssignableFrom(event.getClass())) return;
+
                     method.invoke(listener1, event);
                 } catch (InvocationTargetException ex) {
                     throw new EventException(ex.getCause());

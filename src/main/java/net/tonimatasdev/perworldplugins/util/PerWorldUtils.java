@@ -18,17 +18,11 @@ public class PerWorldUtils {
             }
         }
 
-        if (!isInPlugin) {
-            isInPlugin = worldList.contains(world.getName());
-        }
+        if (!isInPlugin) isInPlugin = worldList.contains(world.getName());
 
-        if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
-            isInPlugin = !isInPlugin;
-        }
+        if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) isInPlugin = !isInPlugin;
 
-        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins")) {
-            isInPlugin = true;
-        }
+        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins")) isInPlugin = true;
 
         return !isInPlugin;
     }

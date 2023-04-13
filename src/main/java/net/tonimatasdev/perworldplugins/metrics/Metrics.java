@@ -11,6 +11,7 @@ import java.io.*;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.Executors;
@@ -22,7 +23,6 @@ import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
-@SuppressWarnings({"deprecation"})
 public class Metrics {
     private final Plugin plugin;
 
@@ -39,11 +39,11 @@ public class Metrics {
             config.addDefault("logFailedRequests", false);
             config.addDefault("logSentData", false);
             config.addDefault("logResponseStatusText", false);
-            config.options().header("bStats (https://bStats.org) collects some basic information for plugin authors, like how\n"
-                    + "many people use their plugin and their total player count. It's recommended to keep bStats\n"
-                    + "enabled, but if you're not comfortable with this, you can turn this setting off. There is no\n"
-                    + "performance penalty associated with having metrics enabled, and data sent to bStats is fully\n"
-                    + "anonymous.").copyDefaults(true);
+            config.options().setHeader(Arrays.asList("bStats (https://bStats.org) collects some basic information for plugin authors, like how",
+                            "many people use their plugin and their total player count. It's recommended to keep bStats",
+                            "enabled, but if you're not comfortable with this, you can turn this setting off. There is no",
+                            "performance penalty associated with having metrics enabled, and data sent to bStats is fully",
+                            "anonymous.")).copyDefaults(true);
 
             try {
                 config.save(configFile);
@@ -82,9 +82,7 @@ public class Metrics {
         try {
             Method onlinePlayersMethod = Class.forName("org.bukkit.Server").getMethod("getOnlinePlayers");
 
-            return onlinePlayersMethod.getReturnType().equals(Collection.class)
-                    ? ((Collection<?>) onlinePlayersMethod.invoke(Bukkit.getServer())).size()
-                    : ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
+            return onlinePlayersMethod.getReturnType().equals(Collection.class) ? ((Collection<?>) onlinePlayersMethod.invoke(Bukkit.getServer())).size() : ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
         } catch (Exception e) {
             return Bukkit.getOnlinePlayers().size();
         }
@@ -129,15 +127,14 @@ public class Metrics {
         }
 
         private static byte[] compress(String str) throws IOException {
-            if (str == null) {
-                return null;
-            }
+            if (str == null) return null;
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             try (GZIPOutputStream gzip = new GZIPOutputStream(outputStream)) {
                 gzip.write(str.getBytes(StandardCharsets.UTF_8));
             }
+
             return outputStream.toByteArray();
         }
 

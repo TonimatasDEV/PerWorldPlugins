@@ -16,22 +16,16 @@ public class GroupsYML {
     private static File listFile = null;
 
     public static FileConfiguration get() {
-        if (list == null) {
-            reload();
-        }
-
+        if (list == null) reload();
         return list;
     }
 
     public static void reload() {
-        if (list == null) {
-            listFile = new File(PerWorldPlugins.getInstance().getDataFolder(), "groups.yml");
-        }
+        if (list == null) listFile = new File(PerWorldPlugins.getInstance().getDataFolder(), "groups.yml");
 
         list = YamlConfiguration.loadConfiguration(listFile);
         Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(PerWorldPlugins.getInstance().getResource("groups.yml")), StandardCharsets.UTF_8);
-        YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-        list.setDefaults(defConfig);
+        list.setDefaults(YamlConfiguration.loadConfiguration(defConfigStream));
     }
 
     public static void save() {
