@@ -55,7 +55,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(getDescription().getName() + getDescription().getVersion() + " has been enabled. (" + (System.currentTimeMillis() - time.get()) + "ms)");
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
 
-        getServer().getScheduler().scheduleSyncDelayedTask(PerWorldPlugins.getInstance(), () -> {
+        getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
             time.set(System.currentTimeMillis());
 
             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
