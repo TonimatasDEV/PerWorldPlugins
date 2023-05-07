@@ -8,25 +8,18 @@ import net.tonimatasdev.perworldplugins.util.UpdateChecker;
 import net.tonimatasdev.perworldplugins.util.listener.ListenerConvert;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class PerWorldPlugins extends JavaPlugin {
     private static PerWorldPlugins instance;
-    private static CommandMap commandMap;
 
     public static PerWorldPlugins getInstance() {
         return instance;
-    }
-
-    public static CommandMap getCommandMap() {
-        return commandMap;
     }
 
     @Override
@@ -68,14 +61,6 @@ public final class PerWorldPlugins extends JavaPlugin {
                     saveConfig();
                     reloadConfig();
                 }
-            }
-
-            try {
-                Field commandMapField = Bukkit.getPluginManager().getClass().getDeclaredField("commandMap");
-                commandMapField.setAccessible(true);
-                commandMap = (CommandMap) commandMapField.get(Bukkit.getPluginManager());
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                throw new RuntimeException(e);
             }
 
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly. (" + (System.currentTimeMillis() - time.get()) + "ms)");
