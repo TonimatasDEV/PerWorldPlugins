@@ -45,7 +45,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         }
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
-        Bukkit.getConsoleSender().sendMessage(getDescription().getName() + getDescription().getVersion() + " has been enabled. (" + (System.currentTimeMillis() - time.get()) + "ms)");
+        Bukkit.getConsoleSender().sendMessage(getDescription().getName() + " " + getDescription().getVersion() + " has been enabled. (" + (System.currentTimeMillis() - time.get()) + "ms)");
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
 
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
@@ -63,7 +63,7 @@ public final class PerWorldPlugins extends JavaPlugin {
                 }
             }
 
-            Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Unregistered all Listeners correctly. (" + (System.currentTimeMillis() - time.get()) + "ms)");
+            Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners correctly. (" + (System.currentTimeMillis() - time.get()) + "ms)");
         });
     }
 
