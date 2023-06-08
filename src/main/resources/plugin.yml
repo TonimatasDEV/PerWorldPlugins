@@ -1,6 +1,6 @@
 main: net.tonimatasdev.perworldplugins.PerWorldPlugins
 name: PerWorldPlugins
-version: 1.3.6
+version: 1.3.7s
 load: STARTUP
 api-version: 1.13
 description: Active/Disable plugins in certain worlds
@@ -10,6 +10,8 @@ prefix: PerWorldPlugins
 commands:
   perworldplugins:
     description: Primary command of PerWorldPlugins
+    aliases:
+      - pwp
 
 permissions:
   perworldplugins.reload:
