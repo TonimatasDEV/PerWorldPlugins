@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Command implements CommandExecutor, TabCompleter {
+public class PrimaryCommand implements CommandExecutor, TabCompleter {
 
     @Override
     @SuppressWarnings("NullableProblems")

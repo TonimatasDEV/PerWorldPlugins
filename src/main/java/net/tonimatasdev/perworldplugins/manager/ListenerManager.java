@@ -1,5 +1,6 @@
-package net.tonimatasdev.perworldplugins.util.listener;
+package net.tonimatasdev.perworldplugins.manager;
 
+import net.tonimatasdev.perworldplugins.api.PerWorldRegisteredListener;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.Plugin;
@@ -8,7 +9,7 @@ import org.bukkit.plugin.RegisteredListener;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-public class ListenerConvert {
+public class ListenerManager {
     public static void convert(Plugin plugin) {
         for (RegisteredListener registeredListener : HandlerList.getRegisteredListeners(plugin)) {
             if (registeredListener instanceof PerWorldRegisteredListener) continue;
@@ -27,5 +28,6 @@ public class ListenerConvert {
                 }
             }
         }
+
     }
 }

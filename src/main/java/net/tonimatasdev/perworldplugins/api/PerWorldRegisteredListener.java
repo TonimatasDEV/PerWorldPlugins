@@ -1,4 +1,4 @@
-package net.tonimatasdev.perworldplugins.util.listener;
+package net.tonimatasdev.perworldplugins.api;
 
 import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.Bukkit;

@@ -1,11 +1,11 @@
 package net.tonimatasdev.perworldplugins;
 
-import net.tonimatasdev.perworldplugins.command.Command;
+import net.tonimatasdev.perworldplugins.command.PrimaryCommand;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
-import net.tonimatasdev.perworldplugins.listener.CommandPreProcessListener;
+import net.tonimatasdev.perworldplugins.manager.CommandManager;
+import net.tonimatasdev.perworldplugins.manager.ListenerManager;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
-import net.tonimatasdev.perworldplugins.util.listener.ListenerConvert;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -31,10 +31,10 @@ public final class PerWorldPlugins extends JavaPlugin {
         saveDefaultConfig();
         GroupsYML.register();
 
-        getServer().getPluginManager().registerEvents(new CommandPreProcessListener(), this);
+        getServer().getPluginManager().registerEvents(new CommandManager(), this);
 
-        Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setExecutor(new Command());
-        Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setTabCompleter(new Command());
+        Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setExecutor(new PrimaryCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("perworldplugins")).setTabCompleter(new PrimaryCommand());
 
         if (getConfig().getBoolean("metrics")) {
             new Metrics(this, 15794);
@@ -54,7 +54,7 @@ public final class PerWorldPlugins extends JavaPlugin {
             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
                 if (plugin.equals(this)) continue;
 
-                ListenerConvert.convert(plugin);
+                ListenerManager.convert(plugin);
 
                 if (getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) {
                     getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
