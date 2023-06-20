@@ -15,3 +15,11 @@ repositories {
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT"
 }
+
+jar {
+    archiveFileName = "$rootDir/artifacts/PerWorldPlugins-${project.version}.jar"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
