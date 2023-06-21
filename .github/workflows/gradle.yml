@@ -21,7 +21,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Generate jar with Gradle
+      - name: Export jar with Gradle
         run: ./gradlew jar
 
       - name: Get repository name
