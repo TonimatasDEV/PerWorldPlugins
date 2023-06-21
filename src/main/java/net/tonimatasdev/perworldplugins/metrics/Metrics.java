@@ -23,6 +23,8 @@ import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
+// bStats metrics, this class is not programmed for me.
+
 public class Metrics {
     private final Plugin plugin;
 

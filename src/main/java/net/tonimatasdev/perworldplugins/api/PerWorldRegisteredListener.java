@@ -26,6 +26,7 @@ public class PerWorldRegisteredListener extends RegisteredListener {
 
     @SuppressWarnings("NullableProblems")
     public void callEvent(Event event) {
+        // If X-Event get player and detects if blocked so that it is not run.
         if (event instanceof BlockEvent) {
             if (PerWorldUtils.check(((BlockEvent) event).getBlock().getWorld(), getPlugin())) return;
         }
@@ -59,6 +60,7 @@ public class PerWorldRegisteredListener extends RegisteredListener {
         }
 
         try {
+            // Execute event if it is not blocked.
             super.callEvent(event);
         } catch (Throwable ex) {
             Bukkit.getServer().getLogger().log(Level.SEVERE, "Could not pass event " + event.getEventName() + " to " + getPlugin().getName() + " v" + getPlugin().getDescription().getVersion(), ex);

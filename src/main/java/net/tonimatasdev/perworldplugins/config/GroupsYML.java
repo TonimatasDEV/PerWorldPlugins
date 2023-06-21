@@ -11,6 +11,8 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+// groups.yml config file.
+
 public class GroupsYML {
     private static FileConfiguration list = null;
     private static File listFile = null;
