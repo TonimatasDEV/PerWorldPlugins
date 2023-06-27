@@ -51,7 +51,7 @@ public final class PerWorldPlugins extends JavaPlugin {
             UpdateChecker.check();
         }
 
-        // Send enabled message.
+        // Send enabled messages.
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
         Bukkit.getConsoleSender().sendMessage(getDescription().getName() + " " + getDescription().getVersion() + " has been enabled. (" + (System.currentTimeMillis() - time.get()) + "ms)");
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
@@ -62,7 +62,8 @@ public final class PerWorldPlugins extends JavaPlugin {
 
             //Get all plugins and convert events 1 by 1.
             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-                if (plugin.equals(this)) continue; // If plugins is PerWorldPlugins it is not executed and goes to the next one.
+                // If plugin is PerWorldPlugins it is not executed and goes to the next one.
+                if (plugin.equals(this)) continue;
 
                 // Convert.
                 ListenerManager.convert(plugin);
@@ -75,7 +76,7 @@ public final class PerWorldPlugins extends JavaPlugin {
                 }
             }
 
-            // Send message on completion of conversion.
+            // Send a message on completion of conversion.
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners correctly. (" + (System.currentTimeMillis() - time.get()) + "ms)");
         });
     }

@@ -1,6 +1,7 @@
 package net.tonimatasdev.perworldplugins.util;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
+import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
@@ -8,7 +9,8 @@ import java.util.List;
 
 public class PerWorldUtils {
     public static boolean check(World world, Plugin plugin) {
-        List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()); // Get world list of the plugin.
+        // Get the world list of the plugin.
+        List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
         boolean isInPlugin;
 
         // Get if this world list contains a group and if it does, forward if it contains the world.

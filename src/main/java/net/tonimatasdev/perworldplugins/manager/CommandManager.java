@@ -37,7 +37,7 @@ public class CommandManager implements Listener {
             if (commandMap instanceof SimpleCommandMap) {
                 SimpleCommandMap simpleCommandMap = (SimpleCommandMap) commandMap;
 
-                // Create command list.
+                // Create the command list.
                 List<Command> commandList = new ArrayList<>();
 
                 // Get all commands of SimpleCommandManager.
@@ -50,7 +50,7 @@ public class CommandManager implements Listener {
                     registered.add(command);
                 }
 
-                // Detects if command list is empty.
+                // Detects if the command list is empty.
                 if (!commandList.isEmpty()) {
 
                     // Put the command list to the specific plugin.
@@ -77,7 +77,7 @@ public class CommandManager implements Listener {
             for (Plugin plugin : perWorldPluginsCommandMap.keySet()) {
                 // If the command is in the list of plugin commands.
                 if (perWorldPluginsCommandMap.get(plugin).stream().map(Command::getName).collect(Collectors.toList()).contains(commandName)) {
-                    // Check if plugin is blocked and change the variable.
+                    // Check if the plugin is blocked and change the variable.
                     pluginIsBlocked = PerWorldUtils.check(event.getPlayer().getWorld(), plugin);
                     break;
                 }

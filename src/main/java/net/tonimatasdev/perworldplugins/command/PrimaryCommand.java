@@ -17,7 +17,7 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
     @Override
     @SuppressWarnings("NullableProblems")
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-        // If the command is PerWorldPlugins and has 1 argument it executes.
+        // If the command is PerWorldPlugins and has 1 argument, it executes.
         if (command.getName().equalsIgnoreCase("perworldplugins") && args.length == 1) {
             if (args[0].equalsIgnoreCase("version")) { // Detects if the argument is equal to "version".
 
@@ -46,7 +46,7 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
         return true;
     }
 
-    // Method to detect if the player has permissions or not with message in false case.
+    // Method to detect if the player has permissions or not with a message in false case.
     private boolean hasPermission(CommandSender sender, String permission) {
         if (sender.hasPermission(permission)) {
             return true;
