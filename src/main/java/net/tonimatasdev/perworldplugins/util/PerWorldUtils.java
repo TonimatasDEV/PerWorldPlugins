@@ -13,15 +13,15 @@ public class PerWorldUtils {
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
         boolean isInPlugin;
 
-        // Get if this world list contains a group and if it does, forward if it contains the world.
-        //for (String var : worldList) {
-        //    if (var.contains(":")) {
-        //        isInPlugin = GroupsYML.get().getStringList(var.replaceAll("g:", "")).contains(world.getName());
-        //    }
-        //}
-
         // If plugin contains the world set isInPlugin to false.
         isInPlugin = !worldList.contains(world.getName());
+
+        // Get if this world list contains a group and if it does, forward if it contains the world.
+        for (String var : worldList) {
+            if (var.contains(":")) {
+                isInPlugin = !GroupsYML.get().getStringList(var.replaceAll("g:", "")).contains(world.getName());
+            }
+        }
 
         // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) isInPlugin = !isInPlugin;
