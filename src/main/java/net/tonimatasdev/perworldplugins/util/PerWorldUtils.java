@@ -12,19 +12,35 @@ public class PerWorldUtils {
         // Get the world list of the plugin.
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
         boolean isInPlugin;
+        boolean IgnoredPlugin;
 
+        IgnoredPlugin = false;
         // If plugin contains the world set isInPlugin to false.
         isInPlugin = !worldList.contains(world.getName());
 
-        // Get if this world list contains a group and if it does, forward if it contains the world.
+        // Check if any group contains the world
         for (String var : worldList) {
-            if (var.contains(":")) {
-                isInPlugin = !GroupsYML.get().getStringList(var.replaceAll("g:", "")).contains(world.getName());
+            if (var.equals("!ignore")) { // Use "!ignore" as the entry for ignoring worlds
+                isInPlugin = false; // Enable plugin because it gets ignored
+                IgnoredPlugin = true; // Mark plugin as ignored
+                break;
+            }
+
+            if (var.startsWith("g:")) {
+                String groupName = var.substring(2); // Remove the "g:" prefix
+                List<String> groupWorlds = GroupsYML.get().getStringList(groupName);
+                if (groupWorlds.contains(world.getName())) {
+                    isInPlugin = false; // Disable plugin if the world is in any group
+                    break; // No need to continue checking other groups
+                }
             }
         }
 
         // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
-        if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) isInPlugin = !isInPlugin;
+        // check if plugin is ignored
+        if (!IgnoredPlugin && PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+            isInPlugin = !isInPlugin; // Invert isInPlugin if blacklist mode is enabled
+        }
 
         // If the plugin equals PerWorldPlugins set isInPlugin to false.
         if (plugin.getName().equalsIgnoreCase("PerWorldPlugins")) isInPlugin = false;

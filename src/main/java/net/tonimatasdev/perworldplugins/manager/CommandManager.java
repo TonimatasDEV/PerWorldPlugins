@@ -88,8 +88,6 @@ public class CommandManager implements Listener {
         if (pluginIsBlocked) {
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             event.setCancelled(true);
-        } else {
-            event.setCancelled(false);
         }
     }
 }
