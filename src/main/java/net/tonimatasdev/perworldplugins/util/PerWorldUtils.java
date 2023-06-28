@@ -12,39 +12,41 @@ public class PerWorldUtils {
         // Get the world list of the plugin.
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
         boolean isInPlugin;
-        boolean IgnoredPlugin;
+        boolean isIgnored = false;
 
-        IgnoredPlugin = false;
+        // Check if any group contains the world
+        getWorldsOfGroup(worldList);
+
         // If plugin contains the world set isInPlugin to false.
         isInPlugin = !worldList.contains(world.getName());
 
-        // Check if any group contains the world
-        for (String var : worldList) {
-            if (var.equals("!ignore")) { // Use "!ignore" as the entry for ignoring worlds
-                isInPlugin = false; // Enable plugin because it gets ignored
-                IgnoredPlugin = true; // Mark plugin as ignored
-                break;
-            }
-
-            if (var.startsWith("g:")) {
-                String groupName = var.substring(2); // Remove the "g:" prefix
-                List<String> groupWorlds = GroupsYML.get().getStringList(groupName);
-                if (groupWorlds.contains(world.getName())) {
-                    isInPlugin = false; // Disable plugin if the world is in any group
-                    break; // No need to continue checking other groups
-                }
-            }
-        }
+        // Detects if the plugin is ignored.
+        if (worldList.contains(":ignore")) isIgnored = true;
 
         // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
-        // check if plugin is ignored
-        if (!IgnoredPlugin && PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+        if ( PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
             isInPlugin = !isInPlugin; // Invert isInPlugin if blacklist mode is enabled
         }
 
-        // If the plugin equals PerWorldPlugins set isInPlugin to false.
-        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins")) isInPlugin = false;
+        // If the plugin equals PerWorldPlugins or is ignored, sets isInPlugin to false.
+        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins") || isIgnored) isInPlugin = false;
 
         return isInPlugin;
+    }
+
+    // Remove the group from the list and put it worlds to the list.
+    private static List<String> getWorldsOfGroup(List<String> worldList) {
+        for (String var : worldList) {
+            // Detects if the string starts with "g:".
+            if (var.startsWith("g:")) {
+                String group = var.substring(2); // Remove the "g:" prefix.
+                worldList.remove(var); // Remove the group from the list.
+
+                // Add worlds.
+                worldList.addAll(getWorldsOfGroup(GroupsYML.get().getStringList(group)));
+            }
+        }
+
+        return worldList;
     }
 }
