@@ -12,30 +12,11 @@ public class PerWorldUtils {
         // Get the world list of the plugin.
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
         boolean isInPlugin;
-        boolean isIgnored = false;
-
-        // Check if any group contains the world
-        getWorldsOfGroup(worldList);
-
-        // If plugin contains the world set isInPlugin to false.
-        isInPlugin = !worldList.contains(world.getName());
 
         // Detects if the plugin is ignored.
-        if (worldList.contains(":ignore")) isIgnored = true;
+        if (worldList.contains(":ignore")) return false;
 
-        // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
-        if ( PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
-            isInPlugin = !isInPlugin; // Invert isInPlugin if blacklist mode is enabled
-        }
-
-        // If the plugin equals PerWorldPlugins or is ignored, sets isInPlugin to false.
-        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins") || isIgnored) isInPlugin = false;
-
-        return isInPlugin;
-    }
-
-    // Remove the group from the list and put it worlds to the list.
-    private static List<String> getWorldsOfGroup(List<String> worldList) {
+        // Check if any group contains the world
         for (String var : worldList) {
             // Detects if the string starts with "g:".
             if (var.startsWith("g:")) {
@@ -43,10 +24,21 @@ public class PerWorldUtils {
                 worldList.remove(var); // Remove the group from the list.
 
                 // Add worlds.
-                worldList.addAll(getWorldsOfGroup(GroupsYML.get().getStringList(group)));
+                worldList.addAll(GroupsYML.get().getStringList(group));
             }
         }
 
-        return worldList;
+        // If plugin contains the world set isInPlugin to false.
+        isInPlugin = !worldList.contains(world.getName());
+
+        // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
+        if ( PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+            isInPlugin = !isInPlugin; // Invert isInPlugin if blacklist mode is enabled
+        }
+
+        // If the plugin equals PerWorldPlugins or is ignored, sets isInPlugin to false.
+        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins")) isInPlugin = false;
+
+        return isInPlugin;
     }
 }
