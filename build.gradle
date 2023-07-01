@@ -1,4 +1,5 @@
 //file:noinspection VulnerableLibrariesLocal
+//file:noinspection GroovyAssignabilityCheck
 plugins {
     id 'java'
 }
@@ -14,6 +15,20 @@ repositories {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT"
+}
+
+def resourceTargets = ['plugin.yml']
+def replaceProperties = [
+        plugin_version: plugin_version
+]
+
+processResources {
+    inputs.properties replaceProperties
+    replaceProperties.put 'project', project
+
+    filesMatching(resourceTargets) {
+        expand replaceProperties
+    }
 }
 
 jar {
