@@ -7,8 +7,7 @@ metrics: true
 # Message send when execute blocked plugin command.
 disabledCommandMessage: "&4[Server]: &fThis command is disabled for this world."
 
-# If false
-# The plugins/groups added in the world will work.
+# If false, the plugins/groups added in the world will work.
 # If true, it will be reversed.
 blacklist: true
 
@@ -18,3 +17,6 @@ plugins:
   Example:
     - PutWorldInThisListForDisableThisPluginOnWorld
     - world
+  Example2:
+    # ":ignore" is for ignore this plugin and don't check this.
+    - "ignore:"
