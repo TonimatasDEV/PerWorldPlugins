@@ -21,9 +21,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Export jar with Gradle
-        run: ./gradlew jar
-
       - name: Get repository name
         id: repo_name
         run: echo "::set-output name=name::$(basename -s .git ${{ github.repository }})"
