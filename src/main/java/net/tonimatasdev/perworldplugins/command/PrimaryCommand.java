@@ -34,9 +34,7 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
                 if (hasPermission(sender, "perworldplugins.reload")) {
                     // Reload all config files.
                     PerWorldPlugins.getInstance().reloadConfig();
-                    PerWorldPlugins.getInstance().saveConfig();
                     GroupsYML.reload();
-                    GroupsYML.save();
                     sender.sendMessage(getPrefix(ChatColor.DARK_GREEN) + "The plugin has been reloaded.");
                 }
             } else {

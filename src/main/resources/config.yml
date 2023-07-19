@@ -15,8 +15,8 @@ plugins:
   # For set group set - g:example (example is the name of group)
   # Add and edit groups in the groups.yml
   Example:
-    - PutWorldInThisListForDisableThisPluginOnWorld
-    - world
+    - "PutWorldInThisListForDisableThisPluginOnWorld"
+    - "world"
   Example2:
     # ":ignore" is for ignore this plugin and don't check this.
     - "ignore:"

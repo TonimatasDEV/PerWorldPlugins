@@ -5,6 +5,7 @@ import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PerWorldUtils {
@@ -16,23 +17,28 @@ public class PerWorldUtils {
         // Detects if the plugin is ignored.
         if (worldList.contains(":ignore")) return false;
 
+        List<String> groupWorlds = new ArrayList<>();
         // Check if any group contains the world
         for (String var : worldList) {
+
             // Detects if the string starts with "g:".
             if (var.startsWith("g:")) {
                 String group = var.substring(2); // Remove the "g:" prefix.
                 worldList.remove(var); // Remove the group from the list.
 
-                // Add worlds.
-                worldList.addAll(GroupsYML.get().getStringList(group));
+                // Add all worlds to groupWorlds
+                groupWorlds.addAll(GroupsYML.get().getStringList(group));
             }
         }
+
+        // Add all worlds of groups to the world list.
+        worldList.addAll(groupWorlds);
 
         // If plugin contains the world set isInPlugin to false.
         isInPlugin = !worldList.contains(world.getName());
 
         // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
-        if ( PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
+        if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
             isInPlugin = !isInPlugin; // Invert isInPlugin if blacklist mode is enabled
         }
 
