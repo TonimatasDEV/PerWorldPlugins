@@ -6,7 +6,10 @@ plugins {
 
 group = 'net.tonimatasdev'
 version = "${plugin_version}"
-archivesBaseName = "PerWorldPlugins"
+
+base {
+    archivesName = "PerWorldPlugins"
+}
 
 repositories {
     mavenCentral()
@@ -29,10 +32,6 @@ processResources {
     filesMatching(resourceTargets) {
         expand replaceProperties
     }
-}
-
-jar {
-    archiveFileName = "$rootDir/artifacts/PerWorldPlugins-${project.version}.jar"
 }
 
 tasks.withType(JavaCompile).configureEach {

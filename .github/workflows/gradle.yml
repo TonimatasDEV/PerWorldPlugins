@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: ${{ steps.repo_name.outputs.name }}
-          path: artifacts/**.jar
+          path: build/libs/**.jar
