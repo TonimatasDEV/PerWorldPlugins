@@ -2,49 +2,40 @@ package net.tonimatasdev.perworldplugins.util;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PerWorldUtils {
-    public static boolean check(World world, Plugin plugin) {
-        // Get the world list of the plugin.
+    public static List<String> getDisabledWorlds(Plugin plugin) {
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
-        boolean isInPlugin;
 
-        // Detects if the plugin is ignored.
-        if (worldList.contains(":ignore")) return false;
+        if (worldList.contains(":ignore") || worldList.isEmpty()) return new ArrayList<>();
 
-        List<String> groupWorlds = new ArrayList<>();
+        List<String> withGroupWorlds = new ArrayList<>(worldList);
         // Check if any group contains the world
         for (String var : worldList) {
-
             // Detects if the string starts with "g:".
             if (var.startsWith("g:")) {
                 String group = var.substring(2); // Remove the "g:" prefix.
-                worldList.remove(var); // Remove the group from the list.
+                withGroupWorlds.remove(var); // Remove the group from the list.
+
 
                 // Add all worlds to groupWorlds
-                groupWorlds.addAll(GroupsYML.get().getStringList(group));
+                withGroupWorlds.addAll(GroupsYML.get().getStringList(group));
             }
         }
 
-        // Add all worlds of groups to the world list.
-        worldList.addAll(groupWorlds);
-
-        // If plugin contains the world set isInPlugin to false.
-        isInPlugin = !worldList.contains(world.getName());
-
-        // If PerWorldPlugins is in blacklist mode, it inverts isInPlugin boolean.
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
-            isInPlugin = !isInPlugin; // Invert isInPlugin if blacklist mode is enabled
+            return withGroupWorlds;
+        } else {
+            List<String> serverWorlds = Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList());
+            serverWorlds.removeAll(withGroupWorlds);
+            return serverWorlds;
         }
-
-        // If the plugin equals PerWorldPlugins or is ignored, sets isInPlugin to false.
-        if (plugin.getName().equalsIgnoreCase("PerWorldPlugins")) isInPlugin = false;
-
-        return isInPlugin;
     }
 }

@@ -2,6 +2,8 @@ package net.tonimatasdev.perworldplugins.command;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
+import net.tonimatasdev.perworldplugins.manager.CommandManager;
+import net.tonimatasdev.perworldplugins.manager.ListenerManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,6 +37,8 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
                     // Reload all config files.
                     PerWorldPlugins.getInstance().reloadConfig();
                     GroupsYML.reload();
+                    ListenerManager.setWorldsToEvents();
+                    CommandManager.setWorldsToCommands();
                     sender.sendMessage(getPrefix(ChatColor.DARK_GREEN) + "The plugin has been reloaded.");
                 }
             } else {

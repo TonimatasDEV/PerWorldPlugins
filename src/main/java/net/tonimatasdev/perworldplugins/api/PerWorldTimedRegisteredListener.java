@@ -1,6 +1,5 @@
 package net.tonimatasdev.perworldplugins.api;
 
-import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
@@ -17,46 +16,50 @@ import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.TimedRegisteredListener;
 
+import java.util.List;
 import java.util.logging.Level;
 
 public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
-    public PerWorldTimedRegisteredListener(Listener listener, EventExecutor executor, EventPriority priority, Plugin plugin, boolean ignoreCancelled) {
+    private List<String> disabledWorlds;
+
+    public PerWorldTimedRegisteredListener(Listener listener, EventExecutor executor, EventPriority priority, Plugin plugin, boolean ignoreCancelled, List<String> disabledWorlds) {
         super(listener, executor, priority, plugin, ignoreCancelled);
+        this.disabledWorlds = disabledWorlds;
     }
 
     @SuppressWarnings("NullableProblems")
     public void callEvent(Event event) {
         // If X-Events get player and detect if blocked so that it is not run.
         if (event instanceof BlockEvent) {
-            if (PerWorldUtils.check(((BlockEvent) event).getBlock().getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((BlockEvent) event).getBlock().getWorld().getName())) return;
         }
 
         if (event instanceof EntityEvent) {
-            if (PerWorldUtils.check(((EntityEvent) event).getEntity().getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((EntityEvent) event).getEntity().getWorld().getName())) return;
         }
 
         if (event instanceof HangingEvent) {
-            if (PerWorldUtils.check(((HangingEvent) event).getEntity().getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((HangingEvent) event).getEntity().getWorld().getName())) return;
         }
 
         if (event instanceof InventoryEvent) {
-            if (PerWorldUtils.check(((InventoryEvent) event).getView().getPlayer().getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((InventoryEvent) event).getView().getPlayer().getWorld().getName())) return;
         }
 
         if (event instanceof PlayerEvent) {
-            if (PerWorldUtils.check(((PlayerEvent) event).getPlayer().getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName())) return;
         }
 
         if (event instanceof VehicleEvent) {
-            if (PerWorldUtils.check(((VehicleEvent) event).getVehicle().getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((VehicleEvent) event).getVehicle().getWorld().getName())) return;
         }
 
         if (event instanceof WeatherEvent) {
-            if (PerWorldUtils.check(((WeatherEvent) event).getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((WeatherEvent) event).getWorld().getName())) return;
         }
 
         if (event instanceof WorldEvent) {
-            if (PerWorldUtils.check(((WorldEvent) event).getWorld(), getPlugin())) return;
+            if (disabledWorlds.contains(((WorldEvent) event).getWorld().getName())) return;
         }
 
         try {
@@ -65,5 +68,9 @@ public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
         } catch (Throwable ex) {
             Bukkit.getServer().getLogger().log(Level.SEVERE, "Could not pass event " + event.getEventName() + " to " + getPlugin().getName() + " v" + getPlugin().getDescription().getVersion(), ex);
         }
+    }
+
+    public void setDisabledWorlds(List<String> disabledWorlds) {
+        this.disabledWorlds = disabledWorlds;
     }
 }
