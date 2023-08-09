@@ -34,7 +34,8 @@ public class Listeners implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
         // Get command.
-        PerWorldCommand perWorldCommand = CommandManager.commands.get(event.getMessage().split(" ")[0].replaceFirst("/", ""));
+        String message = event.getMessage().split(" ")[0].replaceFirst("/", "");
+        PerWorldCommand perWorldCommand = CommandManager.commands.get(message.split(":").length > 1 ? message.split(":")[1] : message);
 
         // Detects if the command is null.
         if (perWorldCommand == null) return;
