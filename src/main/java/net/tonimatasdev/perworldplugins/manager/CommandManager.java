@@ -15,15 +15,16 @@ import java.util.*;
 public class CommandManager implements Listener {
     public static final Map<String, PerWorldCommand> commands = new HashMap<>();
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
+    private static final List<Command> registered = new ArrayList<>();
 
     public static void addPluginCommands(Plugin plugin) {
         // Get all commands of server command map.
         for (Command command : getCommandMap().getCommands()) {
             // If the command is default, registered or PluginCommand, skip it.
-            if (defaultCommands.contains(command.getName())) continue;
-
+            if (defaultCommands.contains(command.getName()) || registered.contains(command)) continue;
             // Put the command to the command map.
-            commands.put(command.getName(), new PerWorldCommand(plugin, new ArrayList<>()));
+            registered.add(command);
+            commands.put(command.getName(), new PerWorldCommand(plugin));
         }
     }
 
@@ -47,5 +48,9 @@ public class CommandManager implements Listener {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void clear() {
+        registered.clear();
     }
 }

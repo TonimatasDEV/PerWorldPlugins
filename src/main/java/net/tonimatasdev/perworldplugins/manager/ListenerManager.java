@@ -25,28 +25,20 @@ public class ListenerManager {
 
                 handlerList.unregister(registeredListener);
 
-                if (registeredListener instanceof TimedRegisteredListener) {
-                    try {
-                        // Get executor.
-                        Field executorField = RegisteredListener.class.getDeclaredField("executor");
-                        executorField.setAccessible(true);
+                try {
+                    // Get executor.
+                    Field executorField = RegisteredListener.class.getDeclaredField("executor");
+                    executorField.setAccessible(true);
 
+                    if (registeredListener instanceof TimedRegisteredListener) {
+                        // RegisteredListener to PerWorldTimedRegisteredListener.
+                        handlerList.register(new PerWorldTimedRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
+                    } else {
                         // RegisteredListener to PerWorldRegisteredListener.
-                        handlerList.register(new PerWorldTimedRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled(), new ArrayList<>()));
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
+                        handlerList.register(new PerWorldRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
                     }
-                } else {
-                    try {
-                        // Get executor.
-                        Field executorField = RegisteredListener.class.getDeclaredField("executor");
-                        executorField.setAccessible(true);
-
-                        // RegisteredListener to PerWorldRegisteredListener.
-                        handlerList.register(new PerWorldRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled(), new ArrayList<>()));
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    PerWorldPlugins.getInstance().getLogger().severe("Problems on get RegisteredListener executor.");
                 }
             }
         }

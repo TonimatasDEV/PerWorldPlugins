@@ -16,15 +16,16 @@ import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
 public class PerWorldRegisteredListener extends RegisteredListener {
     private List<String> disabledWorlds;
 
-    public PerWorldRegisteredListener(Listener listener, EventExecutor executor, EventPriority priority, Plugin plugin, boolean ignoreCancelled, List<String> disabledWorlds) {
+    public PerWorldRegisteredListener(Listener listener, EventExecutor executor, EventPriority priority, Plugin plugin, boolean ignoreCancelled) {
         super(listener, executor, priority, plugin, ignoreCancelled);
-        this.disabledWorlds = disabledWorlds;
+        this.disabledWorlds = new ArrayList<>();
     }
 
     @SuppressWarnings("NullableProblems")
