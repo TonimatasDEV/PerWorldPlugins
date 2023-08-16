@@ -9,7 +9,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.event.server.TabCompleteEvent;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -45,10 +44,5 @@ public class Listeners implements Listener {
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             event.setCancelled(true);
         }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onTabComplete(TabCompleteEvent event) {
-        // TODO: Coming Soon
     }
 }
