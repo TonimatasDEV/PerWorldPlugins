@@ -6,7 +6,7 @@ val plugin_version: String by extra
 val minecraft_version: String by extra
 
 group = "net.tonimatasdev"
-version = "${plugin_version}"
+version = plugin_version
 
 base {
     archivesName = "PerWorldPlugins"
