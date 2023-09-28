@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.api;
 
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class PerWorldCommand {
         return disabledWorlds;
     }
 
-    public void setDisabledWorlds(List<String> disabledWorlds) {
-        this.disabledWorlds = disabledWorlds;
+    public void setDisabledWorlds() {
+        this.disabledWorlds = PerWorldUtils.getDisabledWorlds(plugin);
     }
 }

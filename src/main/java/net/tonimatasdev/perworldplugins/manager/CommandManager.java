@@ -1,7 +1,6 @@
 package net.tonimatasdev.perworldplugins.manager;
 
 import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
-import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
@@ -32,7 +31,7 @@ public class CommandManager implements Listener {
         // Get all command map values.
         for (PerWorldCommand command : commands.values()) {
             // Set disabled worlds to the command.
-            command.setDisabledWorlds(PerWorldUtils.getDisabledWorlds(command.getPlugin()));
+            command.setDisabledWorlds();
         }
     }
 
