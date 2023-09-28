@@ -1,5 +1,6 @@
 package net.tonimatasdev.perworldplugins.api;
 
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
@@ -71,7 +72,7 @@ public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
         }
     }
 
-    public void setDisabledWorlds(List<String> disabledWorlds) {
-        this.disabledWorlds = disabledWorlds;
+    public void setDisabledWorlds() {
+        this.disabledWorlds = PerWorldUtils.getDisabledWorlds(getPlugin());
     }
 }

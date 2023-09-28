@@ -3,7 +3,6 @@ package net.tonimatasdev.perworldplugins.manager;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.api.PerWorldRegisteredListener;
 import net.tonimatasdev.perworldplugins.api.PerWorldTimedRegisteredListener;
-import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.EventExecutor;
@@ -12,8 +11,6 @@ import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.TimedRegisteredListener;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListenerManager {
     public static void convert() {
@@ -52,13 +49,11 @@ public class ListenerManager {
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
             if (plugin.equals(perWorldPlugins)) continue;
 
-            List<String> worlds = new ArrayList<>(PerWorldUtils.getDisabledWorlds(plugin));
-
             for (RegisteredListener registeredListener : HandlerList.getRegisteredListeners(plugin)) {
                 if (registeredListener instanceof PerWorldRegisteredListener) {
-                    ((PerWorldRegisteredListener) registeredListener).setDisabledWorlds(worlds);
+                    ((PerWorldRegisteredListener) registeredListener).setDisabledWorlds();
                 } else if (registeredListener instanceof PerWorldTimedRegisteredListener){
-                    ((PerWorldTimedRegisteredListener) registeredListener).setDisabledWorlds(worlds);
+                    ((PerWorldTimedRegisteredListener) registeredListener).setDisabledWorlds();
                 }
             }
         }
