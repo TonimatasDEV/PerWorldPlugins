@@ -1,6 +1,6 @@
 main: net.tonimatasdev.perworldplugins.PerWorldPlugins
 name: PerWorldPlugins
-version: ${plugin_version}
+version: ${pluginVersion}
 load: STARTUP
 api-version: 1.13
 description: Active/Disable plugins in certain worlds

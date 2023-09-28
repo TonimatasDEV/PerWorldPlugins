@@ -2,11 +2,11 @@ plugins {
     id("java")
 }
 
-val plugin_version: String by extra
-val minecraft_version: String by extra
+val pluginVersion: String by extra
+val minecraftVersion: String by extra
 
 group = "net.tonimatasdev"
-version = plugin_version
+version = pluginVersion
 
 base {
     archivesName = "PerWorldPlugins"
@@ -18,12 +18,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:${minecraftVersion}-R0.1-SNAPSHOT")
 }
 
 tasks.withType<ProcessResources> {
+    inputs.property("pluginVersion", version)
+
     filesMatching("plugin.yml") {
-        expand("plugin_version" to plugin_version)
+        expand("pluginVersion" to version)
     }
 }
 
