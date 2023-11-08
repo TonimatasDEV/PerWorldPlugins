@@ -9,33 +9,66 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class CommandManager implements Listener {
-    public static final Map<String, PerWorldCommand> commands = new HashMap<>();
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
-    private static final List<Command> registered = new ArrayList<>();
 
     public static void addPluginCommands(Plugin plugin) {
-        // Get all commands of server command map.
-        for (Command command : getCommandMap().getCommands()) {
-            // If the command is default, registered or PluginCommand, skip it.
-            if (defaultCommands.contains(command.getName()) || registered.contains(command)) continue;
-            // Put the command to the command map.
-            registered.add(command);
-            commands.put(command.getName(), new PerWorldCommand(plugin));
+        // Create PerWorldCommand list.
+        List<PerWorldCommand> perWorldCommands = new ArrayList<>();
+        // Create key list.
+        List<String> registeredKeys = new ArrayList<>();
+
+        // Get all keys.
+        for (String commandKey : getCommands().keySet()) {
+            // Get the command from the key.
+            Command command = getCommands().get(commandKey);
+            // Check if it is default command, PerWorldCommand or is a registered key.
+            if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand || registeredKeys.contains(commandKey)) continue;
+            // Get and add a PerWorldCommand to perWorldCommands list.
+            perWorldCommands.add(PerWorldCommand.get(command, plugin));
+
+            // Add key to registeredKeys list.
+            registeredKeys.add(commandKey);
         }
+
+        // Remove all commands from registeredKeys list.
+        registeredKeys.forEach(key -> getCommands().remove(key));
+        // Register all commands from perWorldCommands list.
+        perWorldCommands.forEach(perWorldCommand -> getCommandMap().register(perWorldCommand.getPlugin().getName(), perWorldCommand));
     }
 
     public static void setWorldsToCommands() {
         // Get all command map values.
-        for (PerWorldCommand command : commands.values()) {
-            // Set disabled worlds to the command.
-            command.setDisabledWorlds();
+        for (Command command : getCommandMap().getCommands()) {
+            // Check if is a PerWorldCommand.
+            if (command instanceof PerWorldCommand) {
+                // Set disabled worlds to the command.
+                ((PerWorldCommand) command).setDisabledWorlds();
+            }
         }
     }
 
-    private static SimpleCommandMap getCommandMap() {
+    @SuppressWarnings("unchecked")
+    public static Map<String, Command> getCommands() {
+        try {
+            // Get "knownCommands" field.
+            Field knownCommandsField = SimpleCommandMap.class.getDeclaredField("knownCommands");
+            // Set accessible.
+            knownCommandsField.setAccessible(true);
+
+            // Return knownCommands field from command map.
+            return (Map<String, Command>) knownCommandsField.get(getCommandMap());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static SimpleCommandMap getCommandMap() {
         try {
             // Get "commandMap" field.
             Field commandMapField = SimplePluginManager.class.getDeclaredField("commandMap");
@@ -47,9 +80,5 @@ public class CommandManager implements Listener {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void clear() {
-        registered.clear();
     }
 }
