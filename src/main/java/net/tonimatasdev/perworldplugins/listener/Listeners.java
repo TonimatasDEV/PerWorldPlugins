@@ -3,7 +3,6 @@ package net.tonimatasdev.perworldplugins.listener;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
 import net.tonimatasdev.perworldplugins.manager.CommandManager;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
@@ -11,7 +10,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -26,9 +24,9 @@ public class Listeners implements Listener {
         CommandManager.addPluginCommands(event.getPlugin());
 
         // Create individual sections for plugins in the config.
-        for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-            if (!PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) continue;
-            PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
+
+        if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + event.getPlugin().getName()).isEmpty()) {
+            PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList("Example"));
             PerWorldPlugins.getInstance().saveConfig();
             PerWorldPlugins.getInstance().reloadConfig();
         }
