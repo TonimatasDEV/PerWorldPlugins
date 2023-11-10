@@ -13,9 +13,7 @@ import java.util.*;
 
 public class CommandManager implements Listener {
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
-
     private static final Map<String, PerWorldCommand> perWorldCommands = new HashMap<>();
-    //private static final List<PerWorldCommand> perWorldCommands = new ArrayList<>();
 
     public static void init() {
         // Replace all Commands to PerWorldCommands.
@@ -23,6 +21,7 @@ public class CommandManager implements Listener {
 
         // Set the blocked worlds to the commands.
         setWorldsToCommands();
+        perWorldCommands.clear();
     }
 
     public static void addPluginCommands(Plugin plugin) {
@@ -32,7 +31,7 @@ public class CommandManager implements Listener {
             Command command = getCommands().get(commandKey);
             // Check if it is default command, PerWorldCommand or is a registered key.
             if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand || perWorldCommands.containsKey(commandKey)) continue;
-            // Get and add a PerWorldCommand to perWorldCommands list.
+            // Get and add a PerWorldCommand to perWorldCommands map.
             perWorldCommands.put(commandKey, PerWorldCommand.get(command, plugin));
         }
     }

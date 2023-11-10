@@ -3,16 +3,37 @@ package net.tonimatasdev.perworldplugins.listener;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
 import net.tonimatasdev.perworldplugins.manager.CommandManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.server.PluginEnableEvent;
+import org.bukkit.plugin.Plugin;
 
+import java.util.Collections;
 import java.util.Objects;
 
 public class Listeners implements Listener {
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPluginEnable(PluginEnableEvent event) {
+        // Detect if the plugin is PerWorldPlugins.
+        if (event.getPlugin().equals(PerWorldPlugins.getInstance())) return;
+
+        // Add plugin commands to PerWorldPlugins command manager.
+        CommandManager.addPluginCommands(event.getPlugin());
+
+        // Create individual sections for plugins in the config.
+        for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+            if (!PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName()).isEmpty()) continue;
+            PerWorldPlugins.getInstance().getConfig().set("plugins." + plugin.getName(), Collections.singletonList("Example"));
+            PerWorldPlugins.getInstance().saveConfig();
+            PerWorldPlugins.getInstance().reloadConfig();
+        }
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
         // Get command string.
@@ -25,7 +46,6 @@ public class Listeners implements Listener {
         if (!(command instanceof PerWorldCommand)) return;
         // Get PerWorldCommand.
         PerWorldCommand perWorldCommand = (PerWorldCommand) command;
-        System.out.println(perWorldCommand.getPlugin().getName());
         // Check if the player is in the disabled world
         if (perWorldCommand.getDisabledWorlds().contains(event.getPlayer().getWorld().getName())) {
             // Send block message to the player.

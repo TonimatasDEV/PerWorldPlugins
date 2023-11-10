@@ -3,6 +3,7 @@ package net.tonimatasdev.perworldplugins.api;
 import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public abstract class PerWorldCommand extends Command {
         setUsage(command.getUsage());
 
         // Add plugin and disabled worlds.
-        this.plugin = plugin;
+        this.plugin = command instanceof PluginCommand ? ((PluginCommand) command).getPlugin() : plugin;
         this.disabledWorlds = new ArrayList<>();
     }
 
