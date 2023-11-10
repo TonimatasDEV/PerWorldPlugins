@@ -22,6 +22,7 @@ public abstract class PerWorldCommand extends Command {
         setPermission(command.getPermission());
         setPermissionMessage(command.getPermissionMessage());
         setUsage(command.getUsage());
+
         // Add plugin and disabled worlds.
         this.plugin = plugin;
         this.disabledWorlds = new ArrayList<>();
@@ -43,14 +44,19 @@ public abstract class PerWorldCommand extends Command {
         this.plugin = plugin;
     }
 
+    @SuppressWarnings("NullableProblems")
     public static PerWorldCommand get(Command command, Plugin plugin) {
         // Create PerWorldCommand.
         return new PerWorldCommand(command, plugin) {
             // Use the normal command execute.
             @Override
-            @SuppressWarnings("NullableProblems")
             public boolean execute(CommandSender sender, String commandLabel, String[] args) {
                 return command.execute(sender, commandLabel, args);
+            }
+
+            @Override
+            public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
+                return command.tabComplete(sender, alias, args);
             }
         };
     }

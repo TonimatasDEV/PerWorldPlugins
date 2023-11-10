@@ -9,37 +9,32 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CommandManager implements Listener {
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
 
-    public static void addPluginCommands(Plugin plugin) {
-        // Create PerWorldCommand list.
-        List<PerWorldCommand> perWorldCommands = new ArrayList<>();
-        // Create key list.
-        List<String> registeredKeys = new ArrayList<>();
+    private static final Map<String, PerWorldCommand> perWorldCommands = new HashMap<>();
+    //private static final List<PerWorldCommand> perWorldCommands = new ArrayList<>();
 
+    public static void init() {
+        // Replace all Commands to PerWorldCommands.
+        perWorldCommands.keySet().forEach(key -> getCommands().replace(key, perWorldCommands.get(key)));
+
+        // Set the blocked worlds to the commands.
+        setWorldsToCommands();
+    }
+
+    public static void addPluginCommands(Plugin plugin) {
         // Get all keys.
         for (String commandKey : getCommands().keySet()) {
             // Get the command from the key.
             Command command = getCommands().get(commandKey);
             // Check if it is default command, PerWorldCommand or is a registered key.
-            if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand || registeredKeys.contains(commandKey)) continue;
+            if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand || perWorldCommands.containsKey(commandKey)) continue;
             // Get and add a PerWorldCommand to perWorldCommands list.
-            perWorldCommands.add(PerWorldCommand.get(command, plugin));
-
-            // Add key to registeredKeys list.
-            registeredKeys.add(commandKey);
+            perWorldCommands.put(commandKey, PerWorldCommand.get(command, plugin));
         }
-
-        // Remove all commands from registeredKeys list.
-        registeredKeys.forEach(key -> getCommands().remove(key));
-        // Register all commands from perWorldCommands list.
-        perWorldCommands.forEach(perWorldCommand -> getCommandMap().register(perWorldCommand.getPlugin().getName(), perWorldCommand));
     }
 
     public static void setWorldsToCommands() {
