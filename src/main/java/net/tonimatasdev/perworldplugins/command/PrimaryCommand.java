@@ -5,22 +5,25 @@ import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import net.tonimatasdev.perworldplugins.manager.CommandManager;
 import net.tonimatasdev.perworldplugins.manager.ListenerManager;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PrimaryCommand implements CommandExecutor, TabCompleter {
+@SuppressWarnings("NullableProblems")
+public class PrimaryCommand extends Command {
+    public PrimaryCommand() {
+        super("perworldplugins", "Primary command of PerWorldPlugins", "/perworldplugins", Collections.singletonList("pwp"));
+    }
 
     @Override
-    @SuppressWarnings("NullableProblems")
-    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         // If the command is PerWorldPlugins and has 1 argument, it executes.
-        if (command.getName().equalsIgnoreCase("perworldplugins") && args.length == 1) {
+        if (commandLabel.equalsIgnoreCase("perworldplugins") && args.length == 1) {
             if (args[0].equalsIgnoreCase("version")) { // Detects if the argument is equal to "version".
 
                 // Detects if the sender has the permission "perworldplugins.version".
@@ -41,9 +44,9 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
                     CommandManager.setWorldsToCommands();
                     sender.sendMessage(getPrefix(ChatColor.DARK_GREEN) + "The plugin has been reloaded.");
                 }
-            } else {
-                sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "Please use: /perworldplugins reload | version");
             }
+        } else {
+            sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "Please use: /perworldplugins reload | version");
         }
         return true;
     }
@@ -65,13 +68,9 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
 
     // Command tab completer.
     @Override
-    @SuppressWarnings("NullableProblems")
-    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command cmd, String alias, String[] args) {
-        // If the command is null.
-        if (cmd == null) return null;
-
+    public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
         // If the command name is "perworldplugins"
-        if (cmd.getName().equalsIgnoreCase("perworldplugins")) {
+        if (alias.equalsIgnoreCase("perworldplugins")) {
             // Create a list for arguments
             List<String> argList = new ArrayList<>();
 
@@ -84,6 +83,7 @@ public class PrimaryCommand implements CommandExecutor, TabCompleter {
             }
         }
 
-        return null;
+        return Collections.emptyList();
     }
+
 }

@@ -7,12 +7,9 @@ import net.tonimatasdev.perworldplugins.manager.CommandManager;
 import net.tonimatasdev.perworldplugins.manager.ListenerManager;
 import net.tonimatasdev.perworldplugins.metrics.Metrics;
 import net.tonimatasdev.perworldplugins.util.UpdateChecker;
-import net.tonimatasdev.perworldplugins.util.Version;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
 
 public final class PerWorldPlugins extends JavaPlugin {
     private static PerWorldPlugins instance;
@@ -23,8 +20,6 @@ public final class PerWorldPlugins extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        // Detect the server version
-        if (Version.getVersion() <= 1192) return;
         // Enable PerWorldPlugins
         this.getPluginLoader().enablePlugin(this);
     }
@@ -41,8 +36,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Listeners(), this);
 
         // Register command and tab completer.
-        Objects.requireNonNull(getCommand("perworldplugins")).setExecutor(new PrimaryCommand());
-        Objects.requireNonNull(getCommand("perworldplugins")).setTabCompleter(new PrimaryCommand());
+        CommandManager.getCommandMap().register("perworldplugins", new PrimaryCommand());
 
         // Register metrics.
         if (getConfig().getBoolean("metrics")) new Metrics(this, 15794);

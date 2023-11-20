@@ -1,6 +1,8 @@
 package net.tonimatasdev.perworldplugins.manager;
 
+import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
+import net.tonimatasdev.perworldplugins.command.PrimaryCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
@@ -9,7 +11,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CommandManager implements Listener {
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
@@ -18,6 +23,7 @@ public class CommandManager implements Listener {
     public static void init() {
         // Replace all Commands to PerWorldCommands.
         perWorldCommands.keySet().forEach(key -> getCommands().replace(key, perWorldCommands.get(key)));
+
 
         // Set the blocked worlds to the commands.
         setWorldsToCommands();

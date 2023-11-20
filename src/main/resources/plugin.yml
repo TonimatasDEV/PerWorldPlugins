@@ -7,12 +7,6 @@ description: Active/Disable plugins in certain worlds
 author: TonimatasDEV
 prefix: PerWorldPlugins
 
-commands:
-  perworldplugins:
-    description: Primary command of PerWorldPlugins
-    aliases:
-      - pwp
-
 permissions:
   perworldplugins.reload:
     description: Reload config permission for PerWorldPlugins
