@@ -1,8 +1,6 @@
 package net.tonimatasdev.perworldplugins.manager;
 
-import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
-import net.tonimatasdev.perworldplugins.command.PrimaryCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
@@ -11,34 +9,39 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CommandManager implements Listener {
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
-    private static final Map<String, PerWorldCommand> perWorldCommands = new HashMap<>();
+    private static final List<PerWorldCommand> commands = new ArrayList<>();
 
     public static void init() {
         // Replace all Commands to PerWorldCommands.
-        perWorldCommands.keySet().forEach(key -> getCommands().replace(key, perWorldCommands.get(key)));
-
+        for (PerWorldCommand command : commands) {
+            // Replace command for the PerWorldCommand.
+            replace(command);
+        }
 
         // Set the blocked worlds to the commands.
         setWorldsToCommands();
-        perWorldCommands.clear();
+        commands.clear();
     }
 
     public static void addPluginCommands(Plugin plugin) {
         // Get all keys.
-        for (String commandKey : getCommands().keySet()) {
-            // Get the command from the key.
-            Command command = getCommands().get(commandKey);
-            // Check if it is default command, PerWorldCommand or is a registered key.
-            if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand || perWorldCommands.containsKey(commandKey)) continue;
-            // Get and add a PerWorldCommand to perWorldCommands map.
-            perWorldCommands.put(commandKey, PerWorldCommand.get(command, plugin));
+        List<String> keys = new ArrayList<>(getCommands().keySet());
+
+        for (String key : keys) {
+            // Get PerWorldCommand and add to perWorldCommands list.
+            Command command = getCommands().get(key);
+
+            // If a default command or PerWorldCommand, continue.
+            if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand) continue;
+            // If the command are registered, continue.
+            if (commands.stream().anyMatch(perWorldCommand -> perWorldCommand.getName().equals(command.getName()) || perWorldCommand.getAliases().contains(command.getName()))) continue;
+
+            // Get and add PerWorldCommand.
+            commands.add(PerWorldCommand.get(command, plugin));
         }
     }
 
@@ -50,6 +53,21 @@ public class CommandManager implements Listener {
                 // Set disabled worlds to the command.
                 ((PerWorldCommand) command).setDisabledWorlds();
             }
+        }
+    }
+
+    public static void replace(PerWorldCommand command) {
+        // Replace command name.
+        getCommands().replace(command.getName(), command);
+        // Replace plugin + command name.
+        getCommands().replace(command.getPlugin().getName().toLowerCase(Locale.ENGLISH) + ":" + command.getName(), command);
+
+        // Replace all aliases.
+        for (String alias : command.getAliases()) {
+            // Replace alias.
+            getCommands().replace(alias, command);
+            // Replace plugin + alias.
+            getCommands().replace(command.getPlugin().getName().toLowerCase(Locale.ENGLISH) + ":" + alias, command);
         }
     }
 
