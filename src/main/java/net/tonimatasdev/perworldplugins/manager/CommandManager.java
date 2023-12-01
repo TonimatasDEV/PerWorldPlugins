@@ -17,10 +17,7 @@ public class CommandManager implements Listener {
 
     public static void init() {
         // Replace all Commands to PerWorldCommands.
-        for (PerWorldCommand command : commands) {
-            // Replace command for the PerWorldCommand.
-            replace(command);
-        }
+        commands.forEach(CommandManager::replace);
 
         // Set the blocked worlds to the commands.
         setWorldsToCommands();
@@ -29,9 +26,7 @@ public class CommandManager implements Listener {
 
     public static void addPluginCommands(Plugin plugin) {
         // Get all keys.
-        List<String> keys = new ArrayList<>(getCommands().keySet());
-
-        for (String key : keys) {
+        for (String key : getCommands().keySet()) {
             // Get PerWorldCommand and add to perWorldCommands list.
             Command command = getCommands().get(key);
 
