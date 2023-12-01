@@ -13,19 +13,11 @@ import java.util.*;
 
 public class CommandManager implements Listener {
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
-    private static final List<PerWorldCommand> commands = new ArrayList<>();
-
-    public static void init() {
-        // Replace all Commands to PerWorldCommands.
-        commands.forEach(CommandManager::replace);
-
-        // Set the blocked worlds to the commands.
-        setWorldsToCommands();
-        commands.clear();
-    }
 
     public static void addPluginCommands(Plugin plugin) {
         // Get all keys.
+        List<Command> replaced = new ArrayList<>();
+
         for (String key : getCommands().keySet()) {
             // Get PerWorldCommand and add to perWorldCommands list.
             Command command = getCommands().get(key);
@@ -33,10 +25,12 @@ public class CommandManager implements Listener {
             // If a default command or PerWorldCommand, continue.
             if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand) continue;
             // If the command are registered, continue.
-            if (commands.stream().anyMatch(perWorldCommand -> perWorldCommand.getName().equals(command.getName()) || perWorldCommand.getAliases().contains(command.getName()))) continue;
+            if (replaced.contains(command)) continue;
 
-            // Get and add PerWorldCommand.
-            commands.add(PerWorldCommand.get(command, plugin));
+            // Replace command and add to replaced list.
+            replace(PerWorldCommand.get(command, plugin));
+
+            replaced.add(command);
         }
     }
 

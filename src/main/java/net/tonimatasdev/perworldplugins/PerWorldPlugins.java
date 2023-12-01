@@ -55,7 +55,7 @@ public final class PerWorldPlugins extends JavaPlugin {
             // Convert listeners and set worlds to commands.
             ListenerManager.convert();
             // Register all converted commands.
-            CommandManager.init();
+            CommandManager.setWorldsToCommands();
 
             // Send a message on finish all Events/Commands.
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners/Commands correctly.");
