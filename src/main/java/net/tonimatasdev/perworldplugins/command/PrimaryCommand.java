@@ -2,7 +2,6 @@ package net.tonimatasdev.perworldplugins.command;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
-import net.tonimatasdev.perworldplugins.manager.CommandManager;
 import net.tonimatasdev.perworldplugins.manager.ListenerManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -41,7 +40,6 @@ public class PrimaryCommand extends Command {
                     PerWorldPlugins.getInstance().reloadConfig();
                     GroupsYML.reload();
                     ListenerManager.setWorldsToEvents();
-                    CommandManager.setWorldsToCommands();
                     sender.sendMessage(getPrefix(ChatColor.DARK_GREEN) + "The plugin has been reloaded.");
                 }
             }

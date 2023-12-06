@@ -1,8 +1,8 @@
 package net.tonimatasdev.perworldplugins.listener;
 
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
 import net.tonimatasdev.perworldplugins.manager.CommandManager;
+import net.tonimatasdev.perworldplugins.util.PerWorldUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
@@ -10,6 +10,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.PluginEnableEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -40,12 +41,13 @@ public class Listeners implements Listener {
         Command command = CommandManager.getCommandMap().getCommand(commandString);
         // Detects if the command is null.
         if (command == null) return;
-        // Detects if the command is PerWorldCommand.
-        if (!(command instanceof PerWorldCommand)) return;
-        // Get PerWorldCommand.
-        PerWorldCommand perWorldCommand = (PerWorldCommand) command;
+        // Get the plugin of the command.
+        Plugin plugin = CommandManager.pluginMap.get(command);
+        // Detects if the plugin is null.
+        if (plugin == null) return;
+
         // Check if the player is in the disabled world
-        if (perWorldCommand.getDisabledWorlds().contains(event.getPlayer().getWorld().getName())) {
+        if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) {
             // Send block message to the player.
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
             // Cancel the event.

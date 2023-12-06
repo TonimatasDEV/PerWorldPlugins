@@ -54,11 +54,9 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
             // Convert listeners and set worlds to commands.
             ListenerManager.convert();
-            // Register all converted commands.
-            CommandManager.setWorldsToCommands();
 
             // Send a message on finish all Events/Commands.
-            Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners/Commands correctly.");
+            Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners correctly.");
         });
     }
 

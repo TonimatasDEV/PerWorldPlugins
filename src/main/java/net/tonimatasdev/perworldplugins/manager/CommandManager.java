@@ -1,6 +1,5 @@
 package net.tonimatasdev.perworldplugins.manager;
 
-import net.tonimatasdev.perworldplugins.api.PerWorldCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
@@ -9,54 +8,22 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CommandManager implements Listener {
+    public static Map<Command, Plugin> pluginMap = new HashMap<>();
     private static final List<String> defaultCommands = Arrays.asList("version", "timings", "reload", "plugins", "tps", "mspt", "paper", "spigot", "restart", "perworldplugins");
 
     public static void addPluginCommands(Plugin plugin) {
-        // Get all keys.
-        List<Command> replaced = new ArrayList<>();
-
-        for (String key : getCommands().keySet()) {
+        // Get all commands
+        for (Command command : getCommands().values()) {
+            // Detect if the command is a default command or is already registered
+            if (defaultCommands.contains(command.getName()) || pluginMap.containsKey(command)) continue;
             // Get PerWorldCommand and add to perWorldCommands list.
-            Command command = getCommands().get(key);
-
-            // If a default command or PerWorldCommand, continue.
-            if (defaultCommands.contains(command.getName()) || command instanceof PerWorldCommand) continue;
-            // If the command are registered, continue.
-            if (replaced.contains(command)) continue;
-
-            // Replace command and add to replaced list.
-            replace(PerWorldCommand.get(command, plugin));
-
-            replaced.add(command);
-        }
-    }
-
-    public static void setWorldsToCommands() {
-        // Get all command map values.
-        for (Command command : getCommandMap().getCommands()) {
-            // Check if is a PerWorldCommand.
-            if (command instanceof PerWorldCommand) {
-                // Set disabled worlds to the command.
-                ((PerWorldCommand) command).setDisabledWorlds();
-            }
-        }
-    }
-
-    public static void replace(PerWorldCommand command) {
-        // Replace command name.
-        getCommands().replace(command.getName(), command);
-        // Replace plugin + command name.
-        getCommands().replace(command.getPlugin().getName().toLowerCase(Locale.ENGLISH) + ":" + command.getName(), command);
-
-        // Replace all aliases.
-        for (String alias : command.getAliases()) {
-            // Replace alias.
-            getCommands().replace(alias, command);
-            // Replace plugin + alias.
-            getCommands().replace(command.getPlugin().getName().toLowerCase(Locale.ENGLISH) + ":" + alias, command);
+            pluginMap.put(command, plugin);
         }
     }
 

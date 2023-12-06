@@ -3,6 +3,7 @@ package net.tonimatasdev.perworldplugins.util;
 import net.tonimatasdev.perworldplugins.PerWorldPlugins;
 import net.tonimatasdev.perworldplugins.config.GroupsYML;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
@@ -33,7 +34,12 @@ public class PerWorldUtils {
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
             return withGroupWorlds;
         } else {
-            List<String> serverWorlds = Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList());
+            List<String> serverWorlds = new ArrayList<>();
+            try {
+                serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()));
+            } catch (Exception e) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + plugin.getName());
+            }
             serverWorlds.removeAll(withGroupWorlds);
             return serverWorlds;
         }
