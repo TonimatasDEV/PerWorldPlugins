@@ -32,36 +32,23 @@ public class PerWorldRegisteredListener extends RegisteredListener {
     @SuppressWarnings("NullableProblems")
     public void callEvent(Event event) {
         // If X-Events get player and detect if blocked so that it is not run.
-        if (event instanceof BlockEvent) {
-            if (disabledWorlds.contains(((BlockEvent) event).getBlock().getWorld().getName())) return;
-        }
-
-        if (event instanceof EntityEvent) {
-            if (disabledWorlds.contains(((EntityEvent) event).getEntity().getWorld().getName())) return;
-        }
-
-        if (event instanceof HangingEvent) {
-            if (disabledWorlds.contains(((HangingEvent) event).getEntity().getWorld().getName())) return;
-        }
-
-        if (event instanceof InventoryEvent) {
-            if (disabledWorlds.contains(((InventoryEvent) event).getView().getPlayer().getWorld().getName())) return;
-        }
-
+        
         if (event instanceof PlayerEvent) {
             if (disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName())) return;
-        }
-
-        if (event instanceof VehicleEvent) {
-            if (disabledWorlds.contains(((VehicleEvent) event).getVehicle().getWorld().getName())) return;
-        }
-
-        if (event instanceof WeatherEvent) {
-            if (disabledWorlds.contains(((WeatherEvent) event).getWorld().getName())) return;
-        }
-
-        if (event instanceof WorldEvent) {
+        } else if (event instanceof EntityEvent) {
+            if (disabledWorlds.contains(((EntityEvent) event).getEntity().getWorld().getName())) return;
+        } else if (event instanceof BlockEvent) {
+            if (disabledWorlds.contains(((BlockEvent) event).getBlock().getWorld().getName())) return;
+        } else if (event instanceof WorldEvent) {
             if (disabledWorlds.contains(((WorldEvent) event).getWorld().getName())) return;
+        } else if (event instanceof HangingEvent) {
+            if (disabledWorlds.contains(((HangingEvent) event).getEntity().getWorld().getName())) return;
+        } else if (event instanceof InventoryEvent) {
+            if (disabledWorlds.contains(((InventoryEvent) event).getView().getPlayer().getWorld().getName())) return;
+        } else if (event instanceof VehicleEvent) {
+            if (disabledWorlds.contains(((VehicleEvent) event).getVehicle().getWorld().getName())) return;
+        } else if (event instanceof WeatherEvent) {
+            if (disabledWorlds.contains(((WeatherEvent) event).getWorld().getName())) return;
         }
 
         try {
