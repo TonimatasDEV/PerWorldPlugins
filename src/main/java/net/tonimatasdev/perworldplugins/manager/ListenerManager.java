@@ -27,10 +27,24 @@ public class ListenerManager {
                     Field executorField = RegisteredListener.class.getDeclaredField("executor");
                     executorField.setAccessible(true);
 
-                    if (registeredListener instanceof TimedRegisteredListener) {
-                        // RegisteredListener to PerWorldTimedRegisteredListener.
-                        handlerList.register(new PerWorldTimedRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
-                    } else {
+                    // Create handled variable
+                    boolean handled = false;
+                    
+                    // Use try because, some performance server softwares delete TimedRegisteredListener class
+                    try {
+                        if (registeredListener instanceof TimedRegisteredListener) {
+                            // RegisteredListener to PerWorldTimedRegisteredListener.
+                            handlerList.register(new PerWorldTimedRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
+                            
+                            // Change handled to true
+                            handled = true;
+                        }
+                    } catch (Exception ignore) {
+                        // Do nothing
+                    }
+                    
+                    // Check if already handled
+                    if (!handled) {
                         // RegisteredListener to PerWorldRegisteredListener.
                         handlerList.register(new PerWorldRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
                     }
@@ -44,15 +58,32 @@ public class ListenerManager {
     }
 
     public static void setWorldsToEvents() {
+        // Get PerWorldPlugins
         Plugin perWorldPlugins = PerWorldPlugins.getInstance();
-
+        
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+            // Check if the plugin is PerWorldPlugins
             if (plugin.equals(perWorldPlugins)) continue;
-
+            
             for (RegisteredListener registeredListener : HandlerList.getRegisteredListeners(plugin)) {
-                if (registeredListener instanceof PerWorldRegisteredListener) {
-                    ((PerWorldRegisteredListener) registeredListener).setDisabledWorlds();
-                } else if (registeredListener instanceof PerWorldTimedRegisteredListener){
+
+                // Create handled variable
+                boolean handled = false;
+
+                // Use try because, some performance server softwares delete TimedRegisteredListener class
+                try {
+                    if (registeredListener instanceof PerWorldRegisteredListener) {
+                        // RegisteredListener to PerWorldTimedRegisteredListener.
+                        ((PerWorldRegisteredListener) registeredListener).setDisabledWorlds();
+                        // Change handled to true
+                        handled = true;
+                    }
+                } catch (Exception ignore) {
+                    // Do nothing
+                }
+
+                // Check if it is handled or is a PerWorldTimeRegisteredListener
+                if (!handled && registeredListener instanceof PerWorldTimedRegisteredListener){
                     ((PerWorldTimedRegisteredListener) registeredListener).setDisabledWorlds();
                 }
             }
