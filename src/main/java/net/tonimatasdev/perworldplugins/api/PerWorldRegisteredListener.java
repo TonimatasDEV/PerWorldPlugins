@@ -5,14 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockEvent;
-import org.bukkit.event.entity.EntityEvent;
-import org.bukkit.event.hanging.HangingEvent;
-import org.bukkit.event.inventory.InventoryEvent;
-import org.bukkit.event.player.PlayerEvent;
-import org.bukkit.event.vehicle.VehicleEvent;
-import org.bukkit.event.weather.WeatherEvent;
-import org.bukkit.event.world.WorldEvent;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
@@ -32,24 +24,8 @@ public class PerWorldRegisteredListener extends RegisteredListener {
     @SuppressWarnings("NullableProblems")
     public void callEvent(Event event) {
         // If X-Events get player and detect if blocked so that it is not run.
-        
-        if (event instanceof PlayerEvent) {
-            if (disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName())) return;
-        } else if (event instanceof EntityEvent) {
-            if (disabledWorlds.contains(((EntityEvent) event).getEntity().getWorld().getName())) return;
-        } else if (event instanceof BlockEvent) {
-            if (disabledWorlds.contains(((BlockEvent) event).getBlock().getWorld().getName())) return;
-        } else if (event instanceof WorldEvent) {
-            if (disabledWorlds.contains(((WorldEvent) event).getWorld().getName())) return;
-        } else if (event instanceof HangingEvent) {
-            if (disabledWorlds.contains(((HangingEvent) event).getEntity().getWorld().getName())) return;
-        } else if (event instanceof InventoryEvent) {
-            if (disabledWorlds.contains(((InventoryEvent) event).getView().getPlayer().getWorld().getName())) return;
-        } else if (event instanceof VehicleEvent) {
-            if (disabledWorlds.contains(((VehicleEvent) event).getVehicle().getWorld().getName())) return;
-        } else if (event instanceof WeatherEvent) {
-            if (disabledWorlds.contains(((WeatherEvent) event).getWorld().getName())) return;
-        }
+
+        if (PerWorldUtils.checkEvent(event, this.disabledWorlds)) return;
 
         try {
             // Execute the event if it is not blocked.
