@@ -5,7 +5,7 @@ updateChecker: true
 # Disable or Enable the bStats metrics.
 metrics: true
 # Message send when execute blocked plugin command.
-disabledCommandMessage: "&4[Server]: &fThis command is disabled for this world."
+disabledCommandMessage: "&4[Server]: &f{player} this command is disabled for {world}."
 
 # If false, the plugins/groups added in the world will work.
 # If true, it will be reversed.

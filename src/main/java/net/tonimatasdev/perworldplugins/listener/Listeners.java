@@ -49,7 +49,10 @@ public class Listeners implements Listener {
         // Check if the player is in the disabled world
         if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) {
             // Send block message to the player.
-            event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))));
+            event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', 
+                    Objects.requireNonNull(Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))
+                            .replaceAll("\\{world}", event.getPlayer().getWorld().getName())
+                            .replaceAll("\\{player}", event.getPlayer().getName()))));
             // Cancel the event.
             event.setCancelled(true);
         }
