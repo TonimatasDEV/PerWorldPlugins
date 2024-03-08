@@ -20,7 +20,7 @@ public class CommandManager implements Listener {
     public static void addPluginCommands(Plugin plugin) {
         // Get all commands
         for (Command command : getCommands().values()) {
-            // Detect if the command is a default command or is already registered
+            // Detect if the command is a default command or is already registered.
             if (defaultCommands.contains(command.getName()) || pluginMap.containsKey(command)) continue;
             // Get PerWorldCommand and add to perWorldCommands list.
             pluginMap.put(command, plugin);

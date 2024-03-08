@@ -25,11 +25,10 @@ public class Listeners implements Listener {
         CommandManager.addPluginCommands(event.getPlugin());
 
         // Create individual sections for plugins in the config.
-
         if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + event.getPlugin().getName()).isEmpty()) {
-            PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList("Example"));
-            PerWorldPlugins.getInstance().saveConfig();
-            PerWorldPlugins.getInstance().reloadConfig();
+            PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList("Example")); // Add default list.
+            PerWorldPlugins.getInstance().saveConfig(); // Save config.
+            PerWorldPlugins.getInstance().reloadConfig(); // Reload config.
         }
     }
 
@@ -53,6 +52,7 @@ public class Listeners implements Listener {
                     Objects.requireNonNull(Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))
                             .replaceAll("\\{world}", event.getPlayer().getWorld().getName())
                             .replaceAll("\\{player}", event.getPlayer().getName()))));
+            
             // Cancel the event.
             event.setCancelled(true);
         }

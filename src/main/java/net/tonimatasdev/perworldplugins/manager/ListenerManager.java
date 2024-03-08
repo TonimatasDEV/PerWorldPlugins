@@ -58,32 +58,33 @@ public class ListenerManager {
     }
 
     public static void setWorldsToEvents() {
-        // Get PerWorldPlugins
+        // Get PerWorldPlugins.
         Plugin perWorldPlugins = PerWorldPlugins.getInstance();
         
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-            // Check if the plugin is PerWorldPlugins
+            // Check if the plugin is PerWorldPlugins.
             if (plugin.equals(perWorldPlugins)) continue;
             
             for (RegisteredListener registeredListener : HandlerList.getRegisteredListeners(plugin)) {
 
-                // Create handled variable
+                // Create handled variable.
                 boolean handled = false;
 
-                // Use try because, some performance server softwares delete TimedRegisteredListener class
+                // Use try because, some performance server softwares delete TimedRegisteredListener class.
                 try {
                     if (registeredListener instanceof PerWorldRegisteredListener) {
                         // RegisteredListener to PerWorldTimedRegisteredListener.
                         ((PerWorldRegisteredListener) registeredListener).setDisabledWorlds();
-                        // Change handled to true
+                        // Change handled to true.
                         handled = true;
                     }
                 } catch (Exception ignore) {
-                    // Do nothing
+                    // Do nothing.
                 }
 
-                // Check if it is handled or is a PerWorldTimeRegisteredListener
+                // Check if it is handled or is a PerWorldTimeRegisteredListener.
                 if (!handled && registeredListener instanceof PerWorldTimedRegisteredListener){
+                    // Set disabled worlds.
                     ((PerWorldTimedRegisteredListener) registeredListener).setDisabledWorlds();
                 }
             }

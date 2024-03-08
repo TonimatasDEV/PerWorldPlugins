@@ -24,10 +24,11 @@ public class PerWorldUtils {
     public static List<String> getDisabledWorlds(Plugin plugin) {
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
 
+        // Check if it has and :ignore.
         if (worldList.contains(":ignore") || worldList.isEmpty()) return new ArrayList<>();
 
         List<String> withGroupWorlds = new ArrayList<>(worldList);
-        // Check if any group contains the world
+        // Check if any group contains the world.
         for (String var : worldList) {
             // Detects if the string starts with "g:".
             if (var.startsWith("g:")) {
@@ -40,22 +41,26 @@ public class PerWorldUtils {
             }
         }
 
+        // Check if the config is a blacklist or whitelist.
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
-            return withGroupWorlds;
+            return withGroupWorlds; // Return blacklist worlds.
         } else {
             List<String> serverWorlds = new ArrayList<>();
             try {
+                // Add all world names.
                 serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()));
             } catch (Exception e) {
+                // Send error message on console.
                 Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + plugin.getName());
             }
+            // Remove all whitelisted worlds.
             serverWorlds.removeAll(withGroupWorlds);
-            return serverWorlds;
+            return serverWorlds; // Return not whitelisted worlds.
         }
     }
     
     public static boolean checkEvent(Event event, List<String> disabledWorlds) {
-        // Get world for every type of Event
+        // Get world for every type of Event.
         if (event instanceof PlayerEvent) {
             return disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName());
         } else if (event instanceof EntityEvent) {

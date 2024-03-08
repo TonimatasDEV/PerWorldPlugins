@@ -20,7 +20,7 @@ public final class PerWorldPlugins extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        // Enable PerWorldPlugins
+        // Enable PerWorldPlugins.
         this.getPluginLoader().enablePlugin(this);
     }
 
@@ -62,8 +62,9 @@ public final class PerWorldPlugins extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Save config and disable the plugin.
+        // Reload the config.
         this.reloadConfig();
+        // Save the config.
         this.saveConfig();
     }
 }

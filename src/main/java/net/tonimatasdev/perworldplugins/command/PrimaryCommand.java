@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("NullableProblems")
 public class PrimaryCommand extends Command {
@@ -51,9 +50,11 @@ public class PrimaryCommand extends Command {
 
     // Method to detect if the player has permissions or not with a message in false case.
     private boolean hasPermission(CommandSender sender, String permission) {
+        // Check if the sender has permissions.
         if (sender.hasPermission(permission)) {
             return true;
         } else {
+            // Send a message if sender not has permissions.
             sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "You don't have permissions for execute this command");
             return false;
         }
@@ -67,9 +68,9 @@ public class PrimaryCommand extends Command {
     // Command tab completer.
     @Override
     public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
-        // If the command name is "perworldplugins"
+        // If the command name is "perworldplugins".
         if (alias.equalsIgnoreCase("perworldplugins")) {
-            // Create a list for arguments
+            // Create a list for arguments.
             List<String> argList = new ArrayList<>();
 
             // If argument is 1.
@@ -77,10 +78,11 @@ public class PrimaryCommand extends Command {
                 // Add the possible arguments.
                 argList.add("version");
                 argList.add("reload");
-                return argList.stream().filter(a -> a.startsWith(args[0])).collect(Collectors.toList());
+                return argList;
             }
         }
 
+        // Return an empty list if nothing works.
         return Collections.emptyList();
     }
 

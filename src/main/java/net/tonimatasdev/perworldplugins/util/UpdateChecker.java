@@ -31,6 +31,7 @@ public class UpdateChecker {
                 Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getInstance().getName() + ChatColor.RED + " You can download it at: " + ChatColor.WHITE + "https://www.spigotmc.org/resources/perworldplugins.96161/");
             }
         } catch (Exception var3) {
+            // Send the error message.
             Bukkit.getConsoleSender().sendMessage(PerWorldPlugins.getInstance().getName() + ChatColor.RED + " Error while checking update.");
         }
     }

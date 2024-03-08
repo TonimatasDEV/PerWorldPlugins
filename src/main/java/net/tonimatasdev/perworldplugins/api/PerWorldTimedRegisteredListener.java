@@ -18,7 +18,7 @@ public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
 
     public PerWorldTimedRegisteredListener(Listener listener, EventExecutor executor, EventPriority priority, Plugin plugin, boolean ignoreCancelled) {
         super(listener, executor, priority, plugin, ignoreCancelled);
-        this.disabledWorlds = new ArrayList<>();
+        this.disabledWorlds = new ArrayList<>(); // Set empty list. 
     }
 
     @SuppressWarnings("NullableProblems")
@@ -30,10 +30,12 @@ public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
             // Execute the event if it is not blocked.
             super.callEvent(event);
         } catch (Throwable ex) {
+            // Send error message.
             Bukkit.getServer().getLogger().log(Level.SEVERE, "Could not pass event " + event.getEventName() + " to " + getPlugin().getName() + " v" + getPlugin().getDescription().getVersion(), ex);
         }
     }
 
+    // Method to set all disabled worlds.
     public void setDisabledWorlds() {
         this.disabledWorlds = PerWorldUtils.getDisabledWorlds(getPlugin());
     }
