@@ -21,7 +21,7 @@ public class PrimaryCommand extends Command {
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         // If the command is PerWorldPlugins and has 1 argument, it executes.
-        if (commandLabel.equalsIgnoreCase("perworldplugins") && args.length == 1) {
+        if ((commandLabel.equalsIgnoreCase("perworldplugins") || commandLabel.equalsIgnoreCase("pwp")) && args.length == 1) {
             if (args[0].equalsIgnoreCase("version")) { // Detects if the argument is equal to "version".
 
                 // Detects if the sender has the permission "perworldplugins.version".
