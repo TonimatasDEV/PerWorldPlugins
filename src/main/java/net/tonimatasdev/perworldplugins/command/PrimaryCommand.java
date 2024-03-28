@@ -20,8 +20,8 @@ public class PrimaryCommand extends Command {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
-        // If the command is PerWorldPlugins and has 1 argument, it executes.
-        if ((commandLabel.equalsIgnoreCase("perworldplugins") || commandLabel.equalsIgnoreCase("pwp")) && args.length == 1) {
+        // If the command has 1 argument, it executes.
+        if (args.length == 1) {
             if (args[0].equalsIgnoreCase("version")) { // Detects if the argument is equal to "version".
 
                 // Detects if the sender has the permission "perworldplugins.version".
@@ -45,6 +45,7 @@ public class PrimaryCommand extends Command {
         } else {
             sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "Please use: /perworldplugins reload | version");
         }
+        
         return true;
     }
 
