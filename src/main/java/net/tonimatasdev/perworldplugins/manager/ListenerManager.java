@@ -49,7 +49,7 @@ public class ListenerManager {
                         handlerList.register(new PerWorldRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
                     }
                 } catch (NoSuchFieldException | IllegalAccessException e) {
-                    PerWorldPlugins.getInstance().getLogger().severe("Problems on get RegisteredListener executor.");
+                    PerWorldPlugins.getInstance().getLogger().severe("Problems on get RegisteredListener executor for " + registeredListener.getPlugin().getName() +  " plugin.");
                 }
             }
         }
