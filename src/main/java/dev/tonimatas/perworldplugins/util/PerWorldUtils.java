@@ -1,7 +1,7 @@
-package net.tonimatasdev.perworldplugins.util;
+package dev.tonimatas.perworldplugins.util;
 
-import net.tonimatasdev.perworldplugins.PerWorldPlugins;
-import net.tonimatasdev.perworldplugins.config.GroupsYML;
+import dev.tonimatas.perworldplugins.PerWorldPlugins;
+import dev.tonimatas.perworldplugins.config.GroupsYML;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -24,43 +24,35 @@ public class PerWorldUtils {
     public static List<String> getDisabledWorlds(Plugin plugin) {
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
 
-        // Check if it has and :ignore.
         if (worldList.contains(":ignore") || worldList.isEmpty()) return new ArrayList<>();
 
         List<String> withGroupWorlds = new ArrayList<>(worldList);
-        // Check if any group contains the world.
+
         for (String var : worldList) {
-            // Detects if the string starts with "g:".
             if (var.startsWith("g:")) {
-                String group = var.substring(2); // Remove the "g:" prefix.
-                withGroupWorlds.remove(var); // Remove the group from the list.
-
-
-                // Add all worlds to groupWorlds
+                String group = var.substring(2);
+                withGroupWorlds.remove(var);
                 withGroupWorlds.addAll(GroupsYML.get().getStringList(group));
             }
         }
 
-        // Check if the config is a blacklist or whitelist.
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
-            return withGroupWorlds; // Return blacklist worlds.
+            return withGroupWorlds;
         } else {
             List<String> serverWorlds = new ArrayList<>();
+
             try {
-                // Add all world names.
                 serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()));
             } catch (Exception e) {
-                // Send error message on console.
                 Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + plugin.getName());
             }
-            // Remove all whitelisted worlds.
+
             serverWorlds.removeAll(withGroupWorlds);
-            return serverWorlds; // Return not whitelisted worlds.
+            return serverWorlds;
         }
     }
     
     public static boolean checkEvent(Event event, List<String> disabledWorlds) {
-        // Get world for every type of Event.
         if (event instanceof PlayerEvent) {
             return disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName());
         } else if (event instanceof EntityEvent) {

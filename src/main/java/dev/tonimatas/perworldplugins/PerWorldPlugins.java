@@ -1,12 +1,12 @@
-package net.tonimatasdev.perworldplugins;
+package dev.tonimatas.perworldplugins;
 
-import net.tonimatasdev.perworldplugins.command.PrimaryCommand;
-import net.tonimatasdev.perworldplugins.config.GroupsYML;
-import net.tonimatasdev.perworldplugins.listener.Listeners;
-import net.tonimatasdev.perworldplugins.manager.CommandManager;
-import net.tonimatasdev.perworldplugins.manager.ListenerManager;
-import net.tonimatasdev.perworldplugins.metrics.Metrics;
-import net.tonimatasdev.perworldplugins.util.UpdateChecker;
+import dev.tonimatas.perworldplugins.command.PrimaryCommand;
+import dev.tonimatas.perworldplugins.config.GroupsYML;
+import dev.tonimatas.perworldplugins.listener.Listeners;
+import dev.tonimatas.perworldplugins.manager.CommandManager;
+import dev.tonimatas.perworldplugins.manager.ListenerManager;
+import dev.tonimatas.perworldplugins.metrics.Metrics;
+import dev.tonimatas.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,7 +20,6 @@ public final class PerWorldPlugins extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        // Enable PerWorldPlugins.
         this.getPluginLoader().enablePlugin(this);
     }
 
@@ -28,43 +27,33 @@ public final class PerWorldPlugins extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        // Register config files.
         saveDefaultConfig();
         GroupsYML.register();
 
-        // Register events.
         getServer().getPluginManager().registerEvents(new Listeners(), this);
 
-        // Register command and tab completer.
         CommandManager.getCommandMap().register("perworldplugins", new PrimaryCommand());
+        
+        CommandManager.addDefaultCommands();
 
-        // Register metrics.
         if (getConfig().getBoolean("metrics")) new Metrics(this, 15794);
 
-        // Check updates.
         if (getConfig().getBoolean("updateChecker")) UpdateChecker.check();
 
-
-        // Send enabled messages.
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
         Bukkit.getConsoleSender().sendMessage(getDescription().getName() + " " + getDescription().getVersion() + " has been enabled.");
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
 
-        // Create task for convert RegisteredListeners to PerWorldRegisteredListeners.
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
-            // Convert listeners and set worlds to commands.
             ListenerManager.convert();
 
-            // Send a message on finish all Events/Commands.
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners correctly.");
         });
     }
 
     @Override
     public void onDisable() {
-        // Reload the config.
         this.reloadConfig();
-        // Save the config.
         this.saveConfig();
     }
 }

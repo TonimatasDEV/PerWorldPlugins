@@ -1,4 +1,4 @@
-package net.tonimatasdev.perworldplugins.metrics;
+package dev.tonimatas.perworldplugins.metrics;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -21,8 +21,6 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
-
-// bStats metrics, this class is not programmed for me.
 
 @SuppressWarnings("deprecation")
 public class Metrics {

@@ -1,6 +1,6 @@
-package net.tonimatasdev.perworldplugins.config;
+package dev.tonimatas.perworldplugins.config;
 
-import net.tonimatasdev.perworldplugins.PerWorldPlugins;
+import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
-
-// groups.yml config file.
 
 public class GroupsYML {
     private static FileConfiguration list = null;
@@ -33,10 +31,8 @@ public class GroupsYML {
     public static void save() {
         try {
             list.save(listFile);
-        } catch (IOException var2) {
-            var2.printStackTrace();
+        } catch (IOException ignore) {
         }
-
     }
 
     public static void register() {

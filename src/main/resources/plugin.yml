@@ -1,4 +1,4 @@
-main: net.tonimatasdev.perworldplugins.PerWorldPlugins
+main: dev.tonimatas.perworldplugins.PerWorldPlugins
 name: PerWorldPlugins
 version: ${pluginVersion}
 load: STARTUP

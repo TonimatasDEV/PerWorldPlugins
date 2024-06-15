@@ -1,3 +1,5 @@
+@file:Suppress("VulnerableLibrariesLocal")
+
 plugins {
     id("java")
 }
@@ -5,7 +7,7 @@ plugins {
 val pluginVersion: String by extra
 val minecraftVersion: String by extra
 
-group = "net.tonimatasdev"
+group = "dev.tonimatas"
 version = pluginVersion
 
 base {
