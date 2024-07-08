@@ -18,6 +18,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PerWorldUtils {
@@ -33,6 +34,18 @@ public class PerWorldUtils {
                 String group = var.substring(2);
                 withGroupWorlds.remove(var);
                 withGroupWorlds.addAll(GroupsYML.get().getStringList(group));
+            }
+            
+            if (var.endsWith("*")) {
+                String worldExpression = var.replace("*", "");
+                
+                withGroupWorlds.addAll(getAllWorldWithCondition(name -> name.startsWith(worldExpression)));
+            }
+
+            if (var.startsWith("*")) {
+                String worldExpression = var.replace("*", "");
+
+                withGroupWorlds.addAll(getAllWorldWithCondition(name -> name.endsWith(worldExpression)));
             }
         }
 
@@ -50,6 +63,10 @@ public class PerWorldUtils {
             serverWorlds.removeAll(withGroupWorlds);
             return serverWorlds;
         }
+    }
+    
+    public static List<String> getAllWorldWithCondition(Predicate<String> function) {
+        return Bukkit.getWorlds().stream().map(World::getName).filter(function).collect(Collectors.toList());
     }
     
     public static boolean checkEvent(Event event, List<String> disabledWorlds) {
