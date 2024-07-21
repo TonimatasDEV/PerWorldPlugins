@@ -33,6 +33,6 @@ public class PerWorldRegisteredListener extends RegisteredListener {
     }
 
     public void setDisabledWorlds() {
-        this.disabledWorlds = PerWorldUtils.getDisabledWorlds(getPlugin());
+        this.disabledWorlds = PerWorldUtils.getDisabledWorlds(getPlugin().getName());
     }
 }

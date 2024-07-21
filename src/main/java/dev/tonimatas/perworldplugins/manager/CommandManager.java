@@ -5,7 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
@@ -15,15 +14,43 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandManager implements Listener {
-    public static Map<Command, Plugin> pluginMap = new HashMap<>();
+    public static Map<String, Map<String, Command>> pluginMap = new HashMap<>();
     public static final List<Command> defaultCommands = new ArrayList<>();
 
-    public static void addPluginCommands(Plugin plugin) {
-        getCommands().values().stream().filter(cmd -> !defaultCommands.contains(cmd) && !pluginMap.containsKey(cmd)).forEach(cmd -> pluginMap.put(cmd, plugin));
+    public static void addPluginCommands(String plugin) {
+        getCommands().keySet().stream().filter(str -> {
+            if (defaultCommands.contains(getCommands().get(str))) return false;
+            if (getCommands().get(str).getClass().getName().equals("org.bukkit.craftbukkit.command.VanillaCommandWrapper")) {
+                Map<String, Command> commandMap = pluginMap.get("minecraft");
+
+                if (commandMap == null) commandMap = new HashMap<>();
+                if (commandMap.containsKey(str)) return false;
+
+                commandMap.put(str, getCommands().get(str));
+                pluginMap.put("minecraft", commandMap);
+                return false;
+            }
+            
+            for (Map<String, Command> commandMap : pluginMap.values()) {
+                if (commandMap.containsKey(str)) return false;
+            }
+            
+            return true;
+        }).forEach(str -> {
+            Map<String, Command> commandMap = pluginMap.get(plugin);
+            
+            if (commandMap == null) commandMap = new HashMap<>();
+            
+            commandMap.put(str, getCommands().get(str));
+            pluginMap.put(plugin, commandMap);
+        });
     }
 
     public static void addDefaultCommands() {
-        getCommands().values().stream().filter(command -> !defaultCommands.contains(command)).forEach(defaultCommands::add);
+        for (Command command : getCommands().values()) {
+            if (defaultCommands.contains(command)) continue;
+            defaultCommands.add(command);
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -10,16 +10,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.plugin.Plugin;
 
-import java.util.Collections;
+import java.util.*;
 
 public class Listeners implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPluginEnable(PluginEnableEvent event) {
         if (event.getPlugin().equals(PerWorldPlugins.getInstance())) return;
 
-        CommandManager.addPluginCommands(event.getPlugin());
+        CommandManager.addPluginCommands(event.getPlugin().getName());
 
         if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + event.getPlugin().getName()).isEmpty()) {
             PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList("Example"));
@@ -28,24 +27,50 @@ public class Listeners implements Listener {
         }
     }
 
-    @SuppressWarnings("DataFlowIssue")
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
-        String commandString = event.getMessage().split(" ")[0].replaceFirst("/", "");
+        Map<String, Command> commands = CommandManager.getCommands();
+        String commandStringWithVar = event.getMessage().split(" ")[0];
+        String commandString = commandStringWithVar.replaceFirst("/", "");
         
-        Command command = CommandManager.getCommandMap().getCommand(commandString);
+        Command command = commands.get(commandString);
         
-        if (command == null) return;
+        if (CommandManager.defaultCommands.contains(command)) {
+            return;
+        }
         
-        Plugin plugin = CommandManager.pluginMap.get(command);
+        List<String> possibleCommands = new ArrayList<>();
+
+        for (String plugin : CommandManager.pluginMap.keySet()) {
+            Map<String, Command> commandMap = CommandManager.pluginMap.get(plugin);
+            if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) continue;
+            if (!commandMap.containsKey(commandString)) continue;
+
+            
+            String commandStr;
+            
+            if (commandString.contains(":")) {
+                commandStr = commandString;
+            } else {
+                commandStr = plugin.toLowerCase(Locale.ENGLISH) + ":" + commandString;
+            }
+            
+            possibleCommands.add(commandStr);
+        }
         
-        if (plugin != null && PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) {
+        if (possibleCommands.isEmpty() && commands.containsKey(commandString)) {
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',
-                            PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage"))
+                            Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage")))
                     .replaceAll("\\{world}", event.getPlayer().getWorld().getName())
                     .replaceAll("\\{player}", event.getPlayer().getName()));
-
             event.setCancelled(true);
+            return;
         }
+        
+        for (String var : possibleCommands) {
+            System.out.println(var);
+        }
+        
+        event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommands.get(0)));
     }
 }

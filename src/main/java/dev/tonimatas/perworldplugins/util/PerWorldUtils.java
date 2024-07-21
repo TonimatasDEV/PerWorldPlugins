@@ -14,7 +14,6 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.vehicle.VehicleEvent;
 import org.bukkit.event.weather.WeatherEvent;
 import org.bukkit.event.world.WorldEvent;
-import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +21,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PerWorldUtils {
-    public static List<String> getDisabledWorlds(Plugin plugin) {
-        List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + plugin.getName());
+    public static List<String> getDisabledWorlds(String pluginName) {
+        List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + pluginName);
 
         if (worldList.contains(":ignore") || worldList.isEmpty()) return new ArrayList<>();
 
@@ -57,7 +56,7 @@ public class PerWorldUtils {
             try {
                 serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()));
             } catch (Exception e) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + plugin.getName());
+                Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + pluginName);
             }
 
             serverWorlds.removeAll(withGroupWorlds);
