@@ -14,9 +14,7 @@ blacklist: true
 plugins:
   # For set group set - g:example (example is the name of group)
   # Add and edit groups in the groups.yml
+  # ":ignore" is for ignore this plugin and don't check this.
+  # In the Example case, the plugin is blocked in "world" (If is the blacklist on true)
   Example:
-    - "PutWorldInThisListForDisableThisPluginOnWorld"
     - "world"
-  Example2:
-    # ":ignore" is for ignore this plugin and don't check this.
-    - "ignore:"

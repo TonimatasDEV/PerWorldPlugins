@@ -21,7 +21,7 @@ public class Listeners implements Listener {
         CommandManager.addPluginCommands(event.getPlugin().getName());
 
         if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + event.getPlugin().getName()).isEmpty()) {
-            PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList("Example"));
+            PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList(":ignore"));
             PerWorldPlugins.getInstance().saveConfig();
             PerWorldPlugins.getInstance().reloadConfig();
         }
