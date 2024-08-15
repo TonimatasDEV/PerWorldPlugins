@@ -67,10 +67,6 @@ public class Listeners implements Listener {
             return;
         }
         
-        for (String var : possibleCommands) {
-            System.out.println(var);
-        }
-        
         event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommands.get(0)));
     }
 }
