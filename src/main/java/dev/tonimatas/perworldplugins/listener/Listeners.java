@@ -69,6 +69,7 @@ public class Listeners implements Listener {
             if (splitCommand.length == 0) {
                 if (splitDefaultCommand[1].equals(commandString)) {
                     possibleCommands.add(defaultCommand.getName());
+                    break;
                 }
             } else {
                 if (defaultCommand.getName().equals(commandString)) {
