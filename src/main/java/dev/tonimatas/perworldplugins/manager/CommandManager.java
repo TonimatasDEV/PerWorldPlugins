@@ -20,16 +20,7 @@ public class CommandManager implements Listener {
     public static void addPluginCommands(String plugin) {
         getCommands().keySet().stream().filter(str -> {
             if (defaultCommands.contains(getCommands().get(str))) return false;
-            if (getCommands().get(str).getClass().getName().equals("org.bukkit.craftbukkit.command.VanillaCommandWrapper")) {
-                Map<String, Command> commandMap = pluginMap.get("minecraft");
-
-                if (commandMap == null) commandMap = new HashMap<>();
-                if (commandMap.containsKey(str)) return false;
-
-                commandMap.put(str, getCommands().get(str));
-                pluginMap.put("minecraft", commandMap);
-                return false;
-            }
+            if (getCommands().get(str).getClass().getName().equals("org.bukkit.craftbukkit.command.VanillaCommandWrapper")) return false;
             
             for (Map<String, Command> commandMap : pluginMap.values()) {
                 if (commandMap.containsKey(str)) return false;
