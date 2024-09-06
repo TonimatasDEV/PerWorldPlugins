@@ -73,9 +73,11 @@ public class Listeners implements Listener {
                     .replaceAll("\\{world}", event.getPlayer().getWorld().getName())
                     .replaceAll("\\{player}", event.getPlayer().getName()));
             event.setCancelled(true);
-            return;
+        } else {
+            if (possibleCommands.isEmpty()) return;
+            
+            event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommands.get(0)));
         }
         
-        event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommands.get(0)));
     }
 }
