@@ -45,7 +45,6 @@ public class Listeners implements Listener {
 
         for (String plugin : CommandManager.pluginMap.keySet()) {
             Map<String, Command> commandMap = CommandManager.pluginMap.get(plugin);
-            PerWorldPlugins.getInstance().getLogger().warning(plugin);
             if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) continue;
             if (!commandMap.containsKey(commandString)) continue;
             
@@ -62,8 +61,20 @@ public class Listeners implements Listener {
         }
         
         for (Command defaultCommand : CommandManager.defaultCommands) {
-            if (defaultCommand.getName().contains(":" + commandString)) {
-                possibleCommands.add(defaultCommand.getName());
+            String[] splitDefaultCommand = defaultCommand.getName().split(":");
+            if (splitDefaultCommand.length == 0) continue;
+            
+            String[] splitCommand = commandString.split(":");
+            
+            if (splitCommand.length == 0) {
+                if (splitDefaultCommand[1].equals(commandString)) {
+                    possibleCommands.add(defaultCommand.getName());
+                }
+            } else {
+                if (defaultCommand.getName().equals(commandString)) {
+                    possibleCommands.add(defaultCommand.getName());
+                    break;
+                }
             }
         }
         
