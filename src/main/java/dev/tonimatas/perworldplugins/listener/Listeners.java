@@ -29,55 +29,34 @@ public class Listeners implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
-        Map<String, Command> commands = CommandManager.getCommands();
         String commandStringWithVar = event.getMessage().split(" ")[0];
         String commandString = commandStringWithVar.replaceFirst("/", "");
         
-        Command command = commands.get(commandString);
+        Command command = CommandManager.getCommands().get(commandString);
 
         if (command == null) return;
         
         List<String> possibleCommands = new ArrayList<>();
 
         for (String plugin : CommandManager.pluginMap.keySet()) {
-            Map<String, Command> commandMap = CommandManager.pluginMap.get(plugin);
-
             if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) {
                 continue;
             }
 
-            boolean isHere = false;
-            for (Command cmd : commandMap.values()) {
-                if (cmd.getName().equalsIgnoreCase(commandString) || cmd.getAliases().contains(commandString)) {
-                    isHere = true;
-                    break;
-                }
+            String possibleCommand = CommandManager.getCommand(command, commandString, CommandManager.pluginMap.get(plugin));
+            
+            if (possibleCommand != null) {
+                possibleCommands.add(possibleCommand);
             }
-            
-            if (!isHere) continue;
-            
-            String commandStr;
-            
-            if (commandString.contains(":")) {
-                commandStr = commandString;
-            } else {
-                commandStr = plugin.toLowerCase(Locale.ENGLISH) + ":" + commandString;
-            }
+        }
 
-            if (CommandManager.getCommands().get(commandStr) == null) {
-                possibleCommands.add(commandString);
-            } else {
-                possibleCommands.add(commandStr);
-            }
+        String possibleDefaultCommand = CommandManager.getCommand(command, commandString, CommandManager.defaultCommands);
+        
+        if (possibleDefaultCommand != null) {
+            possibleCommands.add(possibleDefaultCommand);
         }
         
-        for (Command defaultCommand : CommandManager.defaultCommands) {
-            if (defaultCommand.getName().equals(commandString) || defaultCommand.getAliases().contains(commandString)) {
-                possibleCommands.add(defaultCommand.getName());
-            }
-        }
-        
-        if (possibleCommands.isEmpty() && commands.containsKey(commandString)) {
+        if (possibleCommands.isEmpty() && CommandManager.getCommands().containsKey(commandString)) {
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',
                             Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage")))
                     .replaceAll("\\{world}", event.getPlayer().getWorld().getName())
@@ -88,6 +67,5 @@ public class Listeners implements Listener {
             
             event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommands.get(0)));
         }
-        
     }
 }

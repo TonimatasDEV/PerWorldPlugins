@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandManager implements Listener {
-    public static Map<String, Map<String, Command>> pluginMap = new HashMap<>();
+    public static Map<String, List<Command>> pluginMap = new HashMap<>();
     public static final List<Command> defaultCommands = new ArrayList<>();
 
     public static void addPluginCommands(String plugin) {
@@ -22,17 +22,19 @@ public class CommandManager implements Listener {
             if (defaultCommands.contains(command)) return false;
             if (command.getClass().getName().contains("VanillaCommandWrapper")) return false;
             
-            for (Map<String, Command> commandMap : pluginMap.values()) {
-                if (commandMap.containsValue(command)) return false;
+            for (List<Command> commandMap : pluginMap.values()) {
+                if (commandMap.contains(command)) {
+                    return false;
+                }
             }
             
             return true;
         }).forEach(command -> {
-            Map<String, Command> commandMap = pluginMap.get(plugin);
+            List<Command> commandMap = pluginMap.get(plugin);
             
-            if (commandMap == null) commandMap = new HashMap<>();
+            if (commandMap == null) commandMap = new ArrayList<>();
 
-            commandMap.put(command.getName(), command);
+            commandMap.add(command);
             pluginMap.put(plugin, commandMap);
         });
     }
@@ -73,5 +75,26 @@ public class CommandManager implements Listener {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException("Error on get commandMap field. Report it on PerWorldPlugins github.");
         }
+    }
+
+    public static String getCommand(Command command, String commandString, List<Command> commands) {
+        for (Command cmd : commands) {
+            if (cmd == command) {
+                return commandString;
+            } else {
+                List<String> commandNames = new ArrayList<>(cmd.getAliases());
+                commandNames.add(cmd.getName());
+
+                if (commandNames.contains(commandString)) {
+                    for (String commandName : CommandManager.getCommands().keySet()) {
+                        Command equalCommand = CommandManager.getCommands().get(commandName);
+                        if (equalCommand != cmd) continue;
+                        return commandName;
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 }
