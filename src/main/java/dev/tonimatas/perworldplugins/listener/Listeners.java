@@ -65,7 +65,11 @@ public class Listeners implements Listener {
                 commandStr = Why.whyPlugin(plugin) + ":" + commandString;
             }
 
-            possibleCommands.add(commandStr);
+            if (CommandManager.getCommands().get(commandStr) == null) {
+                possibleCommands.add(commandString);
+            } else {
+                possibleCommands.add(commandStr);
+            }
         }
         
         for (Command defaultCommand : CommandManager.defaultCommands) {
