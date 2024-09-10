@@ -3,7 +3,6 @@ package dev.tonimatas.perworldplugins.listener;
 import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import dev.tonimatas.perworldplugins.manager.CommandManager;
 import dev.tonimatas.perworldplugins.util.PerWorldUtils;
-import dev.tonimatas.perworldplugins.util.Why;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
@@ -62,7 +61,7 @@ public class Listeners implements Listener {
             if (commandString.contains(":")) {
                 commandStr = commandString;
             } else {
-                commandStr = Why.whyPlugin(plugin) + ":" + commandString;
+                commandStr = plugin.toLowerCase(Locale.ENGLISH) + ":" + commandString;
             }
 
             if (CommandManager.getCommands().get(commandStr) == null) {
