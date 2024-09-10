@@ -3,6 +3,7 @@ package dev.tonimatas.perworldplugins.listener;
 import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import dev.tonimatas.perworldplugins.manager.CommandManager;
 import dev.tonimatas.perworldplugins.util.PerWorldUtils;
+import dev.tonimatas.perworldplugins.util.Why;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
@@ -37,45 +38,39 @@ public class Listeners implements Listener {
 
         if (command == null) return;
         
-        if (CommandManager.defaultCommands.contains(command)) {
-            return;
-        }
-        
         List<String> possibleCommands = new ArrayList<>();
 
         for (String plugin : CommandManager.pluginMap.keySet()) {
             Map<String, Command> commandMap = CommandManager.pluginMap.get(plugin);
-            if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) continue;
-            if (!commandMap.containsKey(commandString)) continue;
+
+            if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) {
+                continue;
+            }
+
+            boolean isHere = false;
+            for (Command cmd : commandMap.values()) {
+                if (cmd.getName().equalsIgnoreCase(commandString) || cmd.getAliases().contains(commandString)) {
+                    isHere = true;
+                    break;
+                }
+            }
+            
+            if (!isHere) continue;
             
             String commandStr;
             
             if (commandString.contains(":")) {
                 commandStr = commandString;
             } else {
-                commandStr = plugin.toLowerCase(Locale.ENGLISH) + ":" + commandString;
+                commandStr = Why.whyPlugin(plugin) + ":" + commandString;
             }
-
 
             possibleCommands.add(commandStr);
         }
         
         for (Command defaultCommand : CommandManager.defaultCommands) {
-            String[] splitDefaultCommand = defaultCommand.getName().split(":");
-            if (splitDefaultCommand.length == 0) continue;
-            
-            String[] splitCommand = commandString.split(":");
-            
-            if (splitCommand.length == 0) {
-                if (splitDefaultCommand[1].equals(commandString)) {
-                    possibleCommands.add(defaultCommand.getName());
-                    break;
-                }
-            } else {
-                if (defaultCommand.getName().equals(commandString)) {
-                    possibleCommands.add(defaultCommand.getName());
-                    break;
-                }
+            if (defaultCommand.getName().equals(commandString) || defaultCommand.getAliases().contains(commandString)) {
+                possibleCommands.add(defaultCommand.getName());
             }
         }
         

@@ -34,7 +34,7 @@ public final class PerWorldPlugins extends JavaPlugin {
 
         CommandManager.getCommandMap().register("perworldplugins", new PrimaryCommand());
         
-        CommandManager.addDefaultCommands();
+        CommandManager.addDefaultCommands(false);
 
         if (getConfig().getBoolean("metrics")) new Metrics(this, 15794);
 
@@ -46,6 +46,7 @@ public final class PerWorldPlugins extends JavaPlugin {
 
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
             ListenerManager.convert();
+            CommandManager.addDefaultCommands(true);
 
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners correctly.");
         });
