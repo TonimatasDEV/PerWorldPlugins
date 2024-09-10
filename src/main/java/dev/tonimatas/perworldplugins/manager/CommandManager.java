@@ -18,29 +18,35 @@ public class CommandManager implements Listener {
     public static final List<Command> defaultCommands = new ArrayList<>();
 
     public static void addPluginCommands(String plugin) {
-        getCommands().keySet().stream().filter(str -> {
-            if (defaultCommands.contains(getCommands().get(str))) return false;
-            if (getCommands().get(str).getClass().getName().equals("org.bukkit.craftbukkit.command.VanillaCommandWrapper")) return false;
+        getCommands().values().stream().filter(command -> {
+            if (defaultCommands.contains(command)) return false;
+            if (command.getClass().getName().contains("VanillaCommandWrapper")) return false;
             
             for (Map<String, Command> commandMap : pluginMap.values()) {
-                if (commandMap.containsKey(str)) return false;
+                if (commandMap.containsValue(command)) return false;
             }
             
             return true;
-        }).forEach(str -> {
+        }).forEach(command -> {
             Map<String, Command> commandMap = pluginMap.get(plugin);
             
             if (commandMap == null) commandMap = new HashMap<>();
-            
-            commandMap.put(str, getCommands().get(str));
+
+            commandMap.put(command.getName(), command);
             pluginMap.put(plugin, commandMap);
         });
     }
 
-    public static void addDefaultCommands() {
+    public static void addDefaultCommands(boolean onlyMinecraft) {
         for (Command command : getCommands().values()) {
             if (defaultCommands.contains(command)) continue;
-            defaultCommands.add(command);
+            if (onlyMinecraft) {
+                if (command.getClass().getName().contains("VanillaCommandWrapper")) {
+                    defaultCommands.add(command);
+                }
+            } else {
+                defaultCommands.add(command);
+            }
         }
     }
 
