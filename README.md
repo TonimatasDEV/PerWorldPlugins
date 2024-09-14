@@ -1,3 +1,4 @@
+[![Hits](https://hits.sh/github.com/tonimatasdev/perworldplugins.svg)](https://hits.sh/github.com/tonimatasdev/perworldplugins/)
 # PerWorldPlugins
 Visit my discord server: https://discord.com/invite/vWBP4P4Yd8
 
