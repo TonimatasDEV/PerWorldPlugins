@@ -8,10 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CommandManager implements Listener {
     public static Map<String, List<Command>> pluginMap = new HashMap<>();
@@ -82,14 +79,21 @@ public class CommandManager implements Listener {
             if (cmd == command) {
                 return commandString;
             } else {
-                List<String> commandNames = new ArrayList<>(cmd.getAliases());
-                commandNames.add(cmd.getName());
+                List<String> cmdList = new ArrayList<>();
+                cmdList.add(cmd.getName());
+                cmdList.addAll(cmd.getAliases());
 
-                if (commandNames.contains(commandString)) {
-                    for (String commandName : CommandManager.getCommands().keySet()) {
-                        Command equalCommand = CommandManager.getCommands().get(commandName);
-                        if (equalCommand != cmd) continue;
-                        return commandName;
+                if (cmd.getClass().getName().contains("VanillaCommandWrapper")) {
+                    cmdList.add("minecraft:" + commandString);
+                }
+
+                if (cmdList.contains(commandString)) {
+                    for (String alias : cmdList) {
+                        Command command1 = getCommands().get(alias);
+
+                        if (command1 != command) {
+                            return alias;
+                        }
                     }
                 }
             }
