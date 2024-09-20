@@ -40,7 +40,7 @@ public class PrimaryCommand extends Command {
         } else {
             sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "Please use: /perworldplugins reload | version");
         }
-        
+
         return true;
     }
 

@@ -17,7 +17,8 @@ public class ListenerManager {
         for (HandlerList handlerList : HandlerList.getHandlerLists()) {
             for (RegisteredListener registeredListener : handlerList.getRegisteredListeners()) {
                 if (registeredListener.getPlugin().equals(PerWorldPlugins.getInstance())) continue;
-                if (registeredListener instanceof PerWorldRegisteredListener || registeredListener instanceof PerWorldTimedRegisteredListener) continue;
+                if (registeredListener instanceof PerWorldRegisteredListener || registeredListener instanceof PerWorldTimedRegisteredListener)
+                    continue;
 
                 handlerList.unregister(registeredListener);
 
@@ -39,7 +40,7 @@ public class ListenerManager {
                         handlerList.register(new PerWorldRegisteredListener(registeredListener.getListener(), (EventExecutor) executorField.get(registeredListener), registeredListener.getPriority(), registeredListener.getPlugin(), registeredListener.isIgnoringCancelled()));
                     }
                 } catch (NoSuchFieldException | IllegalAccessException e) {
-                    PerWorldPlugins.getInstance().getLogger().severe("Problems on get RegisteredListener executor for " + registeredListener.getPlugin().getName() +  " plugin.");
+                    PerWorldPlugins.getInstance().getLogger().severe("Problems on get RegisteredListener executor for " + registeredListener.getPlugin().getName() + " plugin.");
                 }
             }
         }
@@ -49,10 +50,10 @@ public class ListenerManager {
 
     public static void setWorldsToEvents() {
         Plugin perWorldPlugins = PerWorldPlugins.getInstance();
-        
+
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
             if (plugin.equals(perWorldPlugins)) continue;
-            
+
             for (RegisteredListener registeredListener : HandlerList.getRegisteredListeners(plugin)) {
                 boolean handled = false;
 
@@ -64,7 +65,7 @@ public class ListenerManager {
                 } catch (Exception ignore) {
                 }
 
-                if (!handled && registeredListener instanceof PerWorldTimedRegisteredListener){
+                if (!handled && registeredListener instanceof PerWorldTimedRegisteredListener) {
                     ((PerWorldTimedRegisteredListener) registeredListener).setDisabledWorlds();
                 }
             }

@@ -33,7 +33,7 @@ public final class PerWorldPlugins extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Listeners(), this);
 
         CommandManager.getCommandMap().register("perworldplugins", new PrimaryCommand());
-        
+
         CommandManager.addDefaultCommands(false);
 
         if (getConfig().getBoolean("metrics")) new Metrics(this, 15794);

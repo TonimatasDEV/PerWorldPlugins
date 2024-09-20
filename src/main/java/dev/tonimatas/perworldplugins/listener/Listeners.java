@@ -2,7 +2,6 @@ package dev.tonimatas.perworldplugins.listener;
 
 import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import dev.tonimatas.perworldplugins.manager.CommandManager;
-import dev.tonimatas.perworldplugins.util.PerWorldUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
@@ -11,7 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Objects;
 
 public class Listeners implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
@@ -31,41 +31,36 @@ public class Listeners implements Listener {
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
         String commandStringWithVar = event.getMessage().split(" ")[0];
         String commandString = commandStringWithVar.replaceFirst("/", "");
-        
+
         Command command = CommandManager.getCommands().get(commandString);
+        if (!CommandManager.isCommandBlocked(command, event.getPlayer().getWorld().getName())) return;
 
-        if (command == null) return;
-        
-        List<String> possibleCommands = new ArrayList<>();
+        String possibleCommand = null;
 
-        for (String plugin : CommandManager.pluginMap.keySet()) {
-            if (PerWorldUtils.getDisabledWorlds(plugin).contains(event.getPlayer().getWorld().getName())) {
-                continue;
+        for (Command otherCommand : CommandManager.getCommands().values()) {
+            if (CommandManager.isCommandBlocked(otherCommand, event.getPlayer().getWorld().getName())) continue;
+
+            if (otherCommand.getName().contains(":")) {
+                String[] otherCommandSplit = otherCommand.getName().split(":");
+
+                if (otherCommandSplit[1].equals(commandString)) {
+                    possibleCommand = otherCommand.getName();
+                    break;
+                }
             }
 
-            String possibleCommand = CommandManager.getCommand(command, commandString, CommandManager.pluginMap.get(plugin));
-            
-            if (possibleCommand != null) {
-                possibleCommands.add(possibleCommand);
-            }
+            // TODO: Implement not plugin:command
         }
 
-        String possibleDefaultCommand = CommandManager.getCommand(command, commandString, CommandManager.defaultCommands);
-        
-        if (possibleDefaultCommand != null) {
-            possibleCommands.add(possibleDefaultCommand);
-        }
-        
-        if (possibleCommands.isEmpty() && CommandManager.getCommands().containsKey(commandString)) {
+        if (possibleCommand == null) {
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',
                             Objects.requireNonNull(PerWorldPlugins.getInstance().getConfig().getString("disabledCommandMessage")))
                     .replaceAll("\\{world}", event.getPlayer().getWorld().getName())
                     .replaceAll("\\{player}", event.getPlayer().getName()));
             event.setCancelled(true);
         } else {
-            if (possibleCommands.isEmpty()) return;
-            
-            event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommands.get(0)));
+            event.getPlayer().sendMessage(possibleCommand);
+            event.setMessage(event.getMessage().replaceFirst(commandStringWithVar, "/" + possibleCommand));
         }
     }
 }

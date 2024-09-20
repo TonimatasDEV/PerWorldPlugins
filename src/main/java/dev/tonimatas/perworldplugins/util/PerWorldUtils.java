@@ -34,10 +34,10 @@ public class PerWorldUtils {
                 withGroupWorlds.remove(var);
                 withGroupWorlds.addAll(GroupsYML.get().getStringList(group));
             }
-            
+
             if (var.endsWith("*")) {
                 String worldExpression = var.replace("*", "");
-                
+
                 withGroupWorlds.addAll(getAllWorldWithCondition(name -> name.startsWith(worldExpression)));
             }
 
@@ -63,11 +63,11 @@ public class PerWorldUtils {
             return serverWorlds;
         }
     }
-    
+
     public static List<String> getAllWorldWithCondition(Predicate<String> function) {
         return Bukkit.getWorlds().stream().map(World::getName).filter(function).collect(Collectors.toList());
     }
-    
+
     public static boolean checkEvent(Event event, List<String> disabledWorlds) {
         if (event instanceof PlayerEvent) {
             return disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName());
