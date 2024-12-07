@@ -1,7 +1,5 @@
-@file:Suppress("VulnerableLibrariesLocal")
-
 plugins {
-    id("java")
+    java
 }
 
 val pluginVersion: String by extra
@@ -25,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:${minecraftVersion}-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:$minecraftVersion-R0.1-SNAPSHOT")
 }
 
 tasks.withType<ProcessResources> {
