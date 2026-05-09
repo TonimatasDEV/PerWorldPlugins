@@ -8,25 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.server.PluginEnableEvent;
 
-import java.util.Collections;
 import java.util.Objects;
 
 public class Listeners implements Listener {
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPluginEnable(PluginEnableEvent event) {
-        if (event.getPlugin().equals(PerWorldPlugins.getInstance())) return;
-
-        CommandManager.addPluginCommands(event.getPlugin().getName());
-
-        if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + event.getPlugin().getName()).isEmpty()) {
-            PerWorldPlugins.getInstance().getConfig().set("plugins." + event.getPlugin().getName(), Collections.singletonList(":ignore"));
-            PerWorldPlugins.getInstance().saveConfig();
-            PerWorldPlugins.getInstance().reloadConfig();
-        }
-    }
-
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
         String commandStringWithVar = event.getMessage().split(" ")[0];
@@ -38,15 +23,15 @@ public class Listeners implements Listener {
         String possibleCommand = null;
 
         for (Command otherCommand : CommandManager.getCommands().values()) {
+            if (!otherCommand.getName().contains(":")) continue;
+            if (!otherCommand.getName().startsWith("minecraft:")) continue;
             if (CommandManager.isCommandBlocked(otherCommand, event.getPlayer().getWorld().getName())) continue;
+            
+            String[] otherCommandSplit = otherCommand.getName().split(":");
 
-            if (otherCommand.getName().contains(":")) {
-                String[] otherCommandSplit = otherCommand.getName().split(":");
-
-                if (otherCommandSplit[1].equals(commandString)) {
-                    possibleCommand = otherCommand.getName();
-                    break;
-                }
+            if (otherCommandSplit[1].equals(commandString)) {
+                possibleCommand = otherCommand.getName();
+                break;
             }
 
             // TODO: Implement not plugin:command
