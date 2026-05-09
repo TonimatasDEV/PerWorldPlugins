@@ -3,7 +3,7 @@ plugins {
 }
 
 val pluginVersion: String by extra
-val minecraftVersion: String by extra
+val paperVersion: String by extra
 
 group = "dev.tonimatas"
 version = pluginVersion
@@ -13,23 +13,23 @@ base {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     withSourcesJar()
 }
 
 repositories {
     mavenCentral()
-    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:$minecraftVersion-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:$paperVersion")
 }
 
-tasks.withType<ProcessResources> {
+tasks.processResources {
     inputs.property("pluginVersion", version)
 
-    filesMatching("plugin.yml") {
+    filesMatching(listOf("plugin.yml", "paper-plugin.yml")) {
         expand("pluginVersion" to version)
     }
 }
