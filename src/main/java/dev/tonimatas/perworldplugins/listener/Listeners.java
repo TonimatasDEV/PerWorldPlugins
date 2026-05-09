@@ -26,15 +26,13 @@ public class Listeners implements Listener {
             if (!otherCommand.getName().contains(":")) continue;
             if (!otherCommand.getName().startsWith("minecraft:")) continue;
             if (CommandManager.isCommandBlocked(otherCommand, event.getPlayer().getWorld().getName())) continue;
-            
+
             String[] otherCommandSplit = otherCommand.getName().split(":");
 
             if (otherCommandSplit[1].equals(commandString)) {
                 possibleCommand = otherCommand.getName();
                 break;
             }
-
-            // TODO: Implement not plugin:command
         }
 
         if (possibleCommand == null) {

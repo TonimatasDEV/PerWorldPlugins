@@ -1,17 +1,17 @@
 package dev.tonimatas.perworldplugins.api;
 
+import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import dev.tonimatas.perworldplugins.util.PerWorldUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.TimedRegisteredListener;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
     private List<String> disabledWorlds;
@@ -21,14 +21,14 @@ public class PerWorldTimedRegisteredListener extends TimedRegisteredListener {
         this.disabledWorlds = new ArrayList<>();
     }
 
-    @SuppressWarnings("NullableProblems")
-    public void callEvent(Event event) {
+    @SuppressWarnings({"UnstableApiUsage"})
+    public void callEvent(@NonNull Event event) {
         if (PerWorldUtils.checkEvent(event, this.disabledWorlds)) return;
 
         try {
             super.callEvent(event);
         } catch (Throwable ex) {
-            Bukkit.getServer().getLogger().log(Level.SEVERE, "Could not pass event " + event.getEventName() + " to " + getPlugin().getName() + " v" + getPlugin().getDescription().getVersion(), ex);
+            PerWorldPlugins.LOGGER.warn("Could not pass event {} to {} v{}", event.getEventName(), getPlugin().getName(), getPlugin().getPluginMeta().getVersion(), ex);
         }
     }
 

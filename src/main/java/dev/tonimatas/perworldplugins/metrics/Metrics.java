@@ -39,11 +39,12 @@ public class Metrics {
             config.addDefault("logFailedRequests", false);
             config.addDefault("logSentData", false);
             config.addDefault("logResponseStatusText", false);
-            config.options().header("bStats (https://bStats.org) collects some basic information for plugin authors, like how\n" +
-                    "many people use their plugin and their total player count. It's recommended to keep bStats\n" +
-                    "enabled, but if you're not comfortable with this, you can turn this setting off. There is no\n" +
-                    "performance penalty associated with having metrics enabled, and data sent to bStats is fully\n" +
-                    "anonymous.").copyDefaults(true);
+            config.options().header("""
+                    bStats (https://bStats.org) collects some basic information for plugin authors, like how
+                    many people use their plugin and their total player count. It's recommended to keep bStats
+                    enabled, but if you're not comfortable with this, you can turn this setting off. There is no
+                    performance penalty associated with having metrics enabled, and data sent to bStats is fully
+                    anonymous.""").copyDefaults(true);
 
             try {
                 config.save(configFile);

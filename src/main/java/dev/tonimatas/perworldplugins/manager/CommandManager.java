@@ -40,7 +40,7 @@ public class CommandManager implements Listener {
 
     public static boolean isCommandBlocked(Command command, String world) {
         if (command == null) return false;
-        
+
         if (command instanceof PluginCommand pluginCommand) {
             return PerWorldUtils.getDisabledWorlds(pluginCommand.getName()).contains(world);
         } else {

@@ -3,7 +3,8 @@ package dev.tonimatas.perworldplugins.command;
 import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import dev.tonimatas.perworldplugins.config.GroupsYML;
 import dev.tonimatas.perworldplugins.manager.ListenerManager;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -18,27 +19,27 @@ public class PrimaryCommand extends Command {
         super("perworldplugins", "Primary command of PerWorldPlugins", "/perworldplugins", Collections.singletonList("pwp"));
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("version")) {
 
                 if (hasPermission(sender, "perworldplugins.version")) {
-                    sender.sendMessage(getPrefix(ChatColor.DARK_GREEN) + "The plugin version is: " + PerWorldPlugins.getInstance().getDescription().getVersion());
+                    sender.sendMessage(generateMessage(true, "The plugin version is: " + PerWorldPlugins.getInstance().getPluginMeta().getVersion()));
                 }
             }
 
             if (args[0].equalsIgnoreCase("reload")) {
-
                 if (hasPermission(sender, "perworldplugins.reload")) {
                     PerWorldPlugins.getInstance().reloadConfig();
                     GroupsYML.reload();
                     ListenerManager.setWorldsToEvents();
-                    sender.sendMessage(getPrefix(ChatColor.DARK_GREEN) + "The plugin has been reloaded.");
+                    sender.sendMessage(generateMessage(true, "The plugin has been reloaded."));
                 }
             }
         } else {
-            sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "Please use: /perworldplugins reload | version");
+            sender.sendMessage(generateMessage(false, "Please use: /perworldplugins reload | version"));
         }
 
         return true;
@@ -48,13 +49,17 @@ public class PrimaryCommand extends Command {
         if (sender.hasPermission(permission)) {
             return true;
         } else {
-            sender.sendMessage(getPrefix(ChatColor.DARK_RED) + "You don't have permissions for execute this command");
+            sender.sendMessage(generateMessage(false, "You don't have permissions for execute this command"));
             return false;
         }
     }
 
-    private String getPrefix(ChatColor chatColor) {
-        return ChatColor.WHITE + "[" + chatColor + "+" + ChatColor.WHITE + "] PerWorldPlugins: " + ChatColor.WHITE;
+    private Component generateMessage(boolean fine, String message) {
+        return Component.text("[", NamedTextColor.DARK_GRAY)
+                .append(Component.text("+", fine ? NamedTextColor.DARK_GREEN : NamedTextColor.DARK_RED))
+                .append(Component.text("]", NamedTextColor.DARK_GRAY))
+                .append(Component.text("PerWorldPlugins: ", NamedTextColor.GRAY))
+                .append(Component.text(message, NamedTextColor.WHITE));
     }
 
     @Override

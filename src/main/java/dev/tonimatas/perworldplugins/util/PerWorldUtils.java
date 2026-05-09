@@ -3,7 +3,6 @@ package dev.tonimatas.perworldplugins.util;
 import dev.tonimatas.perworldplugins.PerWorldPlugins;
 import dev.tonimatas.perworldplugins.config.GroupsYML;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockEvent;
@@ -54,14 +53,7 @@ public class PerWorldUtils {
         if (PerWorldPlugins.getInstance().getConfig().getBoolean("blacklist")) {
             return withGroupWorlds;
         } else {
-            List<String> serverWorlds = new ArrayList<>();
-
-            try {
-                serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).toList());
-            } catch (Exception e) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + pluginName);
-            }
-
+            List<String> serverWorlds = new ArrayList<>(Bukkit.getWorlds().stream().map(World::getName).toList());
             serverWorlds.removeAll(withGroupWorlds);
             return serverWorlds;
         }
@@ -72,27 +64,20 @@ public class PerWorldUtils {
     }
 
     public static boolean checkEvent(Event event, List<String> disabledWorlds) {
-        if (event instanceof PlayerEvent) {
-            return disabledWorlds.contains(((PlayerEvent) event).getPlayer().getWorld().getName());
-        } else if (event instanceof EntityEvent) {
-            return disabledWorlds.contains(((EntityEvent) event).getEntity().getWorld().getName());
-        } else if (event instanceof BlockEvent) {
-            return disabledWorlds.contains(((BlockEvent) event).getBlock().getWorld().getName());
-        } else if (event instanceof WorldEvent) {
-            return disabledWorlds.contains(((WorldEvent) event).getWorld().getName());
-        } else if (event instanceof HangingEvent) {
-            return disabledWorlds.contains(((HangingEvent) event).getEntity().getWorld().getName());
-        } else if (event instanceof InventoryEvent) {
-            return disabledWorlds.contains(((InventoryEvent) event).getView().getPlayer().getWorld().getName());
-        } else if (event instanceof VehicleEvent) {
-            return disabledWorlds.contains(((VehicleEvent) event).getVehicle().getWorld().getName());
-        } else if (event instanceof WeatherEvent) {
-            return disabledWorlds.contains(((WeatherEvent) event).getWorld().getName());
-        } else {
-            return false;
-        }
+        return switch (event) {
+            case PlayerEvent playerEvent -> disabledWorlds.contains(playerEvent.getPlayer().getWorld().getName());
+            case EntityEvent entityEvent -> disabledWorlds.contains(entityEvent.getEntity().getWorld().getName());
+            case BlockEvent blockEvent -> disabledWorlds.contains(blockEvent.getBlock().getWorld().getName());
+            case WorldEvent worldEvent -> disabledWorlds.contains(worldEvent.getWorld().getName());
+            case HangingEvent hangingEvent -> disabledWorlds.contains(hangingEvent.getEntity().getWorld().getName());
+            case InventoryEvent inventoryEvent ->
+                    disabledWorlds.contains(inventoryEvent.getView().getPlayer().getWorld().getName());
+            case VehicleEvent vehicleEvent -> disabledWorlds.contains(vehicleEvent.getVehicle().getWorld().getName());
+            case WeatherEvent weatherEvent -> disabledWorlds.contains(weatherEvent.getWorld().getName());
+            case null, default -> false;
+        };
     }
-    
+
     public static void generateConfig() {
         for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
             if (plugin.equals(PerWorldPlugins.getInstance())) continue;
