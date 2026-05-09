@@ -1,0 +1,16 @@
+name: PerWorldPlugins
+version: '${pluginVersion}'
+main: dev.tonimatas.perworldplugins.PerWorldPlugins
+authors:
+  - TonimatasDEV
+load: STARTUP
+api-version: 1.21.1
+description: Active/Disable plugins in certain worlds
+prefix: PerWorldPlugins
+
+permissions:
+  perworldplugins.reload:
+    description: Reload config permission for PerWorldPlugins
+
+  perworldplugins.version:
+    description: Version permission for PerWorldPlugins
