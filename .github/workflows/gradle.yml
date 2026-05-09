@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v6
 
-      - name: Set up JDK 8
-        uses: actions/setup-java@v4.2.1
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 21
 
       - name: Give permissions to Gradle
         run: chmod +x ./gradlew
@@ -23,7 +23,7 @@ jobs:
         run: ./gradlew jar
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.3.3
+        uses: actions/upload-artifact@v7
         with:
           name: PerWorldPlugins
           path: build/libs/**.jar
