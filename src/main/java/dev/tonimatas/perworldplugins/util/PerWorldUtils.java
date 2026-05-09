@@ -95,7 +95,7 @@ public class PerWorldUtils {
     
     public static void generateConfig() {
         for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-            if (plugin.equals(PerWorldPlugins.getInstance())) return;
+            if (plugin.equals(PerWorldPlugins.getInstance())) continue;
             String pluginName = plugin.getName().toLowerCase(Locale.ENGLISH);
 
             if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + pluginName).isEmpty()) {
