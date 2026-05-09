@@ -14,9 +14,12 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.vehicle.VehicleEvent;
 import org.bukkit.event.weather.WeatherEvent;
 import org.bukkit.event.world.WorldEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -54,7 +57,7 @@ public class PerWorldUtils {
             List<String> serverWorlds = new ArrayList<>();
 
             try {
-                serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()));
+                serverWorlds.addAll(Bukkit.getWorlds().stream().map(World::getName).toList());
             } catch (Exception e) {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Error on get blocked worlds of: " + pluginName);
             }
@@ -88,5 +91,19 @@ public class PerWorldUtils {
         } else {
             return false;
         }
+    }
+    
+    public static void generateConfig() {
+        for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
+            if (plugin.equals(PerWorldPlugins.getInstance())) return;
+            String pluginName = plugin.getName().toLowerCase(Locale.ENGLISH);
+
+            if (PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + pluginName).isEmpty()) {
+                PerWorldPlugins.getInstance().getConfig().set("plugins." + pluginName, Collections.singletonList(":ignore"));
+            }
+        }
+
+        PerWorldPlugins.getInstance().saveConfig();
+        PerWorldPlugins.getInstance().reloadConfig();
     }
 }

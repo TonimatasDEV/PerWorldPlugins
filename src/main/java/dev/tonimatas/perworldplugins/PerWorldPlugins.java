@@ -6,6 +6,7 @@ import dev.tonimatas.perworldplugins.listener.Listeners;
 import dev.tonimatas.perworldplugins.manager.CommandManager;
 import dev.tonimatas.perworldplugins.manager.ListenerManager;
 import dev.tonimatas.perworldplugins.metrics.Metrics;
+import dev.tonimatas.perworldplugins.util.PerWorldUtils;
 import dev.tonimatas.perworldplugins.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,11 +20,6 @@ public final class PerWorldPlugins extends JavaPlugin {
     }
 
     @Override
-    public void onLoad() {
-        this.getPluginLoader().enablePlugin(this);
-    }
-
-    @Override
     public void onEnable() {
         instance = this;
 
@@ -34,8 +30,6 @@ public final class PerWorldPlugins extends JavaPlugin {
 
         CommandManager.getCommandMap().register("perworldplugins", new PrimaryCommand());
 
-        CommandManager.addDefaultCommands(false);
-
         if (getConfig().getBoolean("metrics")) new Metrics(this, 15794);
 
         if (getConfig().getBoolean("updateChecker")) UpdateChecker.check();
@@ -45,9 +39,8 @@ public final class PerWorldPlugins extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GREEN + "<---------------------------------------->");
 
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
+            PerWorldUtils.generateConfig();
             ListenerManager.convert();
-            CommandManager.addDefaultCommands(true);
-
             Bukkit.getConsoleSender().sendMessage("[PerWorldPlugins] " + ChatColor.GREEN + "Converted all Listeners correctly.");
         });
     }
