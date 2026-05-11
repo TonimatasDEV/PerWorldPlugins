@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 public class PerWorldUtils {
     public static List<String> getDisabledWorlds(String pluginName) {
+        pluginName = pluginName.toLowerCase(Locale.ENGLISH);
         List<String> worldList = PerWorldPlugins.getInstance().getConfig().getStringList("plugins." + pluginName);
 
         if (worldList.contains(":ignore") || worldList.isEmpty()) return new ArrayList<>();

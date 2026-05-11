@@ -42,7 +42,7 @@ public class CommandManager implements Listener {
         if (command == null) return false;
 
         if (command instanceof PluginCommand pluginCommand) {
-            return PerWorldUtils.getDisabledWorlds(pluginCommand.getName()).contains(world);
+            return PerWorldUtils.getDisabledWorlds(pluginCommand.getPlugin().getName()).contains(world);
         } else {
             return false;
         }
