@@ -7,6 +7,7 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
@@ -44,6 +45,19 @@ public class CommandManager implements Listener {
         if (command instanceof PluginCommand pluginCommand) {
             return PerWorldUtils.getDisabledWorlds(pluginCommand.getPlugin().getName()).contains(world);
         } else {
+            for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+                String className = plugin.getPluginMeta().getMainClass();
+
+                int lastDotIndex = className.lastIndexOf('.');
+                if (lastDotIndex > 0) {
+                    String packageName = className.substring(0, lastDotIndex);
+
+                    if (command.getClass().getName().startsWith(packageName)) {
+                        return PerWorldUtils.getDisabledWorlds(plugin.getName()).contains(world);
+                    }
+                }
+            }
+
             return false;
         }
     }
